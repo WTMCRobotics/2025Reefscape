@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.Orchestra;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -43,6 +44,7 @@ public class RobotContainer {
   {
     if (Robot.isReal()) {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
+      drivebase.getSwerveDrive().setCosineCompensator(false);
     } else {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_simulation"));
       drivebase.getSwerveDrive().setHeadingCorrection(false); // Heading correction should only be used while
@@ -60,8 +62,8 @@ public class RobotContainer {
       () -> driverXbox.getLeftX() * -1)
       .withControllerRotationAxis(driverXbox::getRightX)
       .deadband(OperatorConstants.DEADBAND)
-      .scaleTranslation(0.8)
-      .allianceRelativeControl(true);
+      // .scaleTranslation(0.8)
+      .allianceRelativeControl(false);
 
   /**
    * Clone's the angular velocity input stream and converts it to a fieldRelative
@@ -141,6 +143,7 @@ public class RobotContainer {
     if (RobotBase.isSimulation()) {
       drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
     } else {
+      // drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     }
 
@@ -190,6 +193,7 @@ public class RobotContainer {
       SmartDashboard.putData("gyro", (Sendable) drivebase.getSwerveDrive().getGyro().getIMU());
       if (Robot.isSimulation()) {
         Logger.recordOutput("wheelStates", drivebase.getSwerveDrive().getStates());
+
       }
   }
 
@@ -202,8 +206,10 @@ public class RobotContainer {
   }
 
   public void displaySimFieldToAdvantageScope() {
-    if (Robot.isReal())
+    if (Robot.isReal()) {
       return;
+    }
+
 
     Logger.recordOutput("FieldSimulation/RobotPosition",
         drivebase.getSwerveDrive().getMapleSimDrive().get().getSimulatedDriveTrainPose());
