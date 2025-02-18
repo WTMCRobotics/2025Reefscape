@@ -27,6 +27,11 @@ public final class Constants
   public static final double CLIMB_INTAKE_POSITION = 0;
   public static final double PICKUP_ALGAE_INTAKE_POSITION = 0;
 
+  public static final double PIVOT_P = 0;
+  public static final double PIVOT_I = 0;
+  public static final double PIVOT_D = 0;
+  public static final double AngleMotorConversion = 0;  
+
 
   // Maximum speed of the robot in meters per second, used to limit acceleration.
 

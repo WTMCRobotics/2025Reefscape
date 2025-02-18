@@ -18,8 +18,13 @@ public class IntakeSubsystem extends SubsystemBase {
         pivotMotor.set(speed);
     }
     
-    public void stopPivot(double speed) {
+    public void stopPivot() {
         pivotMotor.set(0);
     }
-    public void dealgaenatePivot() {}
+    public void pivotToAngle() {
+        
+    }
+    public double getIntakeAngle(){
+        return pivotMotor.getEncoder().getPosition();
+    }
 }

@@ -16,7 +16,7 @@ public class AutoBalanceCommand extends Command
 {
 
   private final SwerveSubsystem swerveSubsystem;
-  private final PIDController   controller;
+  private final PIDController controller;
 
   public AutoBalanceCommand(SwerveSubsystem swerveSubsystem)
   {
