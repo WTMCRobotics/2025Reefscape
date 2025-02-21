@@ -21,9 +21,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public void stopPivot() {
         pivotMotor.set(0);
     }
-    public void pivotToAngle() {
-        
-    }
+    
     public double getIntakeAngle(){
         return pivotMotor.getEncoder().getPosition();
     }
