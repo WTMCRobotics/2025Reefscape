@@ -1,9 +1,9 @@
-package frc.robot;
+package frc.robot.controller;
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
-class Controller {
+public class Controller {
     protected final CommandXboxController xboxController;
 
     protected StickProfile leftProfile = StickProfile.LINEAR;
@@ -367,7 +367,7 @@ class Controller {
      * LINEAR: Linear profile
      * SQUARE: Square profile
      */
-    enum StickProfile {
+    public enum StickProfile {
         LINEAR,
         SQUARE
     }
@@ -378,7 +378,7 @@ class Controller {
      * SQUARE: Square deadzone
      * ROUND: Round deadzone
      */
-    enum Deadzone {
+    public enum Deadzone {
         SQUARE,
         ROUND
     }
