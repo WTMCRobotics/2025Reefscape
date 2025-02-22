@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 
 public class PivotIntakeToAngle extends Command {
 
@@ -16,10 +17,10 @@ public class PivotIntakeToAngle extends Command {
 
   double targetAngle;
 
-  public PivotIntakeToAngle(IntakeSubsystem intakeSubsystem, double targetAngle) {
+  public PivotIntakeToAngle(IntakeSubsystem intakeSubsystem, IntakePosition intakePosition) {
     this.intakeSubsystem = intakeSubsystem;
     addRequirements(this.intakeSubsystem);
-    this.targetAngle = targetAngle;
+    this.targetAngle = intakePosition.getPivotAngleDegrees();
 
 
   }
