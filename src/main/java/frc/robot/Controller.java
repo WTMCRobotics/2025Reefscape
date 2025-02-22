@@ -4,21 +4,21 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 class Controller {
-    private final CommandXboxController xboxController;
+    protected final CommandXboxController xboxController;
 
-    private StickProfile leftProfile = StickProfile.LINEAR;
-    private StickProfile rightProfile = StickProfile.LINEAR;
+    protected StickProfile leftProfile = StickProfile.LINEAR;
+    protected StickProfile rightProfile = StickProfile.LINEAR;
+    
+    protected Deadzone deadzoneType = Deadzone.ROUND;
 
-    private Deadzone deadzoneType = Deadzone.ROUND;
+    protected boolean invertLeftY = false;
+    protected boolean invertRightY = false;
+    
+    protected boolean invertLeftX = false;
+    protected boolean invertRightX = false;
 
-    private boolean invertLeftY = false;
-    private boolean invertRightY = false;
-
-    private boolean invertLeftX = false;
-    private boolean invertRightX = false;
-
-    private double leftDeadzone = 0.1;
-    private double rightDeadzone = 0.1;
+    protected double leftDeadzone = 0.1;
+    protected double rightDeadzone = 0.1;
 
     /**
      * Constructor for the Controller class
