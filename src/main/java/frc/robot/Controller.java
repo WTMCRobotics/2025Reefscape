@@ -13,7 +13,7 @@ class Controller {
 
     protected boolean invertLeftY = false;
     protected boolean invertRightY = false;
-    
+
     protected boolean invertLeftX = false;
     protected boolean invertRightX = false;
 
@@ -108,6 +108,7 @@ class Controller {
      * 
      * @return The Controller object
      */
+    @Deprecated
     public Controller setInvertLeftY(boolean invert) {
         this.invertLeftY = invert;
         return this;
@@ -121,6 +122,7 @@ class Controller {
      * 
      * @return The Controller object
      */
+    @Deprecated
     public Controller setInvertRightY(boolean invert) {
         this.invertRightY = invert;
         return this;
@@ -134,6 +136,7 @@ class Controller {
      * 
      * @return The Controller object
      */
+    @Deprecated
     public Controller setInvertLeftX(boolean invert) {
         this.invertLeftX = invert;
         return this;
@@ -147,8 +150,49 @@ class Controller {
      * 
      * @return The Controller object
      */
+    @Deprecated
     public Controller setInvertRightX(boolean invert) {
         this.invertRightX = invert;
+        return this;
+    }
+
+    /**
+     * Invert the left X axis
+     * 
+     * @return The Controller object
+     */
+    public Controller invertLeftX() {
+        this.invertLeftX = true;
+        return this;
+    }
+
+    /**
+     * Invert the left Y axis
+     * 
+     * @return The Controller object
+     */
+    public Controller invertLeftY() {
+        this.invertLeftY = true;
+        return this;
+    }
+
+    /**
+     * Invert the right X axis
+     * 
+     * @return The Controller object
+     */
+    public Controller invertRightX() {
+        this.invertRightX = true;
+        return this;
+    }
+
+    /**
+     * Invert the right Y axis
+     * 
+     * @return The Controller object
+     */
+    public Controller invertRightY() {
+        this.invertRightY = true;
         return this;
     }
 
