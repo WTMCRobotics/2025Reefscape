@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Controller.Deadzone;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.commands.swervedrive.auto.ResetPivot;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -63,8 +64,6 @@ public class RobotContainer {
       drivebase.getSwerveDrive().setCosineCompensator(false);
     }
   }
-
-  public void goToStart
 
   /**
    * Converts driver input into a field-relative ChassisSpeeds that is controlled
@@ -191,6 +190,11 @@ public class RobotContainer {
       driverXbox.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
       driverXbox.rightBumper().onTrue(Commands.none());
     }
+
+  }
+
+  public void resetIntakePivot() {
+     new ResetPivot(intake).schedule();
 
   }
 

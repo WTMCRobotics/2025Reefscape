@@ -27,6 +27,10 @@ public class IntakeSubsystem extends SubsystemBase {
         return pivotMotor.getEncoder().getPosition();
     }
 
+    public void resetEncoder() {
+        pivotMotor.getEncoder().setPosition(0);
+    }
+
     public enum IntakePosition {
         GROUND_INTAKE(45.2),
         STARTING_POSITION(1),

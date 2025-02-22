@@ -24,7 +24,7 @@ public class ResetPivot extends Command {
 
   @Override
   public void initialize() {
-    
+    intakeSubsystem.movePivot(-0.2);
   }
 
   @Override
@@ -34,11 +34,12 @@ public class ResetPivot extends Command {
 
   @Override
   public boolean isFinished() {
-    return 
+    return intakeSubsystem.getReverseLimit();
   }
 
   @Override
   public void end(boolean interrupted) {
     intakeSubsystem.stopPivot();
+    intakeSubsystem.resetEncoder();
   }
 }
