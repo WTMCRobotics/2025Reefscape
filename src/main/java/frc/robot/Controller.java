@@ -9,6 +9,8 @@ class Controller {
     private StickProfile leftProfile = StickProfile.LINEAR;
     private StickProfile rightProfile = StickProfile.LINEAR;
 
+    private Deadzone deadzoneType = Deadzone.ROUND;
+
     private double leftDeadzone = 0.1;
     private double rightDeadzone = 0.1;
 
@@ -81,11 +83,19 @@ class Controller {
 
     // Internal Methods
 
-    private double applyDeadzone(double value, double deadzone) {
-        if (Math.abs(value) < deadzone) {
-            return 0;
+    private double applyDeadzone(double value, double deadzone, boolean left) {
+        if (deadzoneType == Deadzone.SQUARE) {
+            if (Math.abs(value) < deadzone) {
+                return 0d;
+            }
+            return value;
+        } else if (deadzoneType == Deadzone.ROUND) {
+            if (Math.sqrt(Math.pow(left ? (xboxController.getLeftX()) : (xboxController.getRightX()), 2) + Math.pow(left ? (xboxController.getLeftY()) : (xboxController.getRightY()), 2)) < deadzone) {
+                return 0d;
+            }
+            return value;
         }
-        return value;
+        throw new IllegalStateException("Invalid deadzone type");
     }
 
     private double sign(double value) {
@@ -111,7 +121,7 @@ class Controller {
      * @return The X of the left stick
      */
     public double getLeftStickX() {
-        return applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone), leftProfile);
+        return applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone, true), leftProfile);
     }
 
     /*
@@ -120,7 +130,7 @@ class Controller {
      * @return The Y of the left stick
      */
     public double getLeftStickY() {
-        return applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone), leftProfile);
+        return applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone, true), leftProfile);
     }
 
     /*
@@ -129,7 +139,7 @@ class Controller {
      * @return The X of the right stick
      */
     public double getRightStickX() {
-        return applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone), rightProfile);
+        return applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone, false), rightProfile);
     }
     
     /*
@@ -138,7 +148,7 @@ class Controller {
      * @return The Y of the right stick
      */
     public double getRightStickY() {
-        return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone), rightProfile);
+        return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone, false), rightProfile);
     }
 
     /*
