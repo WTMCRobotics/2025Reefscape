@@ -140,13 +140,36 @@ class Controller {
         return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone), rightProfile);
     }
 
+    /*
+     * Get the left trigger axis
+     * 
+     * @return The left trigger axis
+     */
+    public double getLeftTrigger() {
+        return xboxController.getLeftTriggerAxis();
+    }
+
+    /*
+     * Get the right trigger axis
+     * 
+     * @return The right trigger axis
+     */
+    public double getRightTrigger() {
+        return xboxController.getRightTriggerAxis();
+    }
+
     //TODO: Add button methods HELP???
 
 
-    // Enum. Singlular. Not plural. Github Copilot Wrote That Last Part.
+    // ENUMS
 
     enum StickProfile {
         LINEAR,
         SQUARE
+    }
+
+    enum Deadzone {
+        SQUARE,
+        ROUND
     }
 }
