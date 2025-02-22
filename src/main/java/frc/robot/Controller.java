@@ -11,6 +11,12 @@ class Controller {
 
     private Deadzone deadzoneType = Deadzone.ROUND;
 
+    private boolean invertLeftY = false;
+    private boolean invertRightY = false;
+
+    private boolean invertLeftX = false;
+    private boolean invertRightX = false;
+
     private double leftDeadzone = 0.1;
     private double rightDeadzone = 0.1;
 
@@ -81,6 +87,71 @@ class Controller {
         return this;
     }
 
+    /*
+     * Set the deadzone type
+     * Default is ROUND
+     * 
+     * @param deadzoneType The deadzone type to use
+     * 
+     * @return The Controller object
+     */
+    public Controller setDeadzoneType(Deadzone deadzoneType) {
+        this.deadzoneType = deadzoneType;
+        return this;
+    }
+
+    /*
+     * Set the left stick to be inverted on the Y axis
+     * Default is false
+     * 
+     * @param invert Whether or not to invert the Y axis
+     * 
+     * @return The Controller object
+     */
+    public Controller setInvertLeftY(boolean invert) {
+        this.invertLeftY = invert;
+        return this;
+    }
+
+    /*
+     * Set the right stick to be inverted on the Y axis
+     * Default is false
+     * 
+     * @param invert Whether or not to invert the Y axis
+     * 
+     * @return The Controller object
+     */
+    public Controller setInvertRightY(boolean invert) {
+        this.invertRightY = invert;
+        return this;
+    }
+
+    /*
+     * Set the left stick to be inverted on the X axis
+     * Default is false
+     * 
+     * @param invert Whether or not to invert the X axis
+     * 
+     * @return The Controller object
+     */
+    public Controller setInvertLeftX(boolean invert) {
+        this.invertLeftX = invert;
+        return this;
+    }
+
+    /*
+     * Set the right stick to be inverted on the X axis
+     * Default is false
+     * 
+     * @param invert Whether or not to invert the X axis
+     * 
+     * @return The Controller object
+     */
+    public Controller setInvertRightX(boolean invert) {
+        this.invertRightX = invert;
+        return this;
+    }
+
     // Internal Methods
 
     private double applyDeadzone(double value, double deadzone, boolean left) {
@@ -121,7 +192,7 @@ class Controller {
      * @return The X of the left stick
      */
     public double getLeftStickX() {
-        return applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone, true), leftProfile);
+        return applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone, true), leftProfile) * (invertLeftX ? -1 : 1);
     }
 
     /*
@@ -130,7 +201,7 @@ class Controller {
      * @return The Y of the left stick
      */
     public double getLeftStickY() {
-        return applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone, true), leftProfile);
+        return applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone, true), leftProfile) * (invertLeftY ? -1 : 1);
     }
 
     /*
@@ -139,7 +210,7 @@ class Controller {
      * @return The X of the right stick
      */
     public double getRightStickX() {
-        return applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone, false), rightProfile);
+        return applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone, false), rightProfile) * (invertRightX ? -1 : 1);
     }
     
     /*
@@ -148,7 +219,7 @@ class Controller {
      * @return The Y of the right stick
      */
     public double getRightStickY() {
-        return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone, false), rightProfile);
+        return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone, false), rightProfile) * (invertRightY ? -1 : 1);
     }
 
     /*
@@ -246,11 +317,23 @@ class Controller {
 
     // ENUMS
 
+    /*
+     * The profile to use for the sticks
+     * 
+     * LINEAR: Linear profile
+     * SQUARE: Square profile
+     */
     enum StickProfile {
         LINEAR,
         SQUARE
     }
 
+    /*
+     * The shape of deadzone to use
+     * 
+     * SQUARE: Square deadzone
+     * ROUND: Round deadzone
+     */
     enum Deadzone {
         SQUARE,
         ROUND
