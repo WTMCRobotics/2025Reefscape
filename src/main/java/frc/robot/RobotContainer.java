@@ -80,8 +80,9 @@ public class RobotContainer {
    * Clone's the angular velocity input stream and converts it to a fieldRelative
    * input stream.
    */
-  SwerveInputStream driveDirectAngle = driveAngularVelocity.copy().withControllerHeadingAxis(driverController::getRightStickX,
-      driverController::getRightStickY)
+  SwerveInputStream driveDirectAngle = driveAngularVelocity.copy()
+      .withControllerHeadingAxis(driverController::getRightStickX,
+          driverController::getRightStickY)
       .headingWhile(true);
 
   /**
@@ -163,7 +164,8 @@ public class RobotContainer {
     }
 
     if (Robot.isSimulation()) {
-      driverController.start().onTrue(Commands.runOnce(() -> drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
+      driverController.start()
+          .onTrue(Commands.runOnce(() -> drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
       driverController.buttonA().whileTrue(drivebase.sysIdDriveMotorCommand());
 
     }
@@ -184,14 +186,16 @@ public class RobotContainer {
               new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
       driverController.start().whileTrue(Commands.none());
       driverController.back().whileTrue(Commands.none());
-      driverController.leftBumper().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
-      driverController.rightBumper().onTrue(Commands.none());
+      driverController.leftBumper().onTrue(intake.spinIntake(Constants.INTAKE_SPEED));
+      driverController.rightBumper().onTrue(intake.spinIntake(-Constants.INTAKE_SPEED));
+      driverController.leftBumper().onFalse(intake.spinIntake(0));
+      driverController.rightBumper().onFalse(intake.spinIntake(0));
     }
 
   }
 
   public void resetIntakePivot() {
-     new ResetPivot(intake).schedule();
+    new ResetPivot(intake).schedule();
 
   }
 
