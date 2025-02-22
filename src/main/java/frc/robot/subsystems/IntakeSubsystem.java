@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
@@ -52,5 +53,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public boolean getReverseLimit(){
         return pivotMotor.getReverseLimitSwitch().isPressed();
+    }
+    public void SpinIntake(double intakeSpeed){
+        Commands.runOnce(() -> {
+            intakeMotor.set(intakeSpeed);
+
+        });
+
     }
 }
