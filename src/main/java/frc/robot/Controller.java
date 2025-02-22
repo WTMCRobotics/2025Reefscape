@@ -154,7 +154,7 @@ class Controller {
 
     // Internal Methods
 
-    private double applyDeadzone(double value, double deadzone, boolean left) {
+    public double applyDeadzone(double value, double deadzone, boolean left) {
         if (deadzoneType == Deadzone.SQUARE) {
             if (Math.abs(value) < deadzone) {
                 return 0d;
@@ -166,7 +166,7 @@ class Controller {
             }
             return value;
         }
-        throw new IllegalStateException("Invalid deadzone type");
+        return value;
     }
 
     private double sign(double value) {
