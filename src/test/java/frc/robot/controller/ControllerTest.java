@@ -1,8 +1,10 @@
-package frc.robot;
+package frc.robot.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import frc.robot.controller.Controller;
 
 public record ControllerTest() {
     @Test

@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.robot.controller;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
