@@ -9,53 +9,39 @@ import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class PivotIntakeToAngle extends Command {
-    
-    private final IntakeSubsystem intakeSubsystem;
 
-    private final PIDController controller;
+  private final IntakeSubsystem intakeSubsystem;
 
-    public PivotIntakeToAngle(IntakeSubsystem intakeSubsystem, double targetAngle)
-    {
-        this.intakeSubsystem = intakeSubsystem;
-        addRequirements(this.intakeSubsystem);
+  private final PIDController controller = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
 
-        double intakeAngle = intakeSubsystem.getIntakeAngle();
+  double targetAngle;
 
-        controller = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
-        controller.setTolerance(1);
-        controller.setSetpoint(targetAngle*Constants.AngleMotorConversion);
-
-        
+  public PivotIntakeToAngle(IntakeSubsystem intakeSubsystem, double targetAngle) {
+    this.intakeSubsystem = intakeSubsystem;
+    addRequirements(this.intakeSubsystem);
+    this.targetAngle = targetAngle;
 
 
-    }
-
-
-
-
-@Override
-public void initialize()
-{
-
-}
-
-
-  @Override
-  public void execute()
-  {
-    intakeSubsystem.movePivot(controller.calculate(intakeSubsystem.getIntakeAngle(),0 ));
   }
 
-@Override
-public boolean isFinished()
-{
-  return controller.atSetpoint();
-}
+  @Override
+  public void initialize() {
+    controller.setTolerance(1);
+    controller.setSetpoint(targetAngle * Constants.AngleMotorConversion);
+  }
 
+  @Override
+  public void execute() {
+    intakeSubsystem.movePivot(controller.calculate(intakeSubsystem.getPivotAngle()));
+  }
 
-@Override
-public void end(boolean interrupted)
-{
+  @Override
+  public boolean isFinished() {
+    return controller.atSetpoint();
+  }
+
+  @Override
+  public void end(boolean interrupted) {
     intakeSubsystem.stopPivot();
-}
+  }
 }

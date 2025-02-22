@@ -12,17 +12,38 @@ public class IntakeSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        
+
     }
+
     public void movePivot(double speed) {
         pivotMotor.set(speed);
     }
-    
+
     public void stopPivot() {
         pivotMotor.set(0);
     }
-    
-    public double getIntakeAngle(){
+
+    public double getPivotAngle() {
         return pivotMotor.getEncoder().getPosition();
+    }
+
+    public enum IntakePosition {
+        GROUND_INTAKE(45.2),
+        STARTING_POSITION(1),
+        DEALGAENATING(2),
+        CLIMBING(3),
+        SCORING(4),
+        CORAL_SNAG(5);
+
+        double pivotAngleDegrees;
+
+        IntakePosition(double angleDegrees) {
+            pivotAngleDegrees = angleDegrees;
+        }
+
+        public double getPivotAngleDegrees(){
+            return pivotAngleDegrees;
+        }
+
     }
 }

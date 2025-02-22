@@ -24,9 +24,6 @@ public final class Constants
   public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
   public static final double MAX_SPEED  = Units.feetToMeters(14.5);
 
-  public static final double CLIMB_INTAKE_POSITION = 0;
-  public static final double PICKUP_ALGAE_INTAKE_POSITION = 0;
-
   public static final double PIVOT_P = 0;
   public static final double PIVOT_I = 0;
   public static final double PIVOT_D = 0;
