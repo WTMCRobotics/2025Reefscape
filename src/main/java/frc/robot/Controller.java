@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 class Controller {
     private final CommandXboxController xboxController;
@@ -158,7 +159,79 @@ class Controller {
         return xboxController.getRightTriggerAxis();
     }
 
-    //TODO: Add button methods HELP???
+    // BUTTONS
+
+    /*
+     * Get the A button Trigger
+     * 
+     * @return The A button Trigger
+     */
+    public Trigger buttonA() {
+        return xboxController.a();
+    }
+
+    /*
+     * Get the B button Trigger
+     * 
+     * @return The B button Trigger
+     */
+    public Trigger buttonB() {
+        return xboxController.b();
+    }
+
+    /*
+     * Get the X button Trigger
+     * 
+     * @return The X button Trigger
+     */
+    public Trigger buttonX() {
+        return xboxController.x();
+    }
+
+    /*
+     * Get the Y button Trigger
+     * 
+     * @return The Y button Trigger
+     */
+    public Trigger buttonY() {
+        return xboxController.y();
+    }
+
+    /*
+     * Get the Left Bumper button Trigger
+     * 
+     * @return The Left Bumper button Trigger
+     */
+    public Trigger leftBumper() {
+        return xboxController.leftBumper();
+    }
+
+    /*
+     * Get the Right Bumper button Trigger
+     * 
+     * @return The Right Bumper button Trigger
+     */
+    public Trigger rightBumper() {
+        return xboxController.rightBumper();
+    }
+
+    /*
+     * Get the Back button Trigger
+     * 
+     * @return The Back button Trigger
+     */
+    public Trigger back() {
+        return xboxController.back();
+    }
+
+    /*
+     * Get the Start button Trigger
+     * 
+     * @return The Start button Trigger
+     */
+    public Trigger start() {
+        return xboxController.start();
+    }
 
 
     // ENUMS
