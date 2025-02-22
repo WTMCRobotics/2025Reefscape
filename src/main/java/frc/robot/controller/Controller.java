@@ -198,14 +198,16 @@ public class Controller {
 
     // Internal Methods
 
-    public double applyDeadzone(double value, double deadzone, boolean left) {
+    public double applyDeadzone(double value, double deadzone, boolean isLeftStick) {
         if (deadzoneType == Deadzone.SQUARE) {
             if (Math.abs(value) < deadzone) {
                 return 0d;
             }
             return value;
         } else if (deadzoneType == Deadzone.ROUND) {
-            if (Math.sqrt(Math.pow(left ? (xboxController.getLeftX()) : (xboxController.getRightX()), 2) + Math.pow(left ? (xboxController.getLeftY()) : (xboxController.getRightY()), 2)) < deadzone) {
+            double xAxis = isLeftStick ? (xboxController.getLeftX()) : (xboxController.getRightX());
+            double yAxis = isLeftStick ? (xboxController.getLeftY()) : (xboxController.getRightY());
+            if (Math.sqrt(Math.pow(xAxis, 2) + Math.pow(yAxis, 2)) < deadzone) {
                 return 0d;
             }
             return value;
