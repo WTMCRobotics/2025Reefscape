@@ -20,7 +20,7 @@ class Controller {
     private double leftDeadzone = 0.1;
     private double rightDeadzone = 0.1;
 
-    /*
+    /**
      * Constructor for the Controller class
      * 
      * @param port The port of the controller
@@ -34,7 +34,7 @@ class Controller {
     // Setup Methods
 
 
-    /*
+    /**
      * Set the deadzone for the left stick
      * Default is 0.1
      * 
@@ -48,7 +48,7 @@ class Controller {
     }
 
 
-    /*
+    /**
      * Set the deadzone for the right stick
      * Default is 0.1
      * 
@@ -61,7 +61,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the profile for the left stick
      * Default is LINEAR
      * 
@@ -74,7 +74,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the profile for the right stick
      * Default is LINEAR
      * 
@@ -87,7 +87,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the deadzone type
      * Default is ROUND
      * 
@@ -100,7 +100,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the left stick to be inverted on the Y axis
      * Default is false
      * 
@@ -113,7 +113,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the right stick to be inverted on the Y axis
      * Default is false
      * 
@@ -126,7 +126,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the left stick to be inverted on the X axis
      * Default is false
      * 
@@ -139,7 +139,7 @@ class Controller {
         return this;
     }
 
-    /*
+    /**
      * Set the right stick to be inverted on the X axis
      * Default is false
      * 
@@ -186,7 +186,7 @@ class Controller {
 
     // Public Methods
 
-    /*
+    /**
      * Get the X of the left stick
      * 
      * @return The X of the left stick
@@ -195,7 +195,7 @@ class Controller {
         return applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone, true), leftProfile) * (invertLeftX ? -1 : 1);
     }
 
-    /*
+    /**
      * Get the Y of the left stick
      * 
      * @return The Y of the left stick
@@ -204,7 +204,7 @@ class Controller {
         return applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone, true), leftProfile) * (invertLeftY ? -1 : 1);
     }
 
-    /*
+    /**
      * Get the X of the right stick
      * 
      * @return The X of the right stick
@@ -213,7 +213,7 @@ class Controller {
         return applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone, false), rightProfile) * (invertRightX ? -1 : 1);
     }
     
-    /*
+    /**
      * Get the Y of the right stick
      * 
      * @return The Y of the right stick
@@ -222,7 +222,7 @@ class Controller {
         return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone, false), rightProfile) * (invertRightY ? -1 : 1);
     }
 
-    /*
+    /**
      * Get the left trigger axis
      * 
      * @return The left trigger axis
@@ -231,7 +231,7 @@ class Controller {
         return xboxController.getLeftTriggerAxis();
     }
 
-    /*
+    /**
      * Get the right trigger axis
      * 
      * @return The right trigger axis
@@ -242,7 +242,7 @@ class Controller {
 
     // BUTTONS
 
-    /*
+    /**
      * Get the A button Trigger
      * 
      * @return The A button Trigger
@@ -251,7 +251,7 @@ class Controller {
         return xboxController.a();
     }
 
-    /*
+    /**
      * Get the B button Trigger
      * 
      * @return The B button Trigger
@@ -260,7 +260,7 @@ class Controller {
         return xboxController.b();
     }
 
-    /*
+    /**
      * Get the X button Trigger
      * 
      * @return The X button Trigger
@@ -269,7 +269,7 @@ class Controller {
         return xboxController.x();
     }
 
-    /*
+    /**
      * Get the Y button Trigger
      * 
      * @return The Y button Trigger
@@ -278,7 +278,7 @@ class Controller {
         return xboxController.y();
     }
 
-    /*
+    /**
      * Get the Left Bumper button Trigger
      * 
      * @return The Left Bumper button Trigger
@@ -287,7 +287,7 @@ class Controller {
         return xboxController.leftBumper();
     }
 
-    /*
+    /**
      * Get the Right Bumper button Trigger
      * 
      * @return The Right Bumper button Trigger
@@ -296,7 +296,7 @@ class Controller {
         return xboxController.rightBumper();
     }
 
-    /*
+    /**
      * Get the Back button Trigger
      * 
      * @return The Back button Trigger
@@ -305,7 +305,7 @@ class Controller {
         return xboxController.back();
     }
 
-    /*
+    /**
      * Get the Start button Trigger
      * 
      * @return The Start button Trigger
@@ -317,7 +317,7 @@ class Controller {
 
     // ENUMS
 
-    /*
+    /**
      * The profile to use for the sticks
      * 
      * LINEAR: Linear profile
@@ -328,7 +328,7 @@ class Controller {
         SQUARE
     }
 
-    /*
+    /**
      * The shape of deadzone to use
      * 
      * SQUARE: Square deadzone
