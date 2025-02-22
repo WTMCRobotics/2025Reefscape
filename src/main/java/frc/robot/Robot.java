@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -112,6 +113,7 @@ public class Robot extends LoggedRobot {
   public void autonomousInit() {
     robotContainer.setMotorBrake(true);
     m_autonomousCommand = robotContainer.getAutonomousCommand();
+    
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {

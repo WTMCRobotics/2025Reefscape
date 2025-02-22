@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
     // TODO: make the IDs good
-    SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
-    SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
+    private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
+    private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
 
     @Override
     public void periodic() {
@@ -44,6 +44,9 @@ public class IntakeSubsystem extends SubsystemBase {
         public double getPivotAngleDegrees(){
             return pivotAngleDegrees;
         }
+    }
 
+    public boolean getReverseLimit(){
+        return pivotMotor.getReverseLimitSwitch().isPressed();
     }
 }

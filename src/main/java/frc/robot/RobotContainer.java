@@ -19,6 +19,9 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
@@ -39,12 +42,15 @@ public class RobotContainer {
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
+  final CommandXboxController codriverXbox = new CommandXboxController(1);
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase;
+  private IntakeSubsystem intake;
   {
     if (Robot.isReal()) {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
       drivebase.getSwerveDrive().setCosineCompensator(false);
+      intake = new IntakeSubsystem();
     } else {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_simulation"));
       drivebase.getSwerveDrive().setHeadingCorrection(false); // Heading correction should only be used while
@@ -52,6 +58,8 @@ public class RobotContainer {
       drivebase.getSwerveDrive().setCosineCompensator(false);
     }
   }
+
+  public void goToStart
 
   /**
    * Converts driver input into a field-relative ChassisSpeeds that is controlled
@@ -140,6 +148,12 @@ public class RobotContainer {
     Command driveSetpointGenKeyboard = drivebase.driveWithSetpointGeneratorFieldRelative(
         driveDirectAngleKeyboard);
 
+    codriverXbox.leftBumper().onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE));
+    codriverXbox.x().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING));
+    codriverXbox.y().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG));
+    codriverXbox.b().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
+    codriverXbox.a().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
+
     if (RobotBase.isSimulation()) {
       drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
     } else {
@@ -189,12 +203,12 @@ public class RobotContainer {
     drivebase.setMotorBrake(brake);
   }
 
-   public void sendTelementary() {
-      SmartDashboard.putData("gyro", (Sendable) drivebase.getSwerveDrive().getGyro().getIMU());
-      if (Robot.isSimulation()) {
-        Logger.recordOutput("wheelStates", drivebase.getSwerveDrive().getStates());
+  public void sendTelementary() {
+    SmartDashboard.putData("gyro", (Sendable) drivebase.getSwerveDrive().getGyro().getIMU());
+    if (Robot.isSimulation()) {
+      Logger.recordOutput("wheelStates", drivebase.getSwerveDrive().getStates());
 
-      }
+    }
   }
 
   public void resetSimulation() {
@@ -210,12 +224,11 @@ public class RobotContainer {
       return;
     }
 
-
     Logger.recordOutput("FieldSimulation/RobotPosition",
         drivebase.getSwerveDrive().getMapleSimDrive().get().getSimulatedDriveTrainPose());
-        Logger.recordOutput("FieldSimulation/Algae", 
+    Logger.recordOutput("FieldSimulation/Algae",
         SimulatedArena.getInstance().getGamePiecesArrayByType("Algae"));
-    Logger.recordOutput("FieldSimulation/Coral", 
+    Logger.recordOutput("FieldSimulation/Coral",
         SimulatedArena.getInstance().getGamePiecesArrayByType("Coral"));
   }
 }
