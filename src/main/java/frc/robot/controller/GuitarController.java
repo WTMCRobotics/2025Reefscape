@@ -56,6 +56,15 @@ public class GuitarController extends Controller {
     }
 
     /**
+     * Get the Trigger for the lower frets
+     * 
+     * @return Lower fretboard trigger
+     */
+    public Trigger fretLower() {
+        return xboxController.rightBumper();
+    }
+
+    /**
      * Get the Trigger for struming up
      * 
      * @return Strum up Trigger
