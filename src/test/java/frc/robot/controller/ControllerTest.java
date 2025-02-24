@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import frc.robot.controller.Controller;
-import frc.robot.controller.Controller.Deadzone;
-import frc.robot.controller.Controller.StickProfile;
+import frc.robot.controller.Controller.*;
 
 public record ControllerTest() {
     @Test
