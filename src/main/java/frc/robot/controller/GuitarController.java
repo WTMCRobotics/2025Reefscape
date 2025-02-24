@@ -71,22 +71,4 @@ public class GuitarController extends Controller {
     public Trigger strumDown() {
         return xboxController.pov(180);
     }
-
-    /**
-     * Get the Trigger for the back button
-     * 
-     * @return Back button Trigger
-     */
-    public Trigger buttonBack() {
-        return xboxController.back();
-    }
-
-    /**
-     * Get the Trigger for the start button
-     * 
-     * @return Start button Trigger
-     */
-    public Trigger buttonStart() {
-        return xboxController.start();
-    }
 }
