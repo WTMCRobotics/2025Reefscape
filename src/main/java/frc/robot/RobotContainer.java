@@ -166,7 +166,7 @@ public class RobotContainer {
     }
 
     if (Robot.isSimulation()) {
-      driverController.start()
+      driverController.buttonStart()
           .onTrue(Commands.runOnce(() -> drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
       driverController.buttonA().whileTrue(drivebase.sysIdDriveMotorCommand());
 
@@ -176,8 +176,8 @@ public class RobotContainer {
 
       driverController.buttonX().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
       driverController.buttonY().whileTrue(drivebase.driveToDistanceCommand(1.0, 0.2));
-      driverController.start().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-      driverController.back().whileTrue(drivebase.centerModulesCommand());
+      driverController.buttonStart().onTrue((Commands.runOnce(drivebase::zeroGyro)));
+      driverController.buttonBack().whileTrue(drivebase.centerModulesCommand());
       driverController.leftBumper().onTrue(Commands.none());
       driverController.rightBumper().onTrue(Commands.none());
     } else {
@@ -186,8 +186,8 @@ public class RobotContainer {
       driverController.buttonB().whileTrue(
           drivebase.driveToPose(
               new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
-      driverController.start().whileTrue(Commands.none());
-      driverController.back().whileTrue(Commands.none());
+      driverController.buttonStart().whileTrue(Commands.none());
+      driverController.buttonBack().whileTrue(Commands.none());
       driverController.leftBumper().onTrue(intake.spinIntake(Constants.INTAKE_SPEED));
       driverController.rightBumper().onTrue(intake.spinIntake(-Constants.INTAKE_SPEED));
       driverController.leftBumper().onFalse(intake.spinIntake(0));

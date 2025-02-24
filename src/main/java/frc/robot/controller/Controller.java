@@ -219,7 +219,7 @@ public class Controller {
         return value < 0 ? -1 : 1;
     }
 
-    private double applyProfile(double value, StickProfile profile) {
+    public double applyProfile(double value, StickProfile profile) {
         switch (profile) {
             case LINEAR:
                 return value;
@@ -347,7 +347,7 @@ public class Controller {
      * 
      * @return The Back button Trigger
      */
-    public Trigger back() {
+    public Trigger buttonBack() {
         return xboxController.back();
     }
 
@@ -356,8 +356,53 @@ public class Controller {
      * 
      * @return The Start button Trigger
      */
-    public Trigger start() {
+    public Trigger buttonStart() {
         return xboxController.start();
+    }
+
+    /**
+     * Get the Dpad Up Trigger
+     * 
+     * @return The Dpad Up Trigger
+     */
+    public Trigger dpadUp() {
+        return xboxController.pov(0);
+    }
+
+    /**
+     * Get the Dpad Up Trigger
+     * 
+     * @return The Dpad Up Trigger
+     */
+    public Trigger dpadRight() {
+        return xboxController.pov(90);
+    }
+
+    /**
+     * Get the Dpad Up Trigger
+     * 
+     * @return The Dpad Up Trigger
+     */
+    public Trigger dpadDown() {
+        return xboxController.pov(180);
+    }
+
+    /**
+     * Get the Dpad Up Trigger
+     * 
+     * @return The Dpad Up Trigger
+     */
+    public Trigger dpadLeft() {
+        return xboxController.pov(270);
+    }
+
+    /**
+     * Get the internal CommandXboxController
+     * 
+     * @return The internal CommandXboxController
+     */
+    public CommandXboxController getInternalController() {
+        return this.xboxController;
     }
 
 
