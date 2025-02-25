@@ -19,7 +19,7 @@ public class ResetPivot extends Command {
 
   public ResetPivot(IntakeSubsystem intakeSubsystem) {
     this.intakeSubsystem = intakeSubsystem;
-    
+    addRequirements(this.intakeSubsystem);
   }
 
   @Override
