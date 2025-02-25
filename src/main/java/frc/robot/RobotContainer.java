@@ -181,8 +181,9 @@ public class RobotContainer {
       driverController.leftBumper().onTrue(Commands.none());
       driverController.rightBumper().onTrue(Commands.none());
     } else {
+      driverController.buttonX().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
       driverController.buttonA().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-      driverController.buttonX().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
+      // driverController.buttonX().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
       driverController.buttonB().whileTrue(
           drivebase.driveToPose(
               new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
