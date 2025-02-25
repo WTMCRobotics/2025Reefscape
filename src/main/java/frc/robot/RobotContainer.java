@@ -19,11 +19,14 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ClimbAngle;
+import frc.robot.commands.ClimbMove;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
 import frc.robot.controller.Controller;
 import frc.robot.controller.GuitarController;
 import frc.robot.controller.Controller.Deadzone;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -53,6 +56,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase;
   private IntakeSubsystem intake;
+  public ClimbSubsystem climb;
   {
     if (Robot.isReal()) {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
@@ -157,6 +161,14 @@ public class RobotContainer {
     codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG));
     codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
     codriverController.fretGreen().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
+
+    codriverController.buttonStart().onTrue(new ClimbMove(climb, .2d));
+    codriverController.buttonStart().onFalse(new ClimbMove(climb, 0d));
+
+    codriverController.buttonBack().onTrue(new ClimbMove(climb, -.2d));
+    codriverController.buttonBack().onFalse(new ClimbMove(climb, 0d));
+
+    codriverController.dpadLeft().onTrue(new ClimbAngle(climb));
 
     if (RobotBase.isSimulation()) {
       drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
