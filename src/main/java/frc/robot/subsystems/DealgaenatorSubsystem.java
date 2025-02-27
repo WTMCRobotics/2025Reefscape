@@ -36,11 +36,25 @@ public class DealgaenatorSubsystem extends SubsystemBase {
     }
 
 
-    public double getPivotEncoder() {
+    public double getDealgaenatorAngle() {
         return pivotMotor.getEncoder().getPosition();
     }
 
     public boolean getReverseLimitSwitch() {
         return pivotMotor.getReverseLimitSwitch().isPressed();
+    }
+
+    public enum DealgaenatorPosition {
+        DEPLOYED(0);
+
+        double dealgaenatorAngleDegrees;
+
+        DealgaenatorPosition(double angleDegrees) {
+            dealgaenatorAngleDegrees = angleDegrees;
+        }
+
+        public double getDealgaenatorAngleDegrees(){
+            return dealgaenatorAngleDegrees;
+        }
     }
 }

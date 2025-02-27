@@ -26,11 +26,17 @@ public final class Constants
 
   public static final double INTAKE_SPEED = 0;
 
-  public static final double PIVOT_P = 0;
+  public static final double PIVOT_P = 0.04;
   public static final double PIVOT_I = 0;
   public static final double PIVOT_D = 0;
-  public static final double AngleMotorConversion = 0;  
 
+  public static final double DEALGAENATOR_P = 0.04;
+  public static final double DEALGAENATOR_I = 0;
+  public static final double DEALGAENATOR_D = 0;  
+
+
+  public static final double AngleMotorConversion = 0;
+public static final double AngleMotorConversionAlso = 0;
 
   // Maximum speed of the robot in meters per second, used to limit acceleration.
 

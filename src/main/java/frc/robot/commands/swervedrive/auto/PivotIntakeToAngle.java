@@ -21,8 +21,6 @@ public class PivotIntakeToAngle extends Command {
     this.intakeSubsystem = intakeSubsystem;
     addRequirements(this.intakeSubsystem);
     this.targetAngle = intakePosition.getPivotAngleDegrees();
-
-
   }
 
   @Override

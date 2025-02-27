@@ -21,9 +21,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
+import frc.robot.commands.swervedrive.auto.SpinDealgaenator;
 import frc.robot.controller.Controller;
 import frc.robot.controller.GuitarController;
 import frc.robot.controller.Controller.Deadzone;
+import frc.robot.subsystems.DealgaenatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -53,6 +55,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase;
   private IntakeSubsystem intake;
+  private DealgaenatorSubsystem dealgaenator;
   {
     if (Robot.isReal()) {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
@@ -157,6 +160,11 @@ public class RobotContainer {
     codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG));
     codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
     codriverController.fretGreen().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
+
+    codriverController.strumUp().onTrue(new SpinDealgaenator(dealgaenator, .7));
+    codriverController.strumUp().onFalse(new SpinDealgaenator(dealgaenator, 0));
+    codriverController.strumDown().onTrue(new SpinDealgaenator(dealgaenator, -.7));
+    codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
 
     if (RobotBase.isSimulation()) {
       drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
