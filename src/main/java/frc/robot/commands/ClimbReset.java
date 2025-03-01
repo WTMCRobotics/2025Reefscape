@@ -1,15 +1,14 @@
 package frc.robot.commands;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants;
 import frc.robot.subsystems.ClimbSubsystem;
 
 public class ClimbReset extends Command {
 
   private final ClimbSubsystem climbSubsystem;
 
-  private final PIDController controller = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
+  // Not sure if we needed this line, so I commented it out
+  // private final PIDController controller = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
 
   double targetAngle;
 

@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix6.Orchestra;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -30,7 +29,6 @@ import frc.robot.commands.swervedrive.auto.ResetPivot;
 import frc.robot.commands.swervedrive.auto.SpinDealgaenator;
 import frc.robot.controller.Controller;
 import frc.robot.controller.GuitarController;
-import frc.robot.controller.Controller.Deadzone;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DealgaenatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
