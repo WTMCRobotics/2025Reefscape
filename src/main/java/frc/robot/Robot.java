@@ -65,7 +65,7 @@ public class Robot extends LoggedRobot {
       Logger.addDataReceiver(new NT4Publisher());
     }
 
-    Logger.start();
+    Logger.start(); 
 
     NamedCommands.registerCommand("ResetRobot", robotContainer.resetRobot());
   }

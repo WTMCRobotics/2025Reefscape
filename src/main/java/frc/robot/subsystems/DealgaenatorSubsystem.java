@@ -4,16 +4,16 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DealgaenatorSubsystem extends SubsystemBase {
     // TODO: correct the motor ids
-    private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
-    private SparkMax pusherMotor = new SparkMax(9, MotorType.kBrushless);
-
+    private SparkMax pivotMotor = new SparkMax(15, MotorType.kBrushless);
+    private SparkMax pusherMotor = new SparkMax(16, MotorType.kBrushless);
     @Override
     public void periodic() {
-
+        SmartDashboard.putNumber("Dealgaenator Encoder", getDealgaenatorAngle());
     }
     public void movePivot(double speed) {
         pivotMotor.set(speed);

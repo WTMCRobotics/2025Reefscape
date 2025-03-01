@@ -70,12 +70,17 @@ public class RobotContainer {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
       drivebase.getSwerveDrive().setCosineCompensator(false);
       intake = new IntakeSubsystem();
+      climb = new ClimbSubsystem();
+      dealgaenator = new DealgaenatorSubsystem();
+      
     } else {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_simulation"));
       drivebase.getSwerveDrive().setHeadingCorrection(false); // Heading correction should only be used while
                                                               // controlling the robot via angle.
       drivebase.getSwerveDrive().setCosineCompensator(false);
       intake = new IntakeSubsystem();
+      climb = new ClimbSubsystem();
+      dealgaenator = new DealgaenatorSubsystem();
 
     }
   }
