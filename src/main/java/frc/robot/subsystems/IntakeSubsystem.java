@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeSubsystem extends SubsystemBase {
     // TODO: make the IDs good
-    private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
-    private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
+    // private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
+    // private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
+    private SparkMax pivotMotor = null;
+    private SparkMax intakeMotor = null;
 
     @Override
     public void periodic() {

@@ -23,9 +23,11 @@ import frc.robot.commands.ClimbAngle;
 import frc.robot.commands.ClimbMove;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
+import frc.robot.commands.swervedrive.auto.SpinDealgaenator;
 import frc.robot.controller.Controller;
 import frc.robot.controller.GuitarController;
 import frc.robot.controller.Controller.Deadzone;
+import frc.robot.subsystems.DealgaenatorSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
@@ -56,6 +58,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase;
   private IntakeSubsystem intake;
+  private DealgaenatorSubsystem dealgaenator;
   public ClimbSubsystem climb;
   {
     if (Robot.isReal()) {
@@ -67,6 +70,7 @@ public class RobotContainer {
       drivebase.getSwerveDrive().setHeadingCorrection(false); // Heading correction should only be used while
                                                               // controlling the robot via angle.
       drivebase.getSwerveDrive().setCosineCompensator(false);
+      
     }
   }
 
@@ -162,6 +166,11 @@ public class RobotContainer {
     codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
     codriverController.fretGreen().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
 
+    codriverController.strumUp().onTrue(new SpinDealgaenator(dealgaenator, .7));
+    codriverController.strumUp().onFalse(new SpinDealgaenator(dealgaenator, 0));
+    codriverController.strumDown().onTrue(new SpinDealgaenator(dealgaenator, -.7));
+    codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
+
     codriverController.buttonStart().onTrue(new ClimbMove(climb, .2d));
     codriverController.buttonStart().onFalse(new ClimbMove(climb, 0d));
 
@@ -171,7 +180,7 @@ public class RobotContainer {
     codriverController.dpadLeft().onTrue(new ClimbAngle(climb));
 
     if (RobotBase.isSimulation()) {
-      drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
+      drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     } else {
       // drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
@@ -193,8 +202,9 @@ public class RobotContainer {
       driverController.leftBumper().onTrue(Commands.none());
       driverController.rightBumper().onTrue(Commands.none());
     } else {
+      driverController.buttonX().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
       driverController.buttonA().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-      driverController.buttonX().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
+      // driverController.buttonX().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
       driverController.buttonB().whileTrue(
           drivebase.driveToPose(
               new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
