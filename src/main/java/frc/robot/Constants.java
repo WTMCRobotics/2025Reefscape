@@ -39,10 +39,6 @@ public final class Constants
   public static final double DEALGAENATOR_I = 0;
   public static final double DEALGAENATOR_D = 0;  
 
-
-  public static final double AngleMotorConversion = 0;
-public static final double AngleMotorConversionAlso = 0;
-
   // Maximum speed of the robot in meters per second, used to limit acceleration.
 
 //  public static final class AutonConstants

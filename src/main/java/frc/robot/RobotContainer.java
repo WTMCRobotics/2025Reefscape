@@ -21,7 +21,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ClimbAngle;
 import frc.robot.commands.ClimbMove;
+import frc.robot.commands.ClimbReset;
+import frc.robot.commands.ClimbAngle.ClimbPosition;
+import frc.robot.commands.swervedrive.auto.PivotDealgaenatorToAngle;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.commands.swervedrive.auto.ResetDealgaenator;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
 import frc.robot.commands.swervedrive.auto.SpinDealgaenator;
 import frc.robot.controller.Controller;
@@ -30,6 +34,7 @@ import frc.robot.controller.Controller.Deadzone;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DealgaenatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.DealgaenatorSubsystem.DealgaenatorPosition;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
@@ -71,7 +76,7 @@ public class RobotContainer {
                                                               // controlling the robot via angle.
       drivebase.getSwerveDrive().setCosineCompensator(false);
       intake = new IntakeSubsystem();
-      
+
     }
   }
 
@@ -178,7 +183,7 @@ public class RobotContainer {
     codriverController.buttonBack().onTrue(new ClimbMove(climb, -.2d));
     codriverController.buttonBack().onFalse(new ClimbMove(climb, 0d));
 
-    codriverController.dpadLeft().onTrue(new ClimbAngle(climb));
+    codriverController.dpadLeft().onTrue(new ClimbAngle(climb, ClimbPosition.DEPLOY_CLIMB));
 
     if (RobotBase.isSimulation()) {
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
@@ -222,6 +227,17 @@ public class RobotContainer {
   public void resetIntakePivot() {
     new ResetPivot(intake).schedule();
 
+  }
+
+  public Command resetRobot() {
+    return Commands.sequence(
+        new ResetPivot(intake), 
+        new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE),
+        Commands.parallel(
+            new ResetDealgaenator(dealgaenator), 
+            new ClimbReset(climb)),
+        new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED)
+        );
   }
 
   /**

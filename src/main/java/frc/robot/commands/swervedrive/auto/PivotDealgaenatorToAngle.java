@@ -27,7 +27,7 @@ public class PivotDealgaenatorToAngle extends Command {
   @Override
   public void initialize() {
     controller.setTolerance(1);
-    controller.setSetpoint(targetAngle * Constants.AngleMotorConversionAlso);
+    controller.setSetpoint(targetAngle);
   }
 
   @Override

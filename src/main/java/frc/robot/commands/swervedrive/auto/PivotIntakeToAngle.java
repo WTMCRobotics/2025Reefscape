@@ -1,5 +1,7 @@
 package frc.robot.commands.swervedrive.auto;
 
+import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -26,7 +28,7 @@ public class PivotIntakeToAngle extends Command {
   @Override
   public void initialize() {
     controller.setTolerance(1);
-    controller.setSetpoint(targetAngle * Constants.AngleMotorConversion);
+    controller.setSetpoint(targetAngle);
   }
 
   @Override

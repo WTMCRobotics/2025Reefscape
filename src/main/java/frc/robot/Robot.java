@@ -9,6 +9,8 @@ import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 
+import com.pathplanner.lib.auto.NamedCommands;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -64,6 +66,8 @@ public class Robot extends LoggedRobot {
     }
 
     Logger.start();
+
+    NamedCommands.registerCommand("ResetRobot", robotContainer.resetRobot());
   }
 
   /**

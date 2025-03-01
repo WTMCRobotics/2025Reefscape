@@ -13,18 +13,16 @@ public class ClimbAngle extends Command {
 
   double targetAngle;
 
-  public ClimbAngle(ClimbSubsystem climbSubsystem) {
+  public ClimbAngle(ClimbSubsystem climbSubsystem, ClimbPosition climbPosition) {
     this.climbSubsystem = climbSubsystem;
     addRequirements(this.climbSubsystem);
-    this.targetAngle = 4;
-
-
+    this.targetAngle = climbPosition.getAngle();
   }
 
   @Override
   public void initialize() {
     controller.setTolerance(1);
-    controller.setSetpoint(targetAngle * Constants.AngleMotorConversion);
+    controller.setSetpoint(targetAngle);
   }
 
   @Override
@@ -41,4 +39,18 @@ public class ClimbAngle extends Command {
   public void end(boolean interrupted) {
     climbSubsystem.stop();
   }
+
+  public enum ClimbPosition {
+      DEPOSIT_CORAL_NON_ZEROED(2),
+      DEPOSIT_CORAL_ZEROED(4),
+      DEPLOY_CLIMB(6);
+      private double angle;
+      ClimbPosition(double angle) {
+        this.angle = angle;
+      }
+      public double getAngle() {
+          return angle;
+      }
+  }
+
 }
