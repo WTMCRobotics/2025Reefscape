@@ -66,6 +66,7 @@ public class RobotContainer {
       drivebase.getSwerveDrive().setHeadingCorrection(false); // Heading correction should only be used while
                                                               // controlling the robot via angle.
       drivebase.getSwerveDrive().setCosineCompensator(false);
+      intake = new IntakeSubsystem();
       
     }
   }
