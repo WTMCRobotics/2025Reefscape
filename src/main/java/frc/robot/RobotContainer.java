@@ -66,6 +66,7 @@ public class RobotContainer {
       drivebase.getSwerveDrive().setHeadingCorrection(false); // Heading correction should only be used while
                                                               // controlling the robot via angle.
       drivebase.getSwerveDrive().setCosineCompensator(false);
+      
     }
   }
 
@@ -167,7 +168,7 @@ public class RobotContainer {
     codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
 
     if (RobotBase.isSimulation()) {
-      drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
+      drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
     } else {
       // drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);

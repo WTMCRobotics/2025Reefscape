@@ -24,6 +24,11 @@ public final class Constants
   public static final double LOOP_TIME  = 0.13; //s, 20ms + 110ms sprk max velocity lag
   public static final double MAX_SPEED  = Units.feetToMeters(14.5);
 
+  public static final double coeffecitfriction = 3.5;
+
+  // OR
+  // public static final double coeffecitfriction = 2.8;
+
   public static final double INTAKE_SPEED = 0;
 
   public static final double PIVOT_P = 0.04;
