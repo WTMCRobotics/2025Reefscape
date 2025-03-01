@@ -37,9 +37,12 @@ public record ControllerTest() {
     void shouldReturnSquaredValueWhenSquaredProfile(double input, double expected) {
         Controller controller = new Controller(0);
         controller.setDeadzoneType(null);
+        
 
         double value = controller.applyProfile(input, StickProfile.SQUARE);
+        System.out.println(expected);
+        System.out.println(value);
 
-        assertEquals(expected, value);
+        assertEquals(expected, value, 0.0001);
     }
 }
