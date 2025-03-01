@@ -58,8 +58,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final SwerveSubsystem drivebase;
   private IntakeSubsystem intake;
-  public ClimbSubsystem climb;
   private DealgaenatorSubsystem dealgaenator;
+  public ClimbSubsystem climb;
   {
     if (Robot.isReal()) {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
@@ -166,6 +166,11 @@ public class RobotContainer {
     codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
     codriverController.fretGreen().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
 
+    codriverController.strumUp().onTrue(new SpinDealgaenator(dealgaenator, .7));
+    codriverController.strumUp().onFalse(new SpinDealgaenator(dealgaenator, 0));
+    codriverController.strumDown().onTrue(new SpinDealgaenator(dealgaenator, -.7));
+    codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
+
     codriverController.buttonStart().onTrue(new ClimbMove(climb, .2d));
     codriverController.buttonStart().onFalse(new ClimbMove(climb, 0d));
 
@@ -173,11 +178,6 @@ public class RobotContainer {
     codriverController.buttonBack().onFalse(new ClimbMove(climb, 0d));
 
     codriverController.dpadLeft().onTrue(new ClimbAngle(climb));
-
-    codriverController.strumUp().onTrue(new SpinDealgaenator(dealgaenator, .7));
-    codriverController.strumUp().onFalse(new SpinDealgaenator(dealgaenator, 0));
-    codriverController.strumDown().onTrue(new SpinDealgaenator(dealgaenator, -.7));
-    codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
 
     if (RobotBase.isSimulation()) {
       drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
