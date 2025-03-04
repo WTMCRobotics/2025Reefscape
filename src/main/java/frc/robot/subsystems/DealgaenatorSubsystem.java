@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DealgaenatorSubsystem extends SubsystemBase {
-    private SparkMax pivotMotor = new SparkMax(15, MotorType.kBrushless);
-    private SparkMax pusherMotor = new SparkMax(16, MotorType.kBrushless);
+    private SparkMax pivotMotor = new SparkMax(5, MotorType.kBrushless);
+    private SparkMax pusherMotor = new SparkMax(6, MotorType.kBrushless);
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Dealgaenator Encoder", getDealgaenatorAngle());

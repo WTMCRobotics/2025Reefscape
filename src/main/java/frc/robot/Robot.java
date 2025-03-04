@@ -55,6 +55,8 @@ public class Robot extends LoggedRobot {
 
     robotContainer = new RobotContainer();
     // disabledTimer = new Timer();
+  
+   robotContainer.doGyroSetup();
 
     if (Robot.isSimulation()) {
       Logger.addDataReceiver(new NT4Publisher());

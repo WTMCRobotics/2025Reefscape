@@ -5,8 +5,11 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.NamedCommands;
+import com.studica.frc.AHRS;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -53,8 +56,8 @@ import swervelib.SwerveInputStream;
 public class RobotContainer {
 
   final Controller driverController = new Controller(0)
-      .invertLeftX()
       .invertLeftY()
+      
       .setLeftDeadzone(0d);
   final GuitarController codriverController = new GuitarController(1);
 
@@ -88,12 +91,19 @@ public class RobotContainer {
    * by angular velocity.
    */
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
-      () -> driverController.getLeftStickX(),
-      () -> driverController.getLeftStickY())
-      .withControllerRotationAxis(driverController::getRightStickX)
+      //Remember, on the robot, positive X is forward, Postive Y is to the left
+      () -> {
+        System.out.println("x:"+driverController.getLeftStickY());
+        return driverController.getLeftStickY();
+      },
+      () -> {
+        System.out.println("y:"+driverController.getLeftStickX() * -1);
+        return driverController.getLeftStickX() * -1;
+      })
+      .withControllerRotationAxis(() -> driverController.getRightStickX() * -1)
       .deadband(OperatorConstants.DEADBAND)
       // .scaleTranslation(0.8)
-      .allianceRelativeControl(false);
+      .allianceRelativeControl(true);
 
   /**
    * Clone's the angular velocity input stream and converts it to a fieldRelative
@@ -142,6 +152,12 @@ public class RobotContainer {
     configureBindings();
     DriverStation.silenceJoystickConnectionWarning(true);
     NamedCommands.registerCommand("test", Commands.print("I EXIST"));
+  }
+
+  public void doGyroSetup(){
+    // AHRS gyro = (AHRS) drivebase.getSwerveDrive().getGyro().getIMU();
+    drivebase.zeroGyroWithAlliance();
+  
   }
 
   /**
@@ -225,6 +241,10 @@ public class RobotContainer {
       driverController.rightBumper().onFalse(intake.spinIntake(0));
     }
 
+  }
+
+  public void setOffset (double offset){
+    drivebase.getSwerveDrive().setGyroOffset(new Rotation3d(0,0,offset));
   }
 
   public void resetIntakePivot() {
