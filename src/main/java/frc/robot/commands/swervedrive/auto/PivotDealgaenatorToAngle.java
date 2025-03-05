@@ -23,13 +23,14 @@ public class PivotDealgaenatorToAngle extends Command {
 
   @Override
   public void initialize() {
-    controller.setTolerance(1);
+    controller.setTolerance(0.025);
     controller.setSetpoint(targetAngle);
   }
 
   @Override
   public void execute() {
-    dealgaenatorSubsystem.movePivot(controller.calculate(dealgaenatorSubsystem.getDealgaenatorAngle()));
+    System.out.println("executing pivot dealgeanator to angle: " + controller.calculate(-dealgaenatorSubsystem.getDealgaenatorAngle()));
+    dealgaenatorSubsystem.movePivot(-controller.calculate(dealgaenatorSubsystem.getDealgaenatorAngle()));
   }
 
   @Override
@@ -39,6 +40,7 @@ public class PivotDealgaenatorToAngle extends Command {
 
   @Override
   public void end(boolean interrupted) {
+    System.out.println("ending pivot dealg.");
     dealgaenatorSubsystem.stopPivot();
   }
 }

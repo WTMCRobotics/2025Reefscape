@@ -11,7 +11,7 @@ public class PivotIntakeToAngle extends Command {
 
   private final IntakeSubsystem intakeSubsystem;
 
-  private final PIDController controller = new PIDController(Constants.INTAKE_PIVOT_P, Constants.INTAKE_PIVOT_I, Constants.INTAKE_PIVOT_D);
+  private final PIDController controller = new PIDController(Constants.INTAKE_PIVOT_DOWN_P, Constants.INTAKE_PIVOT_I, Constants.INTAKE_PIVOT_D);
 
   double targetAngle;
 
@@ -23,13 +23,19 @@ public class PivotIntakeToAngle extends Command {
 
   @Override
   public void initialize() {
+    if(intakeSubsystem.getPivotAngle() < targetAngle) {
+      controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
+    } else {
+      controller.setP(Constants.INTAKE_PIVOT_UP_P);
+    }
+
     controller.setTolerance(0.25);
     controller.setSetpoint(targetAngle);
   }
 
   @Override
   public void execute() {
-    intakeSubsystem.movePivot(controller.calculate(intakeSubsystem.getPivotAngle()));
+    intakeSubsystem.movePivot((controller.calculate(intakeSubsystem.getPivotAngle())));
   }
 
   @Override

@@ -157,6 +157,7 @@ public class RobotContainer {
     SmartDashboard.putData("Reset Intake", new ResetPivot(intake));
     SmartDashboard.putData("Reset Climb", new ClimbReset(climb));
     SmartDashboard.putData("Reset Dealgaenator", new ResetDealgaenator(dealgaenator));
+    SmartDashboard.putData("Reset robot", resetRobot());
   }
 
   public void doGyroSetup(){
@@ -190,16 +191,15 @@ public class RobotContainer {
     Command driveSetpointGenKeyboard = drivebase.driveWithSetpointGeneratorFieldRelative(
         driveDirectAngleKeyboard);
 
-    codriverController.fretOrange().onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE));
-    codriverController.fretBlue().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING));
-    codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG));
-    codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
-    codriverController.fretGreen().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
+    //We could do the commands .repeatatly 
+    codriverController.fretOrange().onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE).repeatedly());
+    codriverController.fretBlue().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING).repeatedly());
+    codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG).repeatedly());
+    codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING).repeatedly());
+    codriverController.fretGreen().onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING).repeatedly());
 
-    codriverController.strumUp().onTrue(new SpinDealgaenator(dealgaenator, .7));
-    codriverController.strumUp().onFalse(new SpinDealgaenator(dealgaenator, 0));
-    codriverController.strumDown().onTrue(new SpinDealgaenator(dealgaenator, -.7));
-    codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
+    codriverController.strumUp().whileTrue(new SpinDealgaenator(dealgaenator, -0.4));
+    codriverController.strumDown().whileTrue(new SpinDealgaenator(dealgaenator, 0.4));
 
     codriverController.buttonStart().whileTrue(new ClimbMove(climb, 1d));
     codriverController.buttonBack().whileTrue(new ClimbMove(climb, -1d));
@@ -241,6 +241,8 @@ public class RobotContainer {
       driverController.rightBumper().onTrue(intake.spinIntake(-Constants.INTAKE_SPEED));
       driverController.leftBumper().onFalse(intake.spinIntake(0));
       driverController.rightBumper().onFalse(intake.spinIntake(0));
+
+      driverController.dpadUp().onTrue(new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED));
     }
 
   }
@@ -261,7 +263,8 @@ public class RobotContainer {
         Commands.parallel(
             new ResetDealgaenator(dealgaenator), 
             new ClimbReset(climb)),
-        new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED)
+        new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
+        new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING)
         );
   }
 

@@ -11,6 +11,7 @@ public class SpinDealgaenator extends Command {
     public SpinDealgaenator(DealgaenatorSubsystem dealgaenatorSubsystem, double speed) {
         this.dealgaenatorSubsystem = dealgaenatorSubsystem;
         this.speed = speed;
+        addRequirements(dealgaenatorSubsystem);
     }
 
     @Override
