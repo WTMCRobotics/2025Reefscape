@@ -1,0 +1,68 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "topStart-reef2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop Coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef2-6,6"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "6,6-algea1"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "algea1-6,6"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "6,6-processer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop off"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "mildly usefull at best",
+  "choreoAuto": false
+}

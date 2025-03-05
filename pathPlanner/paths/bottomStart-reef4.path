@@ -3,42 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.660143442622951,
-        "y": 7.4894467213114755
+        "x": 8.0,
+        "y": 4.81
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.9800483159749405,
-        "y": 7.726039795440644
+        "x": 7.345064237863344,
+        "y": 3.521240344036756
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "BottomStart"
     },
     {
       "anchor": {
-        "x": 5.358504098360656,
-        "y": 5.307684426229509
+        "x": 6.05,
+        "y": 4.0
       },
       "prevControl": {
-        "x": 5.16250718955509,
-        "y": 5.152490316358475
+        "x": 5.7752357775119405,
+        "y": 4.146009400745693
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "MiddleRightReef"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "DepositCoral",
-      "waypointRelativePos": 1.0,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -49,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

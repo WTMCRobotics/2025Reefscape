@@ -1,0 +1,49 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "top start to reef2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef 2 to reef1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef1 to reef3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef3 to reef5"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef5 to reef6"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef6 to reef4"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "mildly usefull at best",
+  "choreoAuto": false
+}
