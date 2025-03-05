@@ -24,6 +24,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ClimbAngle;
 import frc.robot.commands.ClimbMove;
 import frc.robot.commands.ClimbReset;
+import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.ClimbAngle.ClimbPosition;
 import frc.robot.commands.swervedrive.auto.PivotDealgaenatorToAngle;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
@@ -152,6 +153,10 @@ public class RobotContainer {
     configureBindings();
     DriverStation.silenceJoystickConnectionWarning(true);
     NamedCommands.registerCommand("test", Commands.print("I EXIST"));
+    SmartDashboard.putData("Reset Encoders", new ResetEncoders(intake, climb, dealgaenator));
+    SmartDashboard.putData("Reset Intake", new ResetPivot(intake));
+    SmartDashboard.putData("Reset Climb", new ClimbReset(climb));
+    SmartDashboard.putData("Reset Dealgaenator", new ResetDealgaenator(dealgaenator));
   }
 
   public void doGyroSetup(){
@@ -196,11 +201,8 @@ public class RobotContainer {
     codriverController.strumDown().onTrue(new SpinDealgaenator(dealgaenator, -.7));
     codriverController.strumDown().onFalse(new SpinDealgaenator(dealgaenator, 0));
 
-    codriverController.buttonStart().onTrue(new ClimbMove(climb, .2d));
-    codriverController.buttonStart().onFalse(new ClimbMove(climb, 0d));
-
-    codriverController.buttonBack().onTrue(new ClimbMove(climb, -.2d));
-    codriverController.buttonBack().onFalse(new ClimbMove(climb, 0d));
+    codriverController.buttonStart().whileTrue(new ClimbMove(climb, 1d));
+    codriverController.buttonBack().whileTrue(new ClimbMove(climb, -1d));
 
     codriverController.dpadLeft().onTrue(new ClimbAngle(climb, ClimbPosition.DEPLOY_CLIMB));
 

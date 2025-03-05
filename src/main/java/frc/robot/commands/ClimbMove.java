@@ -12,6 +12,7 @@ public class ClimbMove extends Command {
   public ClimbMove(ClimbSubsystem climbSubsystem, double speed) {
     this.climbSubsystem = climbSubsystem;
     this.speed = speed;
+    addRequirements(climbSubsystem);
     
   }
 
@@ -27,7 +28,7 @@ public class ClimbMove extends Command {
 
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 
   @Override

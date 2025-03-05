@@ -31,6 +31,6 @@ public class ClimbSubsystem extends SubsystemBase {
     }
 
     public boolean isLimit() {
-        return climbMotor.getReverseLimitSwitch().isPressed();
+        return climbMotor.getForwardLimitSwitch().isPressed();
     }
 }

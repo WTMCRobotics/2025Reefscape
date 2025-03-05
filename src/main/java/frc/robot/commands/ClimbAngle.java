@@ -9,7 +9,7 @@ public class ClimbAngle extends Command {
 
   private final ClimbSubsystem climbSubsystem;
 
-  private final PIDController controller = new PIDController(Constants.PIVOT_P, Constants.PIVOT_I, Constants.PIVOT_D);
+  private final PIDController controller = new PIDController(Constants.CLIMB_P, Constants.CLIMB_I, Constants.CLIMB_D);
 
   double targetAngle;
 
@@ -41,9 +41,9 @@ public class ClimbAngle extends Command {
   }
 
   public enum ClimbPosition {
-      DEPOSIT_CORAL_NON_ZEROED(2),
-      DEPOSIT_CORAL_ZEROED(4),
-      DEPLOY_CLIMB(6);
+      DEPOSIT_CORAL_NON_ZEROED(-45),
+      DEPOSIT_CORAL_ZEROED(-45),
+      DEPLOY_CLIMB(-90);
       private double angle;
       ClimbPosition(double angle) {
         this.angle = angle;

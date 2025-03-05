@@ -14,12 +14,14 @@ public class ClimbReset extends Command {
 
   public ClimbReset(ClimbSubsystem climbSubsystem) {
     this.climbSubsystem = climbSubsystem;
+    addRequirements(climbSubsystem);
+    
     
   }
 
   @Override
   public void initialize() {
-    climbSubsystem.move(-0.2);
+    climbSubsystem.move(0.5);
   }
 
   @Override

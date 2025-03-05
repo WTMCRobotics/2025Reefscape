@@ -28,7 +28,7 @@ public class Controller {
      * @return A new Controller object
      */
     public Controller(int port) {
-        this.xboxController = new CommandXboxController(0);
+        this.xboxController = new CommandXboxController(port);
     }
 
     // Setup Methods
