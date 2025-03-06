@@ -3,21 +3,27 @@ package frc.robot.subsystems;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.LidarProxy;
 
 public class IntakeSubsystem extends SubsystemBase {
     // TODO: make the IDs good
     private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
     private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
+
+    // private LidarProxy lidar = new LidarProxy(SerialPort.Port.kMXP);                                                                                                                                                                                                                                                                                                                                                                                                 GQHWNSS
     // private SparkMax pivotMotor = null;
     // private SparkMax intakeMotor = null;
 
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Intake Subsystem Pivot Encoder", getPivotAngle());
+        // SmartDashboard.putNumber("Intake Lidar", lidar.get());
     }
 
     public void movePivot(double speed) {

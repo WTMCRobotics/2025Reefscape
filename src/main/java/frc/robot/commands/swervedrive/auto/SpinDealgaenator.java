@@ -1,6 +1,7 @@
 package frc.robot.commands.swervedrive.auto;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.LidarProxy;
 import frc.robot.subsystems.DealgaenatorSubsystem;
 
 public class SpinDealgaenator extends Command {
@@ -16,6 +17,7 @@ public class SpinDealgaenator extends Command {
 
     @Override
     public void initialize() {
+        // if(speed < 0 && )
         dealgaenatorSubsystem.movePusher(speed);
     }
 
