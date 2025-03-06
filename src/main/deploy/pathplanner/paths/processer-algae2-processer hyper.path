@@ -3,32 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.6,
-        "y": 4.0
+        "x": 6.0,
+        "y": 0.8
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.267141077577925,
-        "y": 3.523875488483032
+        "x": 3.7587401574803145,
+        "y": -0.35559055118110194
       },
       "isLocked": false,
-      "linkedName": "MiddleAlgae"
+      "linkedName": "Processer"
     },
     {
       "anchor": {
-        "x": 3.288897637795275,
-        "y": 2.4358267716535433
+        "x": 1.58,
+        "y": 4.0
       },
       "prevControl": {
-        "x": 2.5195822370086414,
-        "y": 3.283154917960892
+        "x": 2.4062039698451225,
+        "y": 5.116305043004329
       },
       "nextControl": {
-        "x": 4.058213038581909,
-        "y": 1.5884986253461948
+        "x": 0.7543178721748979,
+        "y": 2.8844000309239775
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "algae2"
     },
     {
       "anchor": {
@@ -36,15 +36,20 @@
         "y": 0.8
       },
       "prevControl": {
-        "x": 5.020586558163838,
-        "y": 1.4955646768771458
+        "x": 4.971460579278217,
+        "y": 1.2548437061659579
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "Processer"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 166.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -61,10 +66,10 @@
     "rotation": -90.0
   },
   "reversed": false,
-  "folder": "-processer",
+  "folder": null,
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": -130.0
+    "velocity": 0,
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }

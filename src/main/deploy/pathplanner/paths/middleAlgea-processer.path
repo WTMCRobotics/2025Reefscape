@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.75,
-        "y": 5.4
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 2.1155511811023624,
-        "y": 5.363425196850394
-      },
-      "isLocked": false,
-      "linkedName": "TopLeftReef"
-    },
-    {
-      "anchor": {
         "x": 1.6,
         "y": 4.0
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.267141077577925,
+        "y": 3.523875488483032
+      },
+      "isLocked": false,
+      "linkedName": "MiddleAlgae"
+    },
+    {
+      "anchor": {
+        "x": 3.288897637795275,
+        "y": 2.4358267716535433
+      },
       "prevControl": {
-        "x": 1.3151574803149606,
-        "y": 3.9282677165354327
+        "x": 2.5195822370086414,
+        "y": 3.283154917960892
+      },
+      "nextControl": {
+        "x": 4.058213038581909,
+        "y": 1.5884986253461948
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.0,
+        "y": 0.8
+      },
+      "prevControl": {
+        "x": 5.020586558163838,
+        "y": 1.4955646768771458
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "MiddleAlgae"
+      "linkedName": "Processer"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -130.0
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": "3",
+  "folder": "processer end",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 119.99999999999999
+    "velocity": 0.0,
+    "rotation": -130.0
   },
   "useDefaultConstraints": true
 }

@@ -7,7 +7,32 @@
         {
           "type": "path",
           "data": {
-            "pathName": "top start to reef2"
+            "pathName": "topStart to reef2"
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Drop Coral"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Reset"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "clearAlgae"
+                }
+              }
+            ]
           }
         },
         {
@@ -17,9 +42,21 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "clearAlgae"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "reef1 to reef3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "clearAlgae"
           }
         },
         {
@@ -29,15 +66,33 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "clearAlgae"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "reef5 to reef6"
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "clearAlgae"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "reef6 to reef4"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "clearAlgae"
           }
         }
       ]

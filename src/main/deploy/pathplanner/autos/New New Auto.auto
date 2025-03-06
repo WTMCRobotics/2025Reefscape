@@ -1,0 +1,69 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "bottomStart-reef6"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Drop Coral"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Reset"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "dealgaenate"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef6 to processer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processer-bottemAlgea-processer hyper"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processer-algae2-processer hyper"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}

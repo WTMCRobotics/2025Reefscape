@@ -19,13 +19,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "processer-bottemAlgea-processer hyper"
+            "pathName": "processer-reef6"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "processer-algae2-processer hyper"
+            "pathName": "reef6 to processer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processere-reef5"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef5-processer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processer-bottemAlgea-processer hyper"
           }
         }
       ]

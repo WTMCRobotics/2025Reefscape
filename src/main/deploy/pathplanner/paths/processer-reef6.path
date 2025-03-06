@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.841653543307086,
-        "y": 0.7084645669291341
+        "x": 5.748661417322835,
+        "y": 1.6066929133858272
       },
       "isLocked": false,
       "linkedName": "Processer"
     },
     {
       "anchor": {
-        "x": 1.58,
-        "y": 4.0
+        "x": 5.25,
+        "y": 2.65
       },
       "prevControl": {
-        "x": 2.404488188976378,
-        "y": 4.05263779527559
+        "x": 5.638110236220472,
+        "y": 1.703425196850394
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "algae2"
+      "linkedName": "Reefpoint6"
     }
   ],
   "rotationTargets": [],
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": "processer start",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

@@ -25,7 +25,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "processer-algae2-processer hyper"
+            "pathName": "processer-reef6"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef6 to processer"
           }
         }
       ]

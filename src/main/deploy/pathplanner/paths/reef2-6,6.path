@@ -8,11 +8,11 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.535380829655282,
-        "y": 5.358776460567448
+        "x": 5.107294263761711,
+        "y": 5.1387457667502465
       },
       "isLocked": false,
-      "linkedName": "TopRightReef"
+      "linkedName": "Reefpoint2"
     },
     {
       "anchor": {
@@ -28,7 +28,12 @@
       "linkedName": "6,6"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0,
+      "rotationDegrees": -59.99999999999999
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],

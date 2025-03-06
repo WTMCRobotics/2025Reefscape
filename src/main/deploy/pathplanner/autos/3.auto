@@ -23,7 +23,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "reef1-algea2"
+                  "pathName": "reef1-middleAlgea"
                 }
               },
               {
@@ -38,7 +38,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "algea2-processer"
+            "pathName": "middleAlgea-processer"
           }
         },
         {

@@ -4,15 +4,15 @@
     {
       "anchor": {
         "x": 8.0,
-        "y": 4.81
+        "y": 7.555
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.212328767123288,
-        "y": 5.302183219178082
+        "x": 8.803284618150315,
+        "y": 7.758130137418444
       },
       "isLocked": false,
-      "linkedName": "BottomStart"
+      "linkedName": "TopWallStart"
     },
     {
       "anchor": {
@@ -20,12 +20,12 @@
         "y": 5.85
       },
       "prevControl": {
-        "x": 2.415936302874118,
-        "y": 6.968457148113033
+        "x": 2.18459870418751,
+        "y": 6.715261544759887
       },
       "nextControl": {
-        "x": 1.0818493150684931,
-        "y": 4.611001712328767
+        "x": 1.602992125984252,
+        "y": 5.4621653543307085
       },
       "isLocked": false,
       "linkedName": "TopAlgea"
@@ -36,12 +36,12 @@
         "y": 6.0
       },
       "prevControl": {
-        "x": 4.925136966417316,
-        "y": 7.184035832168418
+        "x": 5.430826771653543,
+        "y": 6.443307086614173
       },
       "nextControl": {
-        "x": 6.485802963128695,
-        "y": 5.464854499832681
+        "x": 7.285270487288941,
+        "y": 4.998952363085463
       },
       "isLocked": false,
       "linkedName": "6,6"
@@ -52,8 +52,8 @@
         "y": 4.0
       },
       "prevControl": {
-        "x": 5.9592577939033475,
-        "y": 4.67701266799804
+        "x": 6.028086229637549,
+        "y": 4.408414431111887
       },
       "nextControl": null,
       "isLocked": false,
@@ -86,7 +86,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "start",
+  "folder": "Hyper",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
