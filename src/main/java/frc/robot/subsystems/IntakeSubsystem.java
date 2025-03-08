@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.LidarProxy;
 public class IntakeSubsystem extends SubsystemBase {
+
     // TODO: make the IDs good
     private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
     private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
@@ -61,19 +62,18 @@ public class IntakeSubsystem extends SubsystemBase {
             pivotAngleRotations = angleRotations;
         }
 
-        public double getPivotAngleRotations(){
+        public double getPivotAngleRotations() {
             return pivotAngleRotations;
         }
     }
 
-    public boolean getReverseLimit(){
+    public boolean getReverseLimit() {
         return pivotMotor.getReverseLimitSwitch().isPressed();
     }
-    public Command spinIntake(double intakeSpeed){
+
+    public Command spinIntake(double intakeSpeed) {
         return Commands.runOnce(() -> {
             intakeMotor.set(intakeSpeed);
-
         });
-
     }
 }
