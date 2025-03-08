@@ -9,15 +9,15 @@ import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 
-import com.pathplanner.lib.auto.NamedCommands;
-
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.commands.ClimbReset;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.commands.swervedrive.auto.ResetPivot;
+import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,26 +51,18 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotInit() {
-    autonRouteChooser.addOption("forward1meter", "test");
-    autonRouteChooser.addOption("back1meter", "testback");
-    autonRouteChooser.addOption("forward0.5meter", "testhalffor");
-    autonRouteChooser.addOption("back0.5meter", "testhalfback");
-    autonRouteChooser.addOption("forward1meterfast", "for1mfast");
-    autonRouteChooser.addOption("back1meterfast", "back1mfast");
+    autonRouteChooser.addOption("placeCoral", "placeCoral");
+    autonRouteChooser.addOption("moveOverLine", "moveOverLine");
     SmartDashboard.putData("auton routes", autonRouteChooser);
 
     robotContainer = new RobotContainer();
     // disabledTimer = new Timer();
-  
-   robotContainer.doGyroSetup();
 
     if (Robot.isSimulation()) {
       Logger.addDataReceiver(new NT4Publisher());
     }
 
-    Logger.start(); 
-
-    NamedCommands.registerCommand("ResetRobot", robotContainer.resetRobot());
+    Logger.start();
   }
 
   /**
@@ -120,9 +112,9 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void autonomousInit() {
-    // new ClimbReset(robotContainer.climb);
     robotContainer.setMotorBrake(true);
-    m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
+    m_autonomousCommand = robotContainer.getAutonomousCommand();
+    
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
