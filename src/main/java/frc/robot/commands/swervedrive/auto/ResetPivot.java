@@ -17,10 +17,10 @@ public class ResetPivot extends Command {
         addRequirements(this.intakeSubsystem);
     }
 
-  @Override
-  public void initialize() {
-    intakeSubsystem.movePivot(-1);
-  }
+    @Override
+    public void initialize() {
+        intakeSubsystem.movePivot(-1);
+    }
 
     @Override
     public void execute() {}

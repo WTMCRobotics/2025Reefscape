@@ -32,16 +32,16 @@ public class PivotIntakeToAngle extends Command {
             controller.setP(Constants.INTAKE_PIVOT_UP_P);
         }
 
-    controller.setTolerance(0.25);
-    controller.setSetpoint(targetAngle);
-  }
+        controller.setTolerance(0.25);
+        controller.setSetpoint(targetAngle);
+    }
 
-  @Override
-  public void execute() {
-    double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
-    intakeSubsystem.movePivot(calcValue);
-    System.out.println(calcValue);
-  }
+    @Override
+    public void execute() {
+        double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
+        intakeSubsystem.movePivot(calcValue);
+        System.out.println(calcValue);
+    }
 
     @Override
     public boolean isFinished() {
