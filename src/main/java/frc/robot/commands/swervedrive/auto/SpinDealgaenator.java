@@ -27,13 +27,10 @@ public class SpinDealgaenator extends Command {
     }
 
     @Override
-    public void execute() {
-
-    }
+    public void execute() {}
 
     @Override
     public boolean isFinished() {
         return false;
     }
-    
 }
