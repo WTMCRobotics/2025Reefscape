@@ -7,50 +7,52 @@ import frc.robot.subsystems.ClimbSubsystem;
 
 public class ClimbAngle extends Command {
 
-  private final ClimbSubsystem climbSubsystem;
+    private final ClimbSubsystem climbSubsystem;
 
-  private final PIDController controller = new PIDController(Constants.CLIMB_P, Constants.CLIMB_I, Constants.CLIMB_D);
+    private final PIDController controller = new PIDController(Constants.CLIMB_P, Constants.CLIMB_I, Constants.CLIMB_D);
 
-  double targetAngle;
+    double targetAngle;
 
-  public ClimbAngle(ClimbSubsystem climbSubsystem, ClimbPosition climbPosition) {
-    this.climbSubsystem = climbSubsystem;
-    addRequirements(this.climbSubsystem);
-    this.targetAngle = climbPosition.getAngle();
-  }
+    public ClimbAngle(ClimbSubsystem climbSubsystem, ClimbPosition climbPosition) {
+        this.climbSubsystem = climbSubsystem;
+        addRequirements(this.climbSubsystem);
+        this.targetAngle = climbPosition.getAngle();
+    }
 
-  @Override
-  public void initialize() {
-    controller.setTolerance(1);
-    controller.setSetpoint(targetAngle);
-  }
+    @Override
+    public void initialize() {
+        controller.setTolerance(1);
+        controller.setSetpoint(targetAngle);
+    }
 
-  @Override
-  public void execute() {
-    climbSubsystem.move(controller.calculate(climbSubsystem.getAngle()));
-  }
+    @Override
+    public void execute() {
+        climbSubsystem.move(controller.calculate(climbSubsystem.getAngle()));
+    }
 
-  @Override
-  public boolean isFinished() {
-    return controller.atSetpoint();
-  }
+    @Override
+    public boolean isFinished() {
+        return controller.atSetpoint();
+    }
 
-  @Override
-  public void end(boolean interrupted) {
-    climbSubsystem.stop();
-  }
+    @Override
+    public void end(boolean interrupted) {
+        climbSubsystem.stop();
+    }
 
-  public enum ClimbPosition {
-      DEPOSIT_CORAL_NON_ZEROED(-45),
-      DEPOSIT_CORAL_ZEROED(-45),
-      DEPLOY_CLIMB(-93);
-      private double angle;
-      ClimbPosition(double angle) {
-        this.angle = angle;
-      }
-      public double getAngle() {
-          return angle;
-      }
-  }
+    public enum ClimbPosition {
+        DEPOSIT_CORAL_NON_ZEROED(-45),
+        DEPOSIT_CORAL_ZEROED(-45),
+        DEPLOY_CLIMB(-93);
 
+        private double angle;
+
+        ClimbPosition(double angle) {
+            this.angle = angle;
+        }
+
+        public double getAngle() {
+            return angle;
+        }
+    }
 }

@@ -1,26 +1,27 @@
 {
-  "location": {
-    "front": -9.125,
-    "left": 13.625
-  },
-  "absoluteEncoderOffset": 0,
-  "drive": {
-    "type": "talonsrx",
-    "id": 99,
-    "canbus": null
-  },
-  "angle": {
-    "type": "talonsrx",
-    "id": 98,
-    "canbus": null
-  },"encoder": {
-    "type": "ctre_mag",
-    "id": 27,
-    "canbus": null
-  },
-  "inverted": {
-    "drive": false,
-    "angle": false
-  },
-  "absoluteEncoderInverted": false
+    "location": {
+        "front": -9.125,
+        "left": 13.625
+    },
+    "absoluteEncoderOffset": 0,
+    "drive": {
+        "type": "talonsrx",
+        "id": 99,
+        "canbus": null
+    },
+    "angle": {
+        "type": "talonsrx",
+        "id": 98,
+        "canbus": null
+    },
+    "encoder": {
+        "type": "ctre_mag",
+        "id": 27,
+        "canbus": null
+    },
+    "inverted": {
+        "drive": false,
+        "angle": false
+    },
+    "absoluteEncoderInverted": false
 }
