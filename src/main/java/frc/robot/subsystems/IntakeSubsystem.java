@@ -1,30 +1,33 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.ColorSensorV3;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.hal.simulation.AnalogInDataJNI;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.LidarProxy;
 public class IntakeSubsystem extends SubsystemBase {
     // TODO: make the IDs good
     private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
     private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
 
-    // private LidarProxy lidar = new LidarProxy(SerialPort.Port.kOnboard);
-    ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+    // private LidarProxy lidar = new LidarProxy(SerialPort.Port.kMXP);
+
+    // ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     // private SparkMax pivotMotor = null;
     // private SparkMax intakeMotor = null;
 
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Intake Subsystem Pivot Encoder", getPivotAngle());
-        SmartDashboard.putNumber("Intake Color Sensor Proximity", colorSensor.getProximity());
-        SmartDashboard.putString("Intake Color Sensor Color", colorSensor.getColor().toString());
-        SmartDashboard.putNumber("Intake Color Sensor IR", colorSensor.getIR());
+        // SmartDashboard.putNumber("Intake Color Sensor Proximity", colorSensor.getProximity());
+        // SmartDashboard.putString("Intake Color Sensor Color", colorSensor.getColor().toString());
+        // SmartDashboard.putNumber("Intake Color Sensor IR", colorSensor.getIR());
         // SmartDashboard.putNumber("Intake Lidar", lidar.get());
     }
 

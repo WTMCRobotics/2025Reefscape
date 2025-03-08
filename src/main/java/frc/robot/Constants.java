@@ -32,8 +32,8 @@ public final class Constants
   public static final double INTAKE_SPEED = 1;
   public static final double OUTTAKE_SPEED = 1;
 
-  public static final double INTAKE_PIVOT_DOWN_P = 0.12;
-  public static final double INTAKE_PIVOT_UP_P = 0.16;
+  public static final double INTAKE_PIVOT_DOWN_P = 1.2;
+  public static final double INTAKE_PIVOT_UP_P = 2.4;
   public static final double INTAKE_PIVOT_I = 0.02;
   public static final double INTAKE_PIVOT_D = 0.00;
 

@@ -13,6 +13,7 @@ public class LidarProxy {
     private Thread _thread;
     private boolean _initializedProperly;
 
+    
     public LidarProxy(SerialPort.Port port) {
         setup(port);
     }

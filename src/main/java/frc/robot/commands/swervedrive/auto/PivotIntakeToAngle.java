@@ -35,7 +35,9 @@ public class PivotIntakeToAngle extends Command {
 
   @Override
   public void execute() {
-    intakeSubsystem.movePivot((controller.calculate(intakeSubsystem.getPivotAngle())));
+    double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
+    intakeSubsystem.movePivot(calcValue);
+    System.out.println(calcValue);
   }
 
   @Override
