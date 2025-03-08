@@ -141,6 +141,8 @@ public class SwerveSubsystem extends SubsystemBase
   {
     // SmartDashboard.putNumber("FL wheel enc vel", swerveDrive.getModules()[0].velo);
     // When vision is enabled we must manually update odometry in SwerveDrive
+    SmartDashboard.putNumber("xpos", swerveDrive.getPose().getX());
+    SmartDashboard.putNumber("ypos", swerveDrive.getPose().getY());
     if (visionDriveTest)
     {
       swerveDrive.updateOdometry();
@@ -190,9 +192,9 @@ public class SwerveSubsystem extends SubsystemBase
           // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
           new PPHolonomicDriveController(
               // PPHolonomicController is the built in path following controller for holonomic drive trains
-              new PIDConstants(5.0, 0.0, 0.0),
+              new PIDConstants(5.0, 0.25, 0.0),
               // Translation PID constants
-              new PIDConstants(5.0, 0.0, 0.0)
+              new PIDConstants(5.0, 0.25, 0.0)
               // Rotation PID constants
           ),
           config,

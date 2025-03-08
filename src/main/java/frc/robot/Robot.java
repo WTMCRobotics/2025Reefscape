@@ -51,8 +51,12 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void robotInit() {
-    autonRouteChooser.addOption("placeCoral", "placeCoral");
-    autonRouteChooser.addOption("moveOverLine", "moveOverLine");
+    autonRouteChooser.addOption("forward1meter", "test");
+    autonRouteChooser.addOption("back1meter", "testback");
+    autonRouteChooser.addOption("forward0.5meter", "testhalffor");
+    autonRouteChooser.addOption("back0.5meter", "testhalfback");
+    autonRouteChooser.addOption("forward1meterfast", "for1mfast");
+    autonRouteChooser.addOption("back1meterfast", "back1mfast");
     SmartDashboard.putData("auton routes", autonRouteChooser);
 
     robotContainer = new RobotContainer();
@@ -116,9 +120,9 @@ public class Robot extends LoggedRobot {
    */
   @Override
   public void autonomousInit() {
-    new ClimbReset(robotContainer.climb);
+    // new ClimbReset(robotContainer.climb);
     robotContainer.setMotorBrake(true);
-    m_autonomousCommand = robotContainer.getAutonomousCommand();
+    m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {

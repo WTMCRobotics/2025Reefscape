@@ -71,6 +71,7 @@ public class RobotContainer {
     if (Robot.isReal()) {
       drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
       drivebase.getSwerveDrive().setCosineCompensator(false);
+      drivebase.getSwerveDrive().setHeadingCorrection(true);
       intake = new IntakeSubsystem();
       climb = new ClimbSubsystem();
       dealgaenator = new DealgaenatorSubsystem();
@@ -94,11 +95,9 @@ public class RobotContainer {
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(drivebase.getSwerveDrive(),
       //Remember, on the robot, positive X is forward, Postive Y is to the left
       () -> {
-        System.out.println("x:"+driverController.getLeftStickY());
         return driverController.getLeftStickY();
       },
       () -> {
-        System.out.println("y:"+driverController.getLeftStickX() * -1);
         return driverController.getLeftStickX() * -1;
       })
       .withControllerRotationAxis(() -> driverController.getRightStickX() * -1)
@@ -243,6 +242,7 @@ public class RobotContainer {
       driverController.rightBumper().onFalse(intake.spinIntake(0));
 
       driverController.dpadUp().onTrue(new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED));
+      driverController.dpadDown().onTrue(new ResetDealgaenator(dealgaenator));
     }
 
   }
@@ -273,9 +273,9 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command getAutonomousCommand(String autoName) {
     // An example command will be run in autonomous
-    return drivebase.getAutonomousCommand("main");
+    return drivebase.getAutonomousCommand(autoName);
   }
 
   public void setMotorBrake(boolean brake) {
