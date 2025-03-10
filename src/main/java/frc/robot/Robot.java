@@ -5,6 +5,11 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.NamedCommands;
+import com.studica.frc.AHRS.NavXComType;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Parity;
+import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.SerialPort.StopBits;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -12,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.ClimbReset;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.TFMini;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
@@ -112,6 +118,8 @@ public class Robot extends LoggedRobot {
         // }
     }
 
+    // public static final TFMini tfMini = new TFMini(new SerialPort(115200, SerialPort.Port.kMXP, 8, Parity.kNone, StopBits.kOne));
+
     /**
      * This autonomous runs the autonomous command selected by your
      * {@link RobotContainer} class.
@@ -119,13 +127,14 @@ public class Robot extends LoggedRobot {
     @Override
     public void autonomousInit() {
         // new ClimbReset(robotContainer.climb);
-        robotContainer.setMotorBrake(true);
-        m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
+        // robotContainer.setMotorBrake(true);
+        // m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
 
-        // schedule the autonomous command (example)
-        if (m_autonomousCommand != null) {
-            m_autonomousCommand.schedule();
-        }
+        // // schedule the autonomous command (example)
+        // if (m_autonomousCommand != null) {
+        //     m_autonomousCommand.schedule();
+        // }
+
     }
 
     /**

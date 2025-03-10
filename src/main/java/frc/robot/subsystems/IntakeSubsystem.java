@@ -5,6 +5,7 @@ import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.hal.simulation.AnalogInDataJNI;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -17,7 +18,7 @@ public class IntakeSubsystem extends SubsystemBase {
     private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
     private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
 
-    // private LidarProxy lidar = new LidarProxy(SerialPort.Port.kMXP);
+    private LidarProxy lidar = new LidarProxy(SerialPort.Port.kMXP);
 
     // ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     // private SparkMax pivotMotor = null;
@@ -29,7 +30,7 @@ public class IntakeSubsystem extends SubsystemBase {
         // SmartDashboard.putNumber("Intake Color Sensor Proximity", colorSensor.getProximity());
         // SmartDashboard.putString("Intake Color Sensor Color", colorSensor.getColor().toString());
         // SmartDashboard.putNumber("Intake Color Sensor IR", colorSensor.getIR());
-        // SmartDashboard.putNumber("Intake Lidar", lidar.get());
+        SmartDashboard.putNumber("Intake Lidar", lidar.get());
     }
 
     public void movePivot(double speed) {
