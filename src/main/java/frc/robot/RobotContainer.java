@@ -30,6 +30,7 @@ import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
 import frc.robot.commands.swervedrive.auto.ResetDealgaenator;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
 import frc.robot.commands.swervedrive.auto.SpinDealgaenator;
+import frc.robot.commands.swervedrive.auto.SpinIntake;
 import frc.robot.controller.Controller;
 import frc.robot.controller.GuitarController;
 import frc.robot.subsystems.ClimbSubsystem;
@@ -228,10 +229,10 @@ public class RobotContainer {
                 .whileTrue(drivebase.driveToPose(new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
             driverController.buttonStart().whileTrue(Commands.none());
             driverController.buttonBack().whileTrue(Commands.none());
-            driverController.leftBumper().onTrue(intake.spinIntake(Constants.INTAKE_SPEED));
-            driverController.rightBumper().onTrue(intake.spinIntake(-Constants.INTAKE_SPEED));
-            driverController.leftBumper().onFalse(intake.spinIntake(0));
-            driverController.rightBumper().onFalse(intake.spinIntake(0));
+            // in
+            driverController.leftBumper().whileTrue(new SpinIntake(intake, Constants.INTAKE_SPEED));
+            // out
+            driverController.rightBumper().whileTrue(new SpinIntake(intake, -Constants.INTAKE_SPEED));
 
             driverController.dpadUp().onTrue(new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED));
             driverController.dpadDown().onTrue(new ResetDealgaenator(dealgaenator));

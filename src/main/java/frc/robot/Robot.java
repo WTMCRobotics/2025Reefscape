@@ -61,6 +61,8 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("back0.5meter", "testhalfback");
         autonRouteChooser.addOption("forward1meterfast", "for1mfast");
         autonRouteChooser.addOption("back1meterfast", "back1mfast");
+        autonRouteChooser.addOption("spin", "spin");
+        // autonRouteChooser.addOption("new auto", "New New Auto");
         SmartDashboard.putData("auton routes", autonRouteChooser);
 
         robotContainer = new RobotContainer();
@@ -126,15 +128,13 @@ public class Robot extends LoggedRobot {
      */
     @Override
     public void autonomousInit() {
-        // new ClimbReset(robotContainer.climb);
-        // robotContainer.setMotorBrake(true);
-        // m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
+        robotContainer.setMotorBrake(true);
+        m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
 
-        // // schedule the autonomous command (example)
-        // if (m_autonomousCommand != null) {
-        //     m_autonomousCommand.schedule();
-        // }
-
+        // schedule the autonomous command (example)
+        if (m_autonomousCommand != null) {
+            m_autonomousCommand.schedule();
+        }
     }
 
     /**

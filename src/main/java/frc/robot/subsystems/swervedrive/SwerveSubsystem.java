@@ -6,6 +6,7 @@ package frc.robot.subsystems.swervedrive;
 
 import static edu.wpi.first.units.Units.Meter;
 
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.commands.PathfindingCommand;
@@ -135,6 +136,9 @@ public class SwerveSubsystem extends SubsystemBase {
         // When vision is enabled we must manually update odometry in SwerveDrive
         SmartDashboard.putNumber("xpos", swerveDrive.getPose().getX());
         SmartDashboard.putNumber("ypos", swerveDrive.getPose().getY());
+        SmartDashboard.putNumber("BRDrive encoder", getSwerveDrive().getModules()[2].getDriveMotor().getPosition());
+        TalonFX fx = (TalonFX) getSwerveDrive().getModules()[2].getDriveMotor().getMotor();
+        SmartDashboard.putNumber("BRDrive encoder2", fx.getPosition().getValueAsDouble());
         if (visionDriveTest) {
             swerveDrive.updateOdometry();
             vision.updatePoseEstimation(swerveDrive);
@@ -177,7 +181,7 @@ public class SwerveSubsystem extends SubsystemBase {
                 // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds. Also optionally outputs individual module feedforwards
                 new PPHolonomicDriveController(
                     // PPHolonomicController is the built in path following controller for holonomic drive trains
-                    new PIDConstants(5.0, 0.25, 0.0),
+                    new PIDConstants(2.5, 0.25, 0.0),
                     // Translation PID constants
                     new PIDConstants(5.0, 0.25, 0.0)
                     // Rotation PID constants

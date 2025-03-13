@@ -4,6 +4,8 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.hal.simulation.AnalogInDataJNI;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,11 +16,12 @@ import frc.robot.LidarProxy;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    // TODO: make the IDs good
     private SparkMax pivotMotor = new SparkMax(8, MotorType.kBrushless);
     private SparkMax intakeMotor = new SparkMax(9, MotorType.kBrushless);
 
-    private LidarProxy lidar = new LidarProxy(SerialPort.Port.kMXP);
+    private Ultrasonic distanceSensor = new Ultrasonic(2, 3);/*ultrasonic line 2 PRTC*/
+
+    // private LidarProxy lidar = new LidarProxy(SerialPort.Port.kMXP);
 
     // ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
     // private SparkMax pivotMotor = null;
@@ -30,8 +33,13 @@ public class IntakeSubsystem extends SubsystemBase {
         // SmartDashboard.putNumber("Intake Color Sensor Proximity", colorSensor.getProximity());
         // SmartDashboard.putString("Intake Color Sensor Color", colorSensor.getColor().toString());
         // SmartDashboard.putNumber("Intake Color Sensor IR", colorSensor.getIR());
-        SmartDashboard.putNumber("Intake Lidar", lidar.get());
+        SmartDashboard.putNumber("Intake Ultrasonic", distanceSensor.getRangeMM());
+        SmartDashboard.putNumber("check", 5);
     }
+
+    // public boolean isLoaded() {
+    //     return 0.5 <= distanceSensor.getRangeInches() && distanceSensor.getRangeInches() <= 7.0;
+    // }
 
     public void movePivot(double speed) {
         pivotMotor.set(speed);
@@ -53,9 +61,9 @@ public class IntakeSubsystem extends SubsystemBase {
         STARTING_POSITION(0),
         DEALGAENATING(2),
         CLIMBING(3),
-        CORAL_SNAG(5),
+        CORAL_SNAG(22.54),
         SCORING(7.5),
-        GROUND_INTAKE(9);
+        GROUND_INTAKE(28.76);
 
         double pivotAngleRotations;
 
@@ -72,9 +80,7 @@ public class IntakeSubsystem extends SubsystemBase {
         return pivotMotor.getReverseLimitSwitch().isPressed();
     }
 
-    public Command spinIntake(double intakeSpeed) {
-        return Commands.runOnce(() -> {
-            intakeMotor.set(intakeSpeed);
-        });
+    public void spinIntake(double intakeSpeed) {
+        intakeMotor.set(intakeSpeed);
     }
 }
