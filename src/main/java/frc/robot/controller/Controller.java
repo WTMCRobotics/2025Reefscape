@@ -101,62 +101,6 @@ public class Controller {
     }
 
     /**
-     * Set the left stick to be inverted on the Y axis
-     * Default is false
-     * 
-     * @param invert Whether or not to invert the Y axis
-     * 
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertLeftY(boolean invert) {
-        this.invertLeftY = invert;
-        return this;
-    }
-
-    /**
-     * Set the right stick to be inverted on the Y axis
-     * Default is false
-     * 
-     * @param invert Whether or not to invert the Y axis
-     * 
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertRightY(boolean invert) {
-        this.invertRightY = invert;
-        return this;
-    }
-
-    /**
-     * Set the left stick to be inverted on the X axis
-     * Default is false
-     * 
-     * @param invert Whether or not to invert the X axis
-     * 
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertLeftX(boolean invert) {
-        this.invertLeftX = invert;
-        return this;
-    }
-
-    /**
-     * Set the right stick to be inverted on the X axis
-     * Default is false
-     * 
-     * @param invert Whether or not to invert the X axis
-     * 
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertRightX(boolean invert) {
-        this.invertRightX = invert;
-        return this;
-    }
-
-    /**
      * Invert the left X axis
      * 
      * @return The Controller object
