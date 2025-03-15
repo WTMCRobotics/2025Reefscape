@@ -1,5 +1,7 @@
 package frc.robot.controller;
 
+import com.google.flatbuffers.Constants;
+
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -169,6 +171,25 @@ public class Controller {
                 return value;
             case SQUARE:
                 return Math.pow(value, 2) * sign(value);
+            case FLOOR_SQUARE:
+                if (sign(value) == 1){
+                    return Math.max(Math.pow(value, 2), 0.3);
+                }
+                    
+                else{
+                    return Math.min(Math.pow(value, 2) * sign(value), -0.3);
+                }
+            case FLOOR_LINEAR:
+                if (sign(value) == 1){
+                    return Math.max(value, 0.3);
+                }
+                    
+                else{
+                    return Math.min(value * sign(value), -0.3);
+                }
+            case INTERPOLATED:
+                return 0.5*value+Math.pow(value, 2) * sign(value);
+
             default:
                 return value;
         }
@@ -357,10 +378,16 @@ public class Controller {
      * 
      * LINEAR: Linear profile
      * SQUARE: Square profile
+     * FLOOR_SQUARE: Square profile with a floor
+     * FLOOR_LINEAR: Linear profile with a floor
+     * INTERPOLATED: Interpolated profile between linear and square
      */
     public enum StickProfile {
         LINEAR,
-        SQUARE
+        SQUARE,
+        FLOOR_SQUARE,
+        FLOOR_LINEAR,
+        INTERPOLATED
     }
 
     /**
