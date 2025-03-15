@@ -1,0 +1,56 @@
+name: CI
+
+on:
+    # Run this workflow whenever code is pushed to any branch
+    - push
+    # Allow this workflow to ma manually run from GitHub.com
+    - workflow_dispatch
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+    # This Job will check the code formatting using Prettier
+    lint:
+        name: Prettier
+
+        # This job will run on an Ubuntu Linux computer
+        runs-on: ubuntu-latest
+
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - uses: actions/checkout@v4
+
+            # Installs prettier from package.json
+            - name: Install NPM dependency
+              run: npm ci
+
+            # Run Prettier
+            - name: Run Prettier
+              run: npx prettier -c .
+
+    # This Job will try to compile the Java code
+    build:
+        name: Build
+
+        # This job will run on an Ubuntu Linux computer
+        runs-on: ubuntu-latest
+
+        # This grabs the WPILib docker container
+        container: wpilib/roborio-cross-ubuntu:2025-22.04
+
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - uses: actions/checkout@v4
+
+            # Declares the repository safe and not under dubious ownership.
+            - name: Add repository to git safe directories
+              run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+            # Grant execute permission for gradlew
+            - name: Grant execute permission for gradlew
+              run: chmod +x gradlew
+
+            # Runs a single command using the runners shell
+            - name: Compile and run tests on robot code
+              run: ./gradlew build

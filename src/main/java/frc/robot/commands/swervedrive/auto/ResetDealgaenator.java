@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DealgaenatorSubsystem;
 
 public class ResetDealgaenator extends Command {
+
     private final DealgaenatorSubsystem dealgaenatorSubsystem;
 
     public ResetDealgaenator(DealgaenatorSubsystem dealgaenatorSubsystem) {
@@ -17,9 +18,7 @@ public class ResetDealgaenator extends Command {
     }
 
     @Override
-    public void execute() {
-        
-    }
+    public void execute() {}
 
     @Override
     public boolean isFinished() {

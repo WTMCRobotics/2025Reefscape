@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 // I didn't make this class at all, I just copied it from github:
 // https://github.com/frc5687/2018-robot/blob/master/src/main/java/org/frc5687/powerup/robot/utils/LidarProxy.java
 public class LidarProxy {
+
     private double lastReadDistance;
     private LidarListener _listener;
     private Thread _thread;
@@ -26,8 +26,9 @@ public class LidarProxy {
         } catch (Exception e) {
             _initializedProperly = false;
             DriverStation.reportError(
-                    "LidarProxy could not intialize properly. " + e.getStackTrace().toString(),
-                    false);
+                "LidarProxy could not intialize properly. " + e.getStackTrace().toString(),
+                false
+            );
         }
         SmartDashboard.putBoolean("Lidar/initializedProperly", _initializedProperly);
     }
@@ -37,6 +38,7 @@ public class LidarProxy {
     }
 
     protected class LidarListener implements Runnable {
+
         private SerialPort _port;
         private LidarProxy _proxy;
 
@@ -49,10 +51,7 @@ public class LidarProxy {
         public void run() {
             while (true) {
                 try {
-                    SmartDashboard.putNumber(
-                        "Lidar/_port.getBytesReceived()",
-                        _port.getBytesReceived()
-                    );
+                    SmartDashboard.putNumber("Lidar/_port.getBytesReceived()", _port.getBytesReceived());
                     byte[] read = _port.read(9);
                     SmartDashboard.putNumber("Lidar/readLength", read.length);
                     SmartDashboard.putNumber("Lidar/bytes/3", new Integer(read[2] & 0xFF));

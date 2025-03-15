@@ -1,12 +1,12 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-
+import com.revrobotics.spark.SparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimbSubsystem extends SubsystemBase {
+
     private SparkMax climbMotor = new SparkMax(7, MotorType.kBrushless);
 
     @Override

@@ -11,7 +11,11 @@ public class ResetEncoders extends Command {
     public final ClimbSubsystem climbSubsystem;
     public final DealgaenatorSubsystem dealgaenatorSubsystem;
 
-    public ResetEncoders(IntakeSubsystem intakeSubsystem, ClimbSubsystem climbSubsystem, DealgaenatorSubsystem dealgaenatorSubsystem) {
+    public ResetEncoders(
+        IntakeSubsystem intakeSubsystem,
+        ClimbSubsystem climbSubsystem,
+        DealgaenatorSubsystem dealgaenatorSubsystem
+    ) {
         this.intakeSubsystem = intakeSubsystem;
         this.climbSubsystem = climbSubsystem;
         this.dealgaenatorSubsystem = dealgaenatorSubsystem;
@@ -35,5 +39,4 @@ public class ResetEncoders extends Command {
     public boolean isFinished() {
         return true;
     }
-    
 }
