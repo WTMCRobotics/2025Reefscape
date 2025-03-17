@@ -36,11 +36,11 @@
         "y": 5.4
       },
       "prevControl": {
-        "x": 2.75,
-        "y": 5.4
+        "x": 4.759119712079204,
+        "y": 5.990982138732593
       },
       "nextControl": null,
-      "isLocked": true,
+      "isLocked": false,
       "linkedName": "Reefpoint1"
     }
   ],
@@ -57,7 +57,7 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
+    "velocity": 1.0,
     "rotation": 119.99999999999999
   },
   "reversed": false,

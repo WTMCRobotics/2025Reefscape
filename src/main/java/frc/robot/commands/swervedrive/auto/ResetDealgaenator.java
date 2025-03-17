@@ -14,7 +14,7 @@ public class ResetDealgaenator extends Command {
 
     @Override
     public void initialize() {
-        dealgaenatorSubsystem.movePivot(-0.1);
+        dealgaenatorSubsystem.movePivot(-0.2);
     }
 
     @Override

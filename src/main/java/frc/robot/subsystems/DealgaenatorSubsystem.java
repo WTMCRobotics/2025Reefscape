@@ -45,7 +45,7 @@ public class DealgaenatorSubsystem extends SubsystemBase {
     }
 
     public enum DealgaenatorPosition {
-        DEPLOYED(-1.30);
+        DEPLOYED(-1.3623046875);
 
         double dealgaenatorAngleDegrees;
 
