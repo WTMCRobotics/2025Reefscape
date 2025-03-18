@@ -9,6 +9,7 @@ import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 public class PivotIntakeToAngle extends Command {
 
     private final IntakeSubsystem intakeSubsystem;
+    boolean finishedDownReset;
 
     private final PIDController controller = new PIDController(
         Constants.INTAKE_PIVOT_DOWN_P,
@@ -26,26 +27,38 @@ public class PivotIntakeToAngle extends Command {
 
     @Override
     public void initialize() {
+        finishedDownReset = false;
         if (intakeSubsystem.getPivotAngle() < targetAngle) {
             controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
         } else {
             controller.setP(Constants.INTAKE_PIVOT_UP_P);
+            finishedDownReset = true;
         }
 
         controller.setTolerance(0.25);
-        controller.setSetpoint(targetAngle);
+        // controller.setSetpoint(targetAngle);
+        if (finishedDownReset) {
+            controller.setSetpoint(targetAngle);
+        } else {
+            controller.setSetpoint(IntakePosition.GROUND_INTAKE.getPivotAngleRotations());
+        }
     }
 
     @Override
     public void execute() {
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
         intakeSubsystem.movePivot(calcValue);
+        if (controller.atSetpoint() && !finishedDownReset) {
+            controller.setSetpoint(targetAngle);
+            controller.setP(Constants.INTAKE_PIVOT_UP_P);
+            finishedDownReset = true;
+        }
         System.out.println(calcValue);
     }
 
     @Override
     public boolean isFinished() {
-        return controller.atSetpoint();
+        return controller.atSetpoint() && finishedDownReset;
     }
 
     @Override

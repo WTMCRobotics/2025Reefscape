@@ -66,6 +66,9 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("forward1meterfast", "for1mfast");
         autonRouteChooser.addOption("back1meterfast", "back1mfast");
         autonRouteChooser.addOption("spin", "spin");
+        autonRouteChooser.addOption("usefull test", "usefull test");
+        autonRouteChooser.addOption("decent test", "Copy of Copy of usefull test");
+        autonRouteChooser.addOption("copy of usefull test", "Copy of usefull test");
         // autonRouteChooser.addOption("new auto", "New New Auto");
         SmartDashboard.putData("auton routes", autonRouteChooser);
 

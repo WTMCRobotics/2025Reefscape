@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.0,
-        "y": 7.555
+        "x": 1.783,
+        "y": 5.85
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.380824754721186,
-        "y": 7.602079611150309
+        "x": 2.01825,
+        "y": 3.3132500000000005
       },
       "isLocked": false,
-      "linkedName": "TopWallStart"
+      "linkedName": "TopAlgea"
     },
     {
       "anchor": {
-        "x": 5.25,
-        "y": 5.4
+        "x": 6.0,
+        "y": 0.8
       },
       "prevControl": {
-        "x": 4.942365806684012,
-        "y": 5.12244921633932
+        "x": 5.0,
+        "y": 0.7999999999999998
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Reefpoint2"
+      "linkedName": "Processer"
     }
   ],
   "rotationTargets": [],
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": "start",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

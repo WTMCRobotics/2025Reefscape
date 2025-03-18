@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.0,
-        "y": 7.555
+        "x": 7.95,
+        "y": 7.55
       },
       "prevControl": null,
       "nextControl": {
-        "x": 9.0,
-        "y": 7.555
+        "x": 8.95,
+        "y": 7.55
       },
       "isLocked": false,
       "linkedName": "TopWallStart"
@@ -48,7 +48,7 @@
   "folder": "start",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

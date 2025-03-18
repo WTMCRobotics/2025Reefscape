@@ -42,6 +42,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
+import org.ironmaple.simulation.IntakeSimulation.IntakeSide;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.Logger;
 import swervelib.SwerveInputStream;
@@ -73,8 +74,8 @@ public class RobotContainer {
             drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
             // drivebase.getSwerveDrive().setCosineCompensator(true);
             drivebase.getSwerveDrive().setHeadingCorrection(true);
-            drivebase.getSwerveDrive().setAngularVelocityCompensation(true, false, -0.1);
-            drivebase.getSwerveDrive().setChassisDiscretization(true, false, 0.02);
+            drivebase.getSwerveDrive().setAngularVelocityCompensation(true, true, -0.1);
+            drivebase.getSwerveDrive().setChassisDiscretization(true, true, 0.02);
             drivebase.getSwerveDrive().setAutoCenteringModules(false);
             intake = new IntakeSubsystem();
             climb = new ClimbSubsystem();
@@ -153,6 +154,15 @@ public class RobotContainer {
         configureBindings();
         DriverStation.silenceJoystickConnectionWarning(true);
         NamedCommands.registerCommand("test", Commands.print("I EXIST"));
+        NamedCommands.registerCommand("Reset", resetRobot());
+        NamedCommands.registerCommand("SetIntake", resetClimbAndMoveIntakeUp());
+        NamedCommands.registerCommand(
+            "SetIntake: Coral Snag",
+            new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG)
+        );
+        NamedCommands.registerCommand("Intake", new SpinIntake(intake, Constants.INTAKE_SPEED));
+        // NamedCommands.registerCommand("Drop Coral", Commands.none());
+        NamedCommands.registerCommand("Drop Coral", new ClimbAngle(climb, ClimbPosition.DEPOSIT_CORAL_ZEROED));
         SmartDashboard.putData("Reset Encoders", new ResetEncoders(intake, climb, dealgaenator));
         SmartDashboard.putData("Reset Intake", new ResetPivot(intake));
         SmartDashboard.putData("Reset Climb", new ClimbReset(climb));
@@ -184,12 +194,10 @@ public class RobotContainer {
         Command driveSetpointGenKeyboard = drivebase.driveWithSetpointGeneratorFieldRelative(driveDirectAngleKeyboard);
 
         //We could do the commands .repeatatly
-        codriverController
-            .fretOrange()
-            .onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE).repeatedly());
-        codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING).repeatedly());
-        codriverController.fretBlue().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG).repeatedly());
-        codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING).repeatedly());
+        codriverController.fretOrange().onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE));
+        codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING));
+        codriverController.fretBlue().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG));
+        codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
         codriverController
             .fretGreen()
             .onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING).repeatedly());
@@ -197,10 +205,10 @@ public class RobotContainer {
         codriverController.strumUp().whileTrue(new SpinDealgaenator(dealgaenator, -0.4));
         codriverController.strumDown().whileTrue(new SpinDealgaenator(dealgaenator, 0.4));
 
-        // codriverController.buttonStart().whileTrue(new ClimbMove(climb, 1.0));
-        // codriverController.buttonBack().whileTrue(new ClimbMove(climb, -1.0));
+        codriverController.buttonStart().whileTrue(new ClimbMove(climb, 1.0));
+        codriverController.buttonBack().whileTrue(new ClimbMove(climb, -1.0));
 
-        // codriverController.dpadLeft().onTrue(new ClimbAngle(climb, ClimbPosition.DEPLOY_CLIMB));
+        codriverController.dpadLeft().onTrue(new ClimbAngle(climb, ClimbPosition.DEPLOY_CLIMB));
 
         if (RobotBase.isSimulation()) {
             drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
@@ -254,11 +262,15 @@ public class RobotContainer {
     public Command resetRobot() {
         return Commands.sequence(
             new ResetPivot(intake),
-            new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE),
-            Commands.parallel(new ResetDealgaenator(dealgaenator), new ClimbReset(climb)),
-            new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
-            new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING)
+            new PivotIntakeToAngle(intake, IntakePosition.SCORING),
+            Commands.parallel(new ResetDealgaenator(dealgaenator), new ClimbReset(climb))
+            // new ResetDealgaenator(dealgaenator),
+            // new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
         );
+    }
+
+    public Command resetClimbAndMoveIntakeUp() {
+        return Commands.sequence(new ClimbReset(climb), new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
     }
 
     /**
