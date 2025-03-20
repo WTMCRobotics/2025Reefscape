@@ -59,11 +59,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public enum IntakePosition {
         STARTING_POSITION(0),
-        DEALGAENATING(4),
+        DEALGAENATING(5.5),
         CLIMBING(6),
-        SCORING(22.54),
-        CORAL_SNAG(23.81),
-        GROUND_INTAKE(28.76);
+        SCORING(21.75),
+        CORAL_SNAG(22.9),
+        GROUND_INTAKE(33.2);
 
         double pivotAngleRotations;
 
@@ -82,5 +82,14 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void spinIntake(double intakeSpeed) {
         intakeMotor.set(intakeSpeed);
+    }
+
+    public Command spinPivot(double speed) {
+        return Commands.runOnce(
+            () -> {
+                movePivot(speed);
+            },
+            this
+        );
     }
 }

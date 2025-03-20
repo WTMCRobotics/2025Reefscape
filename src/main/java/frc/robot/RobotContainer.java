@@ -202,8 +202,8 @@ public class RobotContainer {
             .fretGreen()
             .onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING).repeatedly());
 
-        codriverController.strumUp().whileTrue(new SpinDealgaenator(dealgaenator, -0.4));
-        codriverController.strumDown().whileTrue(new SpinDealgaenator(dealgaenator, 0.4));
+        codriverController.strumUp().whileTrue(new SpinDealgaenator(dealgaenator, -0.5));
+        codriverController.strumDown().whileTrue(new SpinDealgaenator(dealgaenator, 0.5));
 
         codriverController.buttonStart().whileTrue(new ClimbMove(climb, 1.0));
         codriverController.buttonBack().whileTrue(new ClimbMove(climb, -1.0));
@@ -233,12 +233,16 @@ public class RobotContainer {
             driverController.leftBumper().onTrue(Commands.none());
             driverController.rightBumper().onTrue(Commands.none());
         } else {
-            driverController.buttonX().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
-            driverController.buttonA().onTrue((Commands.runOnce(drivebase::zeroGyro)));
+            // driverController.buttonX().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
+            // driverController.buttonA().onTrue((Commands.runOnce(drivebase::zeroGyro)));
             // driverController.buttonX().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
-            driverController
-                .buttonB()
-                .whileTrue(drivebase.driveToPose(new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
+            // driverController
+            //     .buttonB()
+            // .whileTrue(drivebase.driveToPose(new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0))));
+            driverController.buttonX().onTrue(intake.spinPivot(-0.2));
+            driverController.buttonY().onTrue(intake.spinPivot(0.2));
+            driverController.buttonX().onFalse(intake.spinPivot(-0.0));
+            driverController.buttonY().onFalse(intake.spinPivot(0.0));
             driverController.buttonStart().whileTrue(Commands.none());
             driverController.buttonBack().whileTrue(Commands.none());
             // in
@@ -246,8 +250,8 @@ public class RobotContainer {
             // out
             driverController.rightBumper().whileTrue(new SpinIntake(intake, -Constants.INTAKE_SPEED));
 
-            driverController.dpadUp().onTrue(new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED));
-            driverController.dpadDown().onTrue(new ResetDealgaenator(dealgaenator));
+            driverController.dpadUp().onTrue(dealgaenator.deployDealgenatorSafely(intake));
+            driverController.dpadDown().onTrue(dealgaenator.retractDealgenatorSafely(intake));
         }
     }
 
