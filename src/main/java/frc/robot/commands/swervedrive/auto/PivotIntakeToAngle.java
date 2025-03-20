@@ -9,7 +9,6 @@ import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 public class PivotIntakeToAngle extends Command {
 
     private final IntakeSubsystem intakeSubsystem;
-    boolean finishedDownReset;
 
     private final PIDController controller = new PIDController(
         Constants.INTAKE_PIVOT_DOWN_P,
@@ -27,43 +26,30 @@ public class PivotIntakeToAngle extends Command {
 
     @Override
     public void initialize() {
-        finishedDownReset = false;
         if (intakeSubsystem.getPivotAngle() < targetAngle) {
             controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
         } else {
             controller.setP(Constants.INTAKE_PIVOT_UP_P);
             //If going to dealgaenating, try not to slam into robot too hard
-            if (Math.abs(targetAngle - IntakePosition.DEALGAENATING.getPivotAngleRotations()) < 0.01) {
+            if (Double.compare(targetAngle, IntakePosition.DEALGAENATING.getPivotAngleRotations()) == 0) {
                 controller.setP(Constants.INTAKE_GOING_UP_TO_DEALGEANATE);
             }
-            finishedDownReset = true;
         }
 
         controller.setTolerance(0.28);
-        // controller.setSetpoint(targetAngle);
-        if (finishedDownReset) {
-            controller.setSetpoint(targetAngle);
-        } else {
-            controller.setSetpoint(IntakePosition.GROUND_INTAKE.getPivotAngleRotations());
-        }
+        controller.setSetpoint(targetAngle);
     }
 
     @Override
     public void execute() {
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
-        if (controller.atSetpoint() && !finishedDownReset) {
-            controller.setP(Constants.INTAKE_PIVOT_UP_P);
-            controller.setSetpoint(targetAngle);
-            finishedDownReset = true;
-            System.out.println("Using " + controller.getP());
-        }
         intakeSubsystem.movePivot(calcValue);
         System.out.println("going to " + controller.getSetpoint() + " at speed of " + calcValue);
     }
 
     @Override
     public boolean isFinished() {
-        return controller.atSetpoint() && finishedDownReset;
+        return controller.atSetpoint();
     }
 
     @Override
