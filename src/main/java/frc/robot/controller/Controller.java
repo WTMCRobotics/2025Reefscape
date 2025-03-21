@@ -1,5 +1,7 @@
 package frc.robot.controller;
 
+import com.google.flatbuffers.Constants;
+
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -100,62 +102,6 @@ public class Controller {
     }
 
     /**
-     * Set the left stick to be inverted on the Y axis
-     * Default is false
-     *
-     * @param invert Whether or not to invert the Y axis
-     *
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertLeftY(boolean invert) {
-        this.invertLeftY = invert;
-        return this;
-    }
-
-    /**
-     * Set the right stick to be inverted on the Y axis
-     * Default is false
-     *
-     * @param invert Whether or not to invert the Y axis
-     *
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertRightY(boolean invert) {
-        this.invertRightY = invert;
-        return this;
-    }
-
-    /**
-     * Set the left stick to be inverted on the X axis
-     * Default is false
-     *
-     * @param invert Whether or not to invert the X axis
-     *
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertLeftX(boolean invert) {
-        this.invertLeftX = invert;
-        return this;
-    }
-
-    /**
-     * Set the right stick to be inverted on the X axis
-     * Default is false
-     *
-     * @param invert Whether or not to invert the X axis
-     *
-     * @return The Controller object
-     */
-    @Deprecated
-    public Controller setInvertRightX(boolean invert) {
-        this.invertRightX = invert;
-        return this;
-    }
-
-    /**
      * Invert the left X axis
      *
      * @return The Controller object
@@ -224,6 +170,25 @@ public class Controller {
                 return value;
             case SQUARE:
                 return Math.pow(value, 2) * sign(value);
+            case FLOOR_SQUARE:
+                if (sign(value) == 1){
+                    return Math.max(Math.pow(value, 2), 0.3);
+                }
+                    
+                else{
+                    return Math.min(Math.pow(value, 2) * sign(value), -0.3);
+                }
+            case FLOOR_LINEAR:
+                if (sign(value) == 1){
+                    return Math.max(value, 0.3);
+                }
+                    
+                else{
+                    return Math.min(value * sign(value), -0.3);
+                }
+            case INTERPOLATED:
+                return 0.5*value+Math.pow(value, 2) * sign(value);
+
             default:
                 return value;
         }
@@ -423,10 +388,16 @@ public class Controller {
      *
      * LINEAR: Linear profile
      * SQUARE: Square profile
+     * FLOOR_SQUARE: Square profile with a floor
+     * FLOOR_LINEAR: Linear profile with a floor
+     * INTERPOLATED: Interpolated profile between linear and square
      */
     public enum StickProfile {
         LINEAR,
         SQUARE,
+        FLOOR_SQUARE,
+        FLOOR_LINEAR,
+        INTERPOLATED
     }
 
     /**
