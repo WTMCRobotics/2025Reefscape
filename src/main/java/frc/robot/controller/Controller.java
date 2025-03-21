@@ -6,11 +6,12 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class Controller {
+
     protected final CommandXboxController xboxController;
 
     protected StickProfile leftProfile = StickProfile.LINEAR;
     protected StickProfile rightProfile = StickProfile.LINEAR;
-    
+
     protected Deadzone deadzoneType = Deadzone.ROUND;
 
     protected boolean invertLeftY = false;
@@ -24,9 +25,9 @@ public class Controller {
 
     /**
      * Constructor for the Controller class
-     * 
+     *
      * @param port The port of the controller
-     * 
+     *
      * @return A new Controller object
      */
     public Controller(int port) {
@@ -35,13 +36,12 @@ public class Controller {
 
     // Setup Methods
 
-
     /**
      * Set the deadzone for the left stick
      * Default is 0.1
-     * 
+     *
      * @param deadzone The deadzone value
-     * 
+     *
      * @return The Controller object
      */
     public Controller setLeftDeadzone(double deadzone) {
@@ -49,13 +49,12 @@ public class Controller {
         return this;
     }
 
-
     /**
      * Set the deadzone for the right stick
      * Default is 0.1
-     * 
+     *
      * @param deadzone The deadzone value
-     * 
+     *
      * @return The Controller object
      */
     public Controller setRightDeadzone(double deadzone) {
@@ -66,9 +65,9 @@ public class Controller {
     /**
      * Set the profile for the left stick
      * Default is LINEAR
-     * 
+     *
      * @param profile The profile to use
-     * 
+     *
      * @return The Controller object
      */
     public Controller setLeftProfile(StickProfile profile) {
@@ -79,9 +78,9 @@ public class Controller {
     /**
      * Set the profile for the right stick
      * Default is LINEAR
-     * 
+     *
      * @param profile The profile to use
-     * 
+     *
      * @return The Controller object
      */
     public Controller setRightProfile(StickProfile profile) {
@@ -92,9 +91,9 @@ public class Controller {
     /**
      * Set the deadzone type
      * Default is ROUND
-     * 
+     *
      * @param deadzoneType The deadzone type to use
-     * 
+     *
      * @return The Controller object
      */
     public Controller setDeadzoneType(Deadzone deadzoneType) {
@@ -104,7 +103,7 @@ public class Controller {
 
     /**
      * Invert the left X axis
-     * 
+     *
      * @return The Controller object
      */
     public Controller invertLeftX() {
@@ -114,7 +113,7 @@ public class Controller {
 
     /**
      * Invert the left Y axis
-     * 
+     *
      * @return The Controller object
      */
     public Controller invertLeftY() {
@@ -124,7 +123,7 @@ public class Controller {
 
     /**
      * Invert the right X axis
-     * 
+     *
      * @return The Controller object
      */
     public Controller invertRightX() {
@@ -134,7 +133,7 @@ public class Controller {
 
     /**
      * Invert the right Y axis
-     * 
+     *
      * @return The Controller object
      */
     public Controller invertRightY() {
@@ -199,43 +198,55 @@ public class Controller {
 
     /**
      * Get the X of the left stick
-     * 
+     *
      * @return The X of the left stick
      */
     public double getLeftStickX() {
-        return applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone, true), leftProfile) * (invertLeftX ? -1 : 1);
+        return (
+            applyProfile(applyDeadzone(xboxController.getLeftX(), leftDeadzone, true), leftProfile) *
+            (invertLeftX ? -1 : 1)
+        );
     }
 
     /**
      * Get the Y of the left stick
-     * 
+     *
      * @return The Y of the left stick
      */
     public double getLeftStickY() {
-        return applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone, true), leftProfile) * (invertLeftY ? -1 : 1);
+        return (
+            applyProfile(applyDeadzone(xboxController.getLeftY(), leftDeadzone, true), leftProfile) *
+            (invertLeftY ? -1 : 1)
+        );
     }
 
     /**
      * Get the X of the right stick
-     * 
+     *
      * @return The X of the right stick
      */
     public double getRightStickX() {
-        return applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone, false), rightProfile) * (invertRightX ? -1 : 1);
+        return (
+            applyProfile(applyDeadzone(xboxController.getRightX(), rightDeadzone, false), rightProfile) *
+            (invertRightX ? -1 : 1)
+        );
     }
-    
+
     /**
      * Get the Y of the right stick
-     * 
+     *
      * @return The Y of the right stick
      */
     public double getRightStickY() {
-        return applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone, false), rightProfile) * (invertRightY ? -1 : 1);
+        return (
+            applyProfile(applyDeadzone(xboxController.getRightY(), rightDeadzone, false), rightProfile) *
+            (invertRightY ? -1 : 1)
+        );
     }
 
     /**
      * Get the left trigger axis
-     * 
+     *
      * @return The left trigger axis
      */
     public double getLeftTrigger() {
@@ -244,7 +255,7 @@ public class Controller {
 
     /**
      * Get the right trigger axis
-     * 
+     *
      * @return The right trigger axis
      */
     public double getRightTrigger() {
@@ -255,7 +266,7 @@ public class Controller {
 
     /**
      * Get the A button Trigger
-     * 
+     *
      * @return The A button Trigger
      */
     public Trigger buttonA() {
@@ -264,7 +275,7 @@ public class Controller {
 
     /**
      * Get the B button Trigger
-     * 
+     *
      * @return The B button Trigger
      */
     public Trigger buttonB() {
@@ -273,7 +284,7 @@ public class Controller {
 
     /**
      * Get the X button Trigger
-     * 
+     *
      * @return The X button Trigger
      */
     public Trigger buttonX() {
@@ -282,7 +293,7 @@ public class Controller {
 
     /**
      * Get the Y button Trigger
-     * 
+     *
      * @return The Y button Trigger
      */
     public Trigger buttonY() {
@@ -291,7 +302,7 @@ public class Controller {
 
     /**
      * Get the Left Bumper button Trigger
-     * 
+     *
      * @return The Left Bumper button Trigger
      */
     public Trigger leftBumper() {
@@ -300,7 +311,7 @@ public class Controller {
 
     /**
      * Get the Right Bumper button Trigger
-     * 
+     *
      * @return The Right Bumper button Trigger
      */
     public Trigger rightBumper() {
@@ -309,7 +320,7 @@ public class Controller {
 
     /**
      * Get the Back button Trigger
-     * 
+     *
      * @return The Back button Trigger
      */
     public Trigger buttonBack() {
@@ -318,7 +329,7 @@ public class Controller {
 
     /**
      * Get the Start button Trigger
-     * 
+     *
      * @return The Start button Trigger
      */
     public Trigger buttonStart() {
@@ -327,7 +338,7 @@ public class Controller {
 
     /**
      * Get the Dpad Up Trigger
-     * 
+     *
      * @return The Dpad Up Trigger
      */
     public Trigger dpadUp() {
@@ -336,7 +347,7 @@ public class Controller {
 
     /**
      * Get the Dpad Up Trigger
-     * 
+     *
      * @return The Dpad Up Trigger
      */
     public Trigger dpadRight() {
@@ -345,7 +356,7 @@ public class Controller {
 
     /**
      * Get the Dpad Up Trigger
-     * 
+     *
      * @return The Dpad Up Trigger
      */
     public Trigger dpadDown() {
@@ -354,7 +365,7 @@ public class Controller {
 
     /**
      * Get the Dpad Up Trigger
-     * 
+     *
      * @return The Dpad Up Trigger
      */
     public Trigger dpadLeft() {
@@ -363,19 +374,18 @@ public class Controller {
 
     /**
      * Get the internal CommandXboxController
-     * 
+     *
      * @return The internal CommandXboxController
      */
     public CommandXboxController getInternalController() {
         return this.xboxController;
     }
 
-
     // ENUMS
 
     /**
      * The profile to use for the sticks
-     * 
+     *
      * LINEAR: Linear profile
      * SQUARE: Square profile
      * FLOOR_SQUARE: Square profile with a floor
@@ -392,12 +402,12 @@ public class Controller {
 
     /**
      * The shape of deadzone to use
-     * 
+     *
      * SQUARE: Square deadzone
      * ROUND: Round deadzone
      */
     public enum Deadzone {
         SQUARE,
-        ROUND
+        ROUND,
     }
 }

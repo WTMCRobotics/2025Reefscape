@@ -1,27 +1,27 @@
 {
-  "location": {
-    "front": 9.125,
-    "left": 13.625
-  },
-  "absoluteEncoderOffset": 42.8,
-  "drive": {
-    "type": "krakenx60",
-    "id": 21,
-    "canbus": null
-  },
-  "angle": {
-    "type": "krakenx60",
-    "id": 11,
-    "canbus": null
-  },
-  "encoder": {
-    "type": "cancoder",
-    "id": 31,
-    "canbus": null
-  },
-  "inverted": {
-    "drive": false,
-    "angle": false
-  },
-  "absoluteEncoderInverted": false
+    "location": {
+        "front": 9.125,
+        "left": 13.625
+    },
+    "absoluteEncoderOffset": 42.8,
+    "drive": {
+        "type": "krakenx60",
+        "id": 21,
+        "canbus": null
+    },
+    "angle": {
+        "type": "krakenx60",
+        "id": 11,
+        "canbus": null
+    },
+    "encoder": {
+        "type": "cancoder",
+        "id": 31,
+        "canbus": null
+    },
+    "inverted": {
+        "drive": false,
+        "angle": false
+    },
+    "absoluteEncoderInverted": false
 }

@@ -2,10 +2,10 @@ package frc.robot.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import frc.robot.controller.Controller.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import frc.robot.controller.Controller.*;
 
 public record ControllerTest() {
     @Test
@@ -22,7 +22,7 @@ public record ControllerTest() {
     }
 
     @ParameterizedTest
-    @CsvSource({"0.05,0", "0.1,0.1", "0.5,0.5"})
+    @CsvSource({ "0.05,0", "0.1,0.1", "0.5,0.5" })
     void shouldReturnZeroWhenInsideSquareDeadzone(double input, double expected) {
         Controller controller = new Controller(0);
         controller.setDeadzoneType(Deadzone.SQUARE);
@@ -33,11 +33,10 @@ public record ControllerTest() {
     }
 
     @ParameterizedTest
-    @CsvSource({"0.05,0.0025", "0.1,0.01", "0.5,0.25"})
+    @CsvSource({ "0.05,0.0025", "0.1,0.01", "0.5,0.25" })
     void shouldReturnSquaredValueWhenSquaredProfile(double input, double expected) {
         Controller controller = new Controller(0);
         controller.setDeadzoneType(null);
-        
 
         double value = controller.applyProfile(input, StickProfile.SQUARE);
         System.out.println(expected);

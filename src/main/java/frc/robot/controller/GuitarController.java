@@ -3,7 +3,7 @@ package frc.robot.controller;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class GuitarController extends Controller {
-    
+
     public GuitarController(int port) {
         super(port);
     }
@@ -12,7 +12,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for the top green fret
-     * 
+     *
      * @return Top green fret Trigger
      */
     public Trigger fretGreen() {
@@ -21,7 +21,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for the top red fret
-     * 
+     *
      * @return Top red fret Trigger
      */
     public Trigger fretRed() {
@@ -30,7 +30,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for the top yellow fret
-     * 
+     *
      * @return Top yellow fret Trigger
      */
     public Trigger fretYellow() {
@@ -39,7 +39,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for the top blue fret
-     * 
+     *
      * @return Top blue fret Trigger
      */
     public Trigger fretBlue() {
@@ -48,7 +48,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for the top orange fret
-     * 
+     *
      * @return Top orange fret Trigger
      */
     public Trigger fretOrange() {
@@ -57,7 +57,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for the lower frets
-     * 
+     *
      * @return Lower fretboard trigger
      */
     public Trigger fretLower() {
@@ -66,7 +66,7 @@ public class GuitarController extends Controller {
 
     /**
      * Get the Trigger for struming up
-     * 
+     *
      * @return Strum up Trigger
      */
     public Trigger strumUp() {
