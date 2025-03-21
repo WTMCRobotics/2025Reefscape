@@ -30,9 +30,13 @@ public class PivotIntakeToAngle extends Command {
             controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
         } else {
             controller.setP(Constants.INTAKE_PIVOT_UP_P);
+            //If going to dealgaenating, try not to slam into robot too hard
+            if (Double.compare(targetAngle, IntakePosition.DEALGAENATING.getPivotAngleRotations()) == 0) {
+                controller.setP(Constants.INTAKE_GOING_UP_TO_DEALGEANATE);
+            }
         }
 
-        controller.setTolerance(0.25);
+        controller.setTolerance(0.28);
         controller.setSetpoint(targetAngle);
     }
 
@@ -40,7 +44,7 @@ public class PivotIntakeToAngle extends Command {
     public void execute() {
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
         intakeSubsystem.movePivot(calcValue);
-        System.out.println(calcValue);
+        System.out.println("going to " + controller.getSetpoint() + " at speed of " + calcValue);
     }
 
     @Override

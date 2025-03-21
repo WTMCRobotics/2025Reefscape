@@ -11,9 +11,47 @@
           }
         },
         {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Reset"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "dealgaenate"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Drop Coral"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "reef4 to processer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop off"
           }
         },
         {
@@ -23,15 +61,33 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Drop off"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "processer-reef6"
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "dealgaenate"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "reef6 to processer"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop off"
           }
         }
       ]

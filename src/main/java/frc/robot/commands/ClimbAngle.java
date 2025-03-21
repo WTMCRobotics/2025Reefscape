@@ -41,9 +41,8 @@ public class ClimbAngle extends Command {
     }
 
     public enum ClimbPosition {
-        DEPOSIT_CORAL_NON_ZEROED(-45),
-        DEPOSIT_CORAL_ZEROED(-45),
-        DEPLOY_CLIMB(-93);
+        DEPOSIT_CORAL_ZEROED(-32),
+        DEPLOY_CLIMB(-60);
 
         private double angle;
 

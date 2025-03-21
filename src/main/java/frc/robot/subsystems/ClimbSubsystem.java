@@ -12,6 +12,7 @@ public class ClimbSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Climb Subsystem Encoder", getAngle());
+        SmartDashboard.putBoolean("Climb Limit", climbMotor.getForwardLimitSwitch().isPressed());
     }
 
     public void move(double speed) {

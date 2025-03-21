@@ -5,17 +5,16 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.NamedCommands;
-import com.studica.frc.AHRS.NavXComType;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.SerialPort.Parity;
-import edu.wpi.first.wpilibj.SerialPort.Port;
-import edu.wpi.first.wpilibj.SerialPort.StopBits;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.ClimbReset;
+import frc.robot.commands.swervedrive.auto.ResetGyro;
+import frc.robot.controller.Controller;
+import frc.robot.controller.Controller.StickProfile;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.TFMini;
 import org.ironmaple.simulation.SimulatedArena;
@@ -40,9 +39,12 @@ public class Robot extends LoggedRobot {
     // private Timer disabledTimer;
 
     SendableChooser<String> autonRouteChooser = new SendableChooser<>();
+    SendableChooser<Controller.StickProfile> stickProfileChooser = new SendableChooser<>();
 
     public Robot() {
         instance = this;
+        CameraServer.startAutomaticCapture(0);
+        //dsfojksdfloihspdfoigija[eodisfqe['oarifnqe['oargfnaqe['orihngfa[e'osdrihgna['zdsorighna['sodrgns;dzxifpjgbnsazd[rohi]']']]']']']]
     }
 
     public static Robot getInstance() {
@@ -62,14 +64,24 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("forward1meterfast", "for1mfast");
         autonRouteChooser.addOption("back1meterfast", "back1mfast");
         autonRouteChooser.addOption("spin", "spin");
+        autonRouteChooser.addOption("Score coral from touching left wall", "Score coral from touching left wall");
+        autonRouteChooser.addOption("Score coral from middle of field", "Score coral from middle of field");
+        autonRouteChooser.addOption("Score coral from touching right wall", "Score coral from touching right wall");
+        autonRouteChooser.addOption("Just exit from touching Right wall", "Just exit from touching Right wall");
+        autonRouteChooser.addOption("Just exit from touching left wall", "Just exit from touching left wall");
+        autonRouteChooser.addOption("decent test", "Copy of Copy of usefull test");
+        autonRouteChooser.addOption("copy of usefull test", "Copy of usefull test");
         // autonRouteChooser.addOption("new auto", "New New Auto");
         SmartDashboard.putData("auton routes", autonRouteChooser);
+
+        // stickProfileChooser.addOption("Linear", Controller.StickProfile.LINEAR);
+        // stickProfileChooser.addOption("Squared", Controller.StickProfile.SQUARE);
+        // SmartDashboard.putData("Stick Profile", stickProfileChooser);
 
         robotContainer = new RobotContainer();
         // disabledTimer = new Timer();
 
-        robotContainer.doGyroSetup();
-
+        new ResetGyro(robotContainer.drivebase).ignoringDisable(true).schedule();
         if (Robot.isSimulation()) {
             Logger.addDataReceiver(new NT4Publisher());
         }
@@ -154,6 +166,7 @@ public class Robot extends LoggedRobot {
         } else {
             CommandScheduler.getInstance().cancelAll();
         }
+        // robotContainer.driverController.setLeftProfile(stickProfileChooser.getSelected());
     }
 
     /**

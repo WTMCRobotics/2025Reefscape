@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 5.25,
-        "y": 5.4
+        "y": 5.35
       },
       "prevControl": null,
       "nextControl": {
         "x": 5.107294263761711,
-        "y": 5.1387457667502465
+        "y": 5.088745766750246
       },
       "isLocked": false,
       "linkedName": "Reefpoint2"

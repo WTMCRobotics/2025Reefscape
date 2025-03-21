@@ -1,0 +1,69 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "topStart to reef2coral"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Reset"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop Coral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SetIntake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef2 to reef2coral"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Copy of reef2-middleAlgae"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "SetIntake: Coral Snag"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
