@@ -64,6 +64,8 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("Score coral from touching left wall", "Score coral from touching left wall");
         autonRouteChooser.addOption("Score coral from middle of field", "Score coral from middle of field");
         autonRouteChooser.addOption("Score coral from touching right wall", "Score coral from touching right wall");
+        autonRouteChooser.addOption("Just exit from touching Right wall", "Just exit from touching Right wall");
+        autonRouteChooser.addOption("Just exit from touching left wall", "Just exit from touching left wall");
         autonRouteChooser.addOption("decent test", "Copy of Copy of usefull test");
         autonRouteChooser.addOption("copy of usefull test", "Copy of usefull test");
         // autonRouteChooser.addOption("new auto", "New New Auto");
