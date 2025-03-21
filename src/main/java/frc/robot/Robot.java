@@ -5,6 +5,7 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.NamedCommands;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -42,6 +43,8 @@ public class Robot extends LoggedRobot {
 
     public Robot() {
         instance = this;
+        CameraServer.startAutomaticCapture(0);
+        //dsfojksdfloihspdfoigija[eodisfqe['oarifnqe['oargfnaqe['orihngfa[e'osdrihgna['zdsorighna['sodrgns;dzxifpjgbnsazd[rohi]']']]']']']]
     }
 
     public static Robot getInstance() {
