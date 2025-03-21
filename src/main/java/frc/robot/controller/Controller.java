@@ -1,7 +1,6 @@
 package frc.robot.controller;
 
 import com.google.flatbuffers.Constants;
-
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -171,24 +170,19 @@ public class Controller {
             case SQUARE:
                 return Math.pow(value, 2) * sign(value);
             case FLOOR_SQUARE:
-                if (sign(value) == 1){
+                if (sign(value) == 1) {
                     return Math.max(Math.pow(value, 2), 0.3);
-                }
-                    
-                else{
+                } else {
                     return Math.min(Math.pow(value, 2) * sign(value), -0.3);
                 }
             case FLOOR_LINEAR:
-                if (sign(value) == 1){
+                if (sign(value) == 1) {
                     return Math.max(value, 0.3);
-                }
-                    
-                else{
+                } else {
                     return Math.min(value * sign(value), -0.3);
                 }
             case INTERPOLATED:
-                return 0.5*value+Math.pow(value, 2) * sign(value);
-
+                return 0.5 * value + Math.pow(value, 2) * sign(value);
             default:
                 return value;
         }
@@ -397,7 +391,7 @@ public class Controller {
         SQUARE,
         FLOOR_SQUARE,
         FLOOR_LINEAR,
-        INTERPOLATED
+        INTERPOLATED,
     }
 
     /**
