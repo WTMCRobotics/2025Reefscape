@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.95,
-        "y": 7.55
+        "x": 7.868250000000001,
+        "y": 7.554499999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.661301683417329,
-        "y": 7.554403204732998
+        "x": 7.579551683417329,
+        "y": 7.558903204732998
       },
       "isLocked": false,
       "linkedName": "TopWallStart"

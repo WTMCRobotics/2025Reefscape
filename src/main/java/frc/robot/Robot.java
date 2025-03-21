@@ -61,7 +61,9 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("forward1meterfast", "for1mfast");
         autonRouteChooser.addOption("back1meterfast", "back1mfast");
         autonRouteChooser.addOption("spin", "spin");
-        autonRouteChooser.addOption("usefull test", "usefull test");
+        autonRouteChooser.addOption("Score coral from touching left wall", "Score coral from touching left wall");
+        autonRouteChooser.addOption("Score coral from middle of field", "Score coral from middle of field");
+        autonRouteChooser.addOption("Score coral from touching right wall", "Score coral from touching right wall");
         autonRouteChooser.addOption("decent test", "Copy of Copy of usefull test");
         autonRouteChooser.addOption("copy of usefull test", "Copy of usefull test");
         // autonRouteChooser.addOption("new auto", "New New Auto");
