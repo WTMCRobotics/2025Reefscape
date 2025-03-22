@@ -49,6 +49,7 @@ import org.photonvision.targeting.PhotonPipelineResult;
 import swervelib.SwerveController;
 import swervelib.SwerveDrive;
 import swervelib.SwerveDriveTest;
+import swervelib.SwerveModule;
 import swervelib.math.SwerveMath;
 import swervelib.parser.SwerveControllerConfiguration;
 import swervelib.parser.SwerveDriveConfiguration;
@@ -143,6 +144,7 @@ public class SwerveSubsystem extends SubsystemBase {
             swerveDrive.updateOdometry();
             vision.updatePoseEstimation(swerveDrive);
         }
+        // for (SwerveModule motor : getSwerveDrive().getModules()) {}
     }
 
     @Override
