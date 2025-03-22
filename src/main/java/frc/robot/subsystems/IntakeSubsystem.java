@@ -22,7 +22,7 @@ public class IntakeSubsystem extends SubsystemBase {
     // private SparkMax pivotMotor = null;
     // private SparkMax intakeMotor = null;
 
-    DutyCycleEncoder intakeEncoder = new DutyCycleEncoder(4);
+    DutyCycleEncoder intakeEncoder = new DutyCycleEncoder(1);
 
     @Override
     public void periodic() {
@@ -52,11 +52,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public enum IntakePosition {
         STARTING_POSITION(0),
-        DEALGAENATING(5.5),
-        CLIMBING(6),
-        SCORING(21.75),
-        CORAL_SNAG(22.9),
-        GROUND_INTAKE(33.2);
+        DEALGAENATING(.366),
+        CLIMBING(.366),
+        SCORING(.603),
+        CORAL_SNAG(.567),
+        GROUND_INTAKE(.651);
 
         double pivotAngleRotations;
 
@@ -84,5 +84,37 @@ public class IntakeSubsystem extends SubsystemBase {
             },
             this
         );
+    }
+
+    public double getMotorSpeed() {
+        return pivotMotor.get();
+    }
+
+    public Command moveIntakeUptest() {
+        return new Command() {
+            double power;
+
+            @Override
+            public void initialize() {
+                power = 0;
+            }
+
+            @Override
+            public void execute() {
+                power -= 0.002;
+                System.out.println("Current power: " + power);
+                pivotMotor.set(power);
+            }
+
+            @Override
+            public boolean isFinished() {
+                return power >= 0.75;
+            }
+
+            @Override
+            public void end(boolean interrupted) {
+                pivotMotor.set(0);
+            }
+        };
     }
 }

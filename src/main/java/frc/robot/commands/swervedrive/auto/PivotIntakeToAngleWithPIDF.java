@@ -1,25 +1,28 @@
 package frc.robot.commands.swervedrive.auto;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 
-public class PivotIntakeToAngle extends Command {
+public class PivotIntakeToAngleWithPIDF extends Command {
 
     private final IntakeSubsystem intakeSubsystem;
 
-    private final PIDController controller = new PIDController(
+    private final ProfiledPIDController controller = new ProfiledPIDController(
         Constants.INTAKE_PIVOT_DOWN_P,
         Constants.INTAKE_PIVOT_I,
-        Constants.INTAKE_PIVOT_D
+        Constants.INTAKE_PIVOT_D,
+        new Constraints(1, 0.5)
     );
 
     double targetAngle;
     int debounce;
 
-    public PivotIntakeToAngle(IntakeSubsystem intakeSubsystem, IntakePosition intakePosition) {
+    public PivotIntakeToAngleWithPIDF(IntakeSubsystem intakeSubsystem, IntakePosition intakePosition) {
         this.intakeSubsystem = intakeSubsystem;
         addRequirements(this.intakeSubsystem);
         this.targetAngle = intakePosition.getPivotAngleRotations();
@@ -41,13 +44,17 @@ public class PivotIntakeToAngle extends Command {
         controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
 
         controller.setTolerance(0.008);
-        controller.setSetpoint(targetAngle);
+
+        controller.reset(intakeSubsystem.getPivotAngle());
+
+        controller.setGoal(targetAngle);
 
         System.out.println("START GOING TO " + targetAngle + " with p " + controller.getP());
     }
 
     @Override
     public void execute() {
+        controller.setGoal(targetAngle);
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
         System.out.println("Motor spinning at " + intakeSubsystem.getMotorSpeed());
         System.out.println("going to " + controller.getSetpoint() + " at speed of " + calcValue);

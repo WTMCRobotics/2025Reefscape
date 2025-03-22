@@ -31,11 +31,11 @@ public final class Constants {
     public static final double INTAKE_SPEED = 1;
     public static final double OUTTAKE_SPEED = 1;
 
-    public static final double INTAKE_GOING_UP_TO_DEALGEANATE = 0.025;
-    public static final double INTAKE_PIVOT_DOWN_P = 0.02;
-    public static final double INTAKE_PIVOT_UP_P = 0.08;
-    public static final double INTAKE_PIVOT_I = 0.04;
-    public static final double INTAKE_PIVOT_D = 0.002;
+    // public static final double INTAKE_GOING_UP_TO_DEALGEANATE = 2.25;
+    public static final double INTAKE_PIVOT_DOWN_P = 2.5;
+    public static final double INTAKE_PIVOT_UP_P = 10;
+    public static final double INTAKE_PIVOT_I = 1;
+    public static final double INTAKE_PIVOT_D = 0.8;
 
     public static final double CLIMB_P = 0.08;
     public static final double CLIMB_I = 0;
@@ -62,12 +62,11 @@ public final class Constants {
 
     public static class OperatorConstants {
 
-    // Joystick Deadband
-    public static final double DEADBAND        = 0.1;
-    public static final double LEFT_Y_DEADBAND = 0.1;
-    public static final double RIGHT_X_DEADBAND = 0.1;
-    public static final double JOYSTICK_FLOOR = 0.3;
-    public static final double TURN_CONSTANT    = 6;
-  }
-
+        // Joystick Deadband
+        public static final double DEADBAND = 0.1;
+        public static final double LEFT_Y_DEADBAND = 0.1;
+        public static final double RIGHT_X_DEADBAND = 0.1;
+        public static final double JOYSTICK_FLOOR = 0.3;
+        public static final double TURN_CONSTANT = 6;
+    }
 }

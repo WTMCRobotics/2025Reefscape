@@ -26,6 +26,7 @@ import frc.robot.commands.ClimbReset;
 import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.swervedrive.auto.PivotDealgaenatorToAngle;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.commands.swervedrive.auto.PivotIntakeToAngleWithPIDF;
 import frc.robot.commands.swervedrive.auto.ResetDealgaenator;
 import frc.robot.commands.swervedrive.auto.ResetGyro;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
@@ -168,6 +169,8 @@ public class RobotContainer {
         SmartDashboard.putData("Reset Dealgaenator", new ResetDealgaenator(dealgaenator));
         SmartDashboard.putData("Reset robot", resetRobot());
         SmartDashboard.putData("Reset gyro", new ResetGyro(drivebase).ignoringDisable(true));
+
+        SmartDashboard.putData("Test moving intake up slowy", intake.moveIntakeUptest());
     }
 
     /**
@@ -193,13 +196,19 @@ public class RobotContainer {
         Command driveSetpointGenKeyboard = drivebase.driveWithSetpointGeneratorFieldRelative(driveDirectAngleKeyboard);
 
         //We could do the commands .repeatatly
-        codriverController.fretOrange().onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE));
-        codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING));
-        codriverController.fretBlue().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG));
-        codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING));
-        codriverController
-            .fretGreen()
-            .onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING).repeatedly());
+        // codriverController.fretOrange().onTrue(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE).andThen(new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE)));
+        // codriverController.fretYellow().onTrue(new PivotIntakeToAngle(intake, IntakePosition.SCORING).andThen(new PivotIntakeToAngle(intake, IntakePosition.SCORING)));
+        // codriverController.fretBlue().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG).andThen(new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG)));
+        // codriverController.fretRed().onTrue(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING).andThen(new PivotIntakeToAngle(intake, IntakePosition.CLIMBING)));
+        // codriverController
+        //     .fretGreen()
+        //     .onTrue(new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
+
+        codriverController.fretOrange().onTrue(new PivotIntakeToAngleWithPIDF(intake, IntakePosition.GROUND_INTAKE));
+        codriverController.fretYellow().onTrue(new PivotIntakeToAngleWithPIDF(intake, IntakePosition.SCORING));
+        codriverController.fretBlue().onTrue(new PivotIntakeToAngleWithPIDF(intake, IntakePosition.CORAL_SNAG));
+        codriverController.fretRed().onTrue(new PivotIntakeToAngleWithPIDF(intake, IntakePosition.CLIMBING));
+        codriverController.fretGreen().onTrue(new PivotIntakeToAngleWithPIDF(intake, IntakePosition.DEALGAENATING));
 
         codriverController.strumUp().whileTrue(new SpinDealgaenator(dealgaenator, -0.5));
         codriverController.strumDown().whileTrue(new SpinDealgaenator(dealgaenator, 0.5));
