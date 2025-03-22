@@ -3,6 +3,7 @@ package frc.robot.commands.swervedrive.auto;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
+import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -47,7 +48,7 @@ public class PivotIntakeToAngleWithPIDF extends Command {
 
         controller.reset(intakeSubsystem.getPivotAngle());
 
-        controller.setGoal(targetAngle);
+        controller.setGoal(new State(targetAngle, 0.1));
 
         System.out.println("START GOING TO " + targetAngle + " with p " + controller.getP());
     }
@@ -56,19 +57,20 @@ public class PivotIntakeToAngleWithPIDF extends Command {
     public void execute() {
         controller.setGoal(targetAngle);
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
-        System.out.println("Motor spinning at " + intakeSubsystem.getMotorSpeed());
-        System.out.println("going to " + controller.getSetpoint() + " at speed of " + calcValue);
+        System.out.println(
+            "going to " +
+            controller.getSetpoint() +
+            " at speed of " +
+            calcValue +
+            " with vel " +
+            controller.getSetpoint().velocity
+        );
         intakeSubsystem.movePivot(calcValue);
-        if (controller.atSetpoint()) {
-            debounce++;
-        } else {
-            debounce = 0;
-        }
     }
 
     @Override
     public boolean isFinished() {
-        return debounce >= 25;
+        return controller.atGoal() && controller.getSetpoint().velocity <= 0.1;
     }
 
     @Override

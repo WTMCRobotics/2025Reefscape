@@ -44,6 +44,7 @@ public class Robot extends LoggedRobot {
     public Robot() {
         instance = this;
         CameraServer.startAutomaticCapture(0);
+        CameraServer.startAutomaticCapture(1);
         //dsfojksdfloihspdfoigija[eodisfqe['oarifnqe['oargfnaqe['orihngfa[e'osdrihgna['zdsorighna['sodrgns;dzxifpjgbnsazd[rohi]']']]']']']]
     }
 
