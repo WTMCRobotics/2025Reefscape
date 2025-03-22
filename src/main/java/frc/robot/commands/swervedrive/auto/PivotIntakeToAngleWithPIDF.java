@@ -48,7 +48,7 @@ public class PivotIntakeToAngleWithPIDF extends Command {
 
         controller.reset(intakeSubsystem.getPivotAngle());
 
-        controller.setGoal(new State(targetAngle, 0.1));
+        controller.setGoal(new State(targetAngle, 0.01));
 
         System.out.println("START GOING TO " + targetAngle + " with p " + controller.getP());
     }
@@ -59,7 +59,7 @@ public class PivotIntakeToAngleWithPIDF extends Command {
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
         System.out.println(
             "going to " +
-            controller.getSetpoint() +
+            controller.getGoal().position +
             " at speed of " +
             calcValue +
             " with vel " +
