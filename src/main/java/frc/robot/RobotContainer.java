@@ -277,14 +277,17 @@ public class RobotContainer {
         return Commands.sequence(
             new ResetPivot(intake),
             new PivotIntakeToAngle(intake, IntakePosition.SCORING).withTimeout(2),
-            Commands.parallel(new ResetDealgaenator(dealgaenator), new ClimbReset(climb))
+            Commands.parallel(new ResetDealgaenator(dealgaenator))
             // new ResetDealgaenator(dealgaenator),
             // new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
         );
     }
 
     public Command resetClimbAndMoveIntakeUp() {
-        return Commands.sequence(new ClimbReset(climb), new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING));
+        return Commands.sequence(
+            new ClimbAngle(climb, ClimbPosition.ZERO_POSITION),
+            new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING)
+        );
     }
 
     /**

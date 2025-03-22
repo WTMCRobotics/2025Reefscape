@@ -3,25 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.868,
-        "y": 4.015249999999999
+        "x": 7.829249999999999,
+        "y": 0.524749999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.06875,
-        "y": 4.0055
+        "x": 7.0005,
+        "y": 1.3632499999999994
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.562295081967213,
-        "y": 4.420594262295082
+        "x": 5.382,
+        "y": 2.047
       },
       "prevControl": {
-        "x": 5.811431521528433,
-        "y": 4.441355632258518
+        "x": 5.606293557247611,
+        "y": 1.7728594580059114
+      },
+      "nextControl": {
+        "x": 5.157706442752389,
+        "y": 2.3211405419940894
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.382,
+        "y": 3.186
+      },
+      "prevControl": {
+        "x": 5.99624466884102,
+        "y": 2.4352456381742513
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +58,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -59.03624346792642
   },
   "reversed": false,
   "folder": "Routes we use",

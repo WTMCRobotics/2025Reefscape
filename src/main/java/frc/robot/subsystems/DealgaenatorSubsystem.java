@@ -19,6 +19,7 @@ public class DealgaenatorSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Dealgaenator Encoder", getDealgaenatorAngle());
+        SmartDashboard.putNumber("Dealgaenator Absolute Encoder", pivotMotor.getAbsoluteEncoder().getPosition());
         SmartDashboard.putBoolean("Dealgaenator Reverse Limit Switch", getReverseLimitSwitch());
     }
 

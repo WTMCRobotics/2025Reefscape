@@ -6,6 +6,8 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cameraserver.CameraServerSharedStore;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -43,7 +45,9 @@ public class Robot extends LoggedRobot {
 
     public Robot() {
         instance = this;
-        CameraServer.startAutomaticCapture(0);
+        // UsbCamera cam1 = new UsbCamera("Front Cam", 0);
+        // cam1.setResolution(1920, 1080);
+        // CameraServer.startAutomaticCapture(0);
         CameraServer.startAutomaticCapture(1);
         //dsfojksdfloihspdfoigija[eodisfqe['oarifnqe['oargfnaqe['orihngfa[e'osdrihgna['zdsorighna['sodrgns;dzxifpjgbnsazd[rohi]']']]']']']]
     }
