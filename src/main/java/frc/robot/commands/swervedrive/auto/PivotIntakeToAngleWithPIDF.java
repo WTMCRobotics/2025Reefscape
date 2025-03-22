@@ -4,6 +4,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -27,14 +28,20 @@ public class PivotIntakeToAngleWithPIDF extends Command {
         this.intakeSubsystem = intakeSubsystem;
         addRequirements(this.intakeSubsystem);
         this.targetAngle = intakePosition.getPivotAngleRotations();
+        SmartDashboard.putData("Intake PID", controller);
     }
 
     @Override
     public void initialize() {
         debounce = 0;
-        // if (intakeSubsystem.getPivotAngle() < targetAngle) {
-        //     controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
-        // } else {
+        if (
+            Double.compare(targetAngle, IntakePosition.SCORING.getPivotAngleRotations()) == 0 ||
+            Double.compare(targetAngle, IntakePosition.CORAL_SNAG.getPivotAngleRotations()) == 0
+        ) {
+            targetAngle -= 0.01;
+        }
+
+        // else {
         //     controller.setP(Constants.INTAKE_PIVOT_UP_P);
         //If going to dealgaenating, try not to slam into robot too hard
         // if (Double.compare(targetAngle, IntakePosition.DEALGAENATING.getPivotAngleRotations()) == 0) {
@@ -42,7 +49,7 @@ public class PivotIntakeToAngleWithPIDF extends Command {
         // }
         // }
 
-        controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
+        // controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
 
         controller.setTolerance(0.008);
 
@@ -57,6 +64,7 @@ public class PivotIntakeToAngleWithPIDF extends Command {
     public void execute() {
         controller.setGoal(targetAngle);
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
+        calcValue -= 0.05;
         System.out.println(
             "going to " +
             controller.getGoal().position +

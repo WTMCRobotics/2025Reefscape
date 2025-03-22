@@ -258,8 +258,10 @@ public class RobotContainer {
             // out
             driverController.rightBumper().whileTrue(new SpinIntake(intake, -Constants.INTAKE_SPEED));
 
-            driverController.dpadUp().onTrue(dealgaenator.deployDealgenatorSafely(intake));
-            driverController.dpadDown().onTrue(dealgaenator.retractDealgenatorSafely(intake));
+            // driverController.dpadUp().onTrue(dealgaenator.deployDealgenatorSafely(intake));
+            // driverController.dpadDown().onTrue(dealgaenator.retractDealgenatorSafely(intake));
+            driverController.dpadUp().onTrue(new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED));
+            driverController.dpadDown().onTrue(new ResetDealgaenator(dealgaenator));
         }
     }
 

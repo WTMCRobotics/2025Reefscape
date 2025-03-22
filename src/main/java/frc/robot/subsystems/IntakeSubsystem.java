@@ -54,7 +54,7 @@ public class IntakeSubsystem extends SubsystemBase {
         STARTING_POSITION(0),
         DEALGAENATING(.366),
         CLIMBING(.366),
-        SCORING(.603),
+        SCORING(.591),
         CORAL_SNAG(.567),
         GROUND_INTAKE(.651);
 
