@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Exit from touching right wall"
+                  "pathName": "Right wall to reef 4"
                 }
               },
               {
@@ -21,6 +21,18 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop Coral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SetIntake"
           }
         }
       ]

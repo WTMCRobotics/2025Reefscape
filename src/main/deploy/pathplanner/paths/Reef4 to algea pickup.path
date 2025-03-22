@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.783,
-        "y": 5.85
+        "x": 5.499,
+        "y": 2.982
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.01825,
-        "y": 3.3132500000000005
+        "x": 4.865767705699322,
+        "y": 3.755961795862496
       },
       "isLocked": false,
-      "linkedName": "TopAlgea"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 6.0,
-        "y": 0.8
+        "x": 2.133811475409836,
+        "y": 2.226844262295082
       },
       "prevControl": {
-        "x": 5.0,
-        "y": 0.7999999999999998
+        "x": 2.7670437697105132,
+        "y": 1.4528824664325861
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Processer"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -178.0748162916768
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -59.24125623849249
   },
   "useDefaultConstraints": true
 }
