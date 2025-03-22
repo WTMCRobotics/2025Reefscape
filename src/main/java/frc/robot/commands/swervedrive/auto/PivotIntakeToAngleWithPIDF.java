@@ -51,7 +51,7 @@ public class PivotIntakeToAngleWithPIDF extends Command {
 
         // controller.setP(Constants.INTAKE_PIVOT_DOWN_P);
 
-        controller.setTolerance(0.008);
+        controller.setTolerance(0.01);
 
         controller.reset(intakeSubsystem.getPivotAngle());
 

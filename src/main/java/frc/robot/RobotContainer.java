@@ -276,7 +276,7 @@ public class RobotContainer {
     public Command resetRobot() {
         return Commands.sequence(
             new ResetPivot(intake),
-            new PivotIntakeToAngle(intake, IntakePosition.SCORING),
+            new PivotIntakeToAngle(intake, IntakePosition.SCORING).withTimeout(2),
             Commands.parallel(new ResetDealgaenator(dealgaenator), new ClimbReset(climb))
             // new ResetDealgaenator(dealgaenator),
             // new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
