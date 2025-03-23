@@ -93,22 +93,6 @@ public class RobotContainer {
         }
         //0-3 -> front left, fr, bl, br
 
-        // drivebase.getSwerveDrive().getModules()[0].setAngleMotorConversionFactor(12.1798478035);
-        drivebase.getSwerveDrive().getModules()[1].setAngleMotorConversionFactor(12.1798478035);
-
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.gearRatio
-        );
-
         drivebase
             .getSwerveDrive()
             .getModules()[0].setAngleMotorConversionFactor(
@@ -125,39 +109,6 @@ public class RobotContainer {
         drivebase
             .getSwerveDrive()
             .getModules()[3].setAngleMotorConversionFactor(SwerveMath.calculateDegreesPerSteeringRotation(13.3714));
-
-        // drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio = 12.1798478035;
-
-        // drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.gearRatio = 12.1798478035;
-        // drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.gearRatio = 13.3714;
-        // drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.gearRatio = 13.3714;
-
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.factor
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.factor
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.factor
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.factor
-        );
-
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        System.out.println(
-            drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.gearRatio
-        );
-        // drivebase.getSwerveDrive().getModules()[3].getAngleMotor()
     }
 
     /**
