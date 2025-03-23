@@ -28,6 +28,8 @@ public class ResetDealgaenator extends Command {
     @Override
     public void end(boolean interrupted) {
         dealgaenatorSubsystem.stopPivot();
-        dealgaenatorSubsystem.resetEncoder();
+        if (!interrupted) {
+            dealgaenatorSubsystem.resetEncoder();
+        }
     }
 }

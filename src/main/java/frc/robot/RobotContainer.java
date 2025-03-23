@@ -74,6 +74,12 @@ public class RobotContainer {
         if (Robot.isReal()) {
             drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
 
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             System.out.println(
                 drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio
             );
@@ -346,7 +352,7 @@ public class RobotContainer {
         return Commands.sequence(
             new ResetPivot(intake),
             new PivotIntakeToAngle(intake, IntakePosition.SCORING).withTimeout(2),
-            Commands.parallel(new ResetDealgaenator(dealgaenator))
+            Commands.parallel(new ResetDealgaenator(dealgaenator).withTimeout(3))
             // new ResetDealgaenator(dealgaenator),
             // new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
         );
