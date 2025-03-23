@@ -41,7 +41,7 @@ public final class Constants {
     public static final double CLIMB_I = 0;
     public static final double CLIMB_D = 0;
 
-    public static final double DEALGAENATOR_P = 0.85;
+    public static final double DEALGAENATOR_P = 0.60;
     public static final double DEALGAENATOR_I = 0.02;
     public static final double DEALGAENATOR_D = 0;
 

@@ -76,6 +76,8 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("Just exit from touching left wall", "Just exit from touching left wall");
         autonRouteChooser.addOption("decent test", "Copy of Copy of usefull test");
         autonRouteChooser.addOption("copy of usefull test", "Copy of usefull test");
+
+        SmartDashboard.putNumber("Auton delay (sec)", 7);
         // autonRouteChooser.addOption("new auto", "New New Auto");
         SmartDashboard.putData("auton routes", autonRouteChooser);
 
@@ -147,10 +149,13 @@ public class Robot extends LoggedRobot {
     public void autonomousInit() {
         robotContainer.setMotorBrake(true);
         m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
-
+        Command autonCommand = Commands.sequence(
+            Commands.waitSeconds(SmartDashboard.getNumber("Auton delay (sec)", 7)),
+            m_autonomousCommand
+        );
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
-            m_autonomousCommand.schedule();
+            autonCommand.schedule();
         }
     }
 
