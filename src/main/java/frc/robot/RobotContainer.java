@@ -4,11 +4,13 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.swerve.jni.SwerveJNI.ModuleState;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -362,6 +364,20 @@ public class RobotContainer {
         return Commands.sequence(
             new ClimbAngle(climb, ClimbPosition.ZERO_POSITION),
             new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING)
+        );
+    }
+
+    public Command moveWheelsToJankCorrectPosition() {
+        SwerveModuleState flState = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(27.6)));
+        SwerveModuleState frState = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(32.6)));
+        SwerveModuleState blState = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState brState = new SwerveModuleState(0.0, new Rotation2d(Math.toRadians(0)));
+        SwerveModuleState[] states = new SwerveModuleState[] { flState, frState, blState, brState };
+        return Commands.run(
+            () -> {
+                drivebase.getSwerveDrive().setModuleStates(states, false);
+            },
+            drivebase
         );
     }
 
