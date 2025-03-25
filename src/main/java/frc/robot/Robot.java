@@ -7,6 +7,7 @@ package frc.robot;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cameraserver.CameraServerSharedStore;
+import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -48,7 +49,6 @@ public class Robot extends LoggedRobot {
         // UsbCamera cam1 = new UsbCamera("Front Cam", 0);
         // cam1.setResolution(1920, 1080);
         // CameraServer.startAutomaticCapture(0);
-        CameraServer.startAutomaticCapture(1);
         //dsfojksdfloihspdfoigija[eodisfqe['oarifnqe['oargfnaqe['orihngfa[e'osdrihgna['zdsorighna['sodrgns;dzxifpjgbnsazd[rohi]']']]']']']]
     }
 
@@ -63,6 +63,7 @@ public class Robot extends LoggedRobot {
     @Override
     public void robotInit() {
         autonRouteChooser.addOption("forward1meter", "test");
+        autonRouteChooser.addOption("Rotate auto", "Rotate auto");
         autonRouteChooser.addOption("back1meter", "testback");
         autonRouteChooser.addOption("forward0.5meter", "testhalffor");
         autonRouteChooser.addOption("back0.5meter", "testhalfback");

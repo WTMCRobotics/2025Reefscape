@@ -171,15 +171,15 @@ public class Controller {
                 return Math.pow(value, 2) * sign(value);
             case FLOOR_SQUARE:
                 if (sign(value) == 1) {
-                    return Math.max(Math.pow(value, 2), 0.3);
+                    return Math.max(Math.pow(value, 2), 0.03);
                 } else {
-                    return Math.min(Math.pow(value, 2) * sign(value), -0.3);
+                    return Math.min(Math.pow(value, 2) * sign(value), -0.03);
                 }
             case FLOOR_LINEAR:
                 if (sign(value) == 1) {
-                    return Math.max(value, 0.3);
+                    return Math.max(value, 0.03);
                 } else {
-                    return Math.min(value * sign(value), -0.3);
+                    return Math.min(value * sign(value), -0.03);
                 }
             case INTERPOLATED:
                 return 0.5 * value + Math.pow(value, 2) * sign(value);

@@ -63,7 +63,7 @@ public class RobotContainer {
     public final Controller driverController = new Controller(0)
         .invertLeftY()
         .setLeftDeadzone(0d)
-        .setLeftProfile(StickProfile.LINEAR);
+        .setLeftProfile(StickProfile.FLOOR_SQUARE);
     public final GuitarController codriverController = new GuitarController(1);
 
     // The robot's subsystems and commands are defined here...
@@ -75,76 +75,6 @@ public class RobotContainer {
     {
         if (Robot.isReal()) {
             drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.gearRatio
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.gearRatio
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.gearRatio
-            );
-
-            drivebase
-                .getSwerveDrive()
-                .getModules()[0].setAngleMotorConversionFactor(
-                    SwerveMath.calculateDegreesPerSteeringRotation(12.155844)
-                );
-            drivebase
-                .getSwerveDrive()
-                .getModules()[1].setAngleMotorConversionFactor(
-                    SwerveMath.calculateDegreesPerSteeringRotation(12.155844)
-                );
-            drivebase
-                .getSwerveDrive()
-                .getModules()[2].setAngleMotorConversionFactor(SwerveMath.calculateDegreesPerSteeringRotation(13.3714));
-            drivebase
-                .getSwerveDrive()
-                .getModules()[3].setAngleMotorConversionFactor(SwerveMath.calculateDegreesPerSteeringRotation(13.3714));
-
-            drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio =
-                12.1798478035;
-
-            drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.gearRatio =
-                12.1798478035;
-            drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.gearRatio = 13.3714;
-            drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.gearRatio = 13.3714;
-
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.factor
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.factor
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.factor
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.factor
-            );
-
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[0].getConfiguration().conversionFactors.angle.gearRatio
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[1].getConfiguration().conversionFactors.angle.gearRatio
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[2].getConfiguration().conversionFactors.angle.gearRatio
-            );
-            System.out.println(
-                drivebase.getSwerveDrive().getModules()[3].getConfiguration().conversionFactors.angle.gearRatio
-            );
 
             drivebase.getSwerveDrive().setCosineCompensator(true);
             drivebase.getSwerveDrive().setHeadingCorrection(true);
