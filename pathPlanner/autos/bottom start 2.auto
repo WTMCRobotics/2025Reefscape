@@ -24,25 +24,6 @@
           }
         },
         {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Drop Coral"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Reset"
-                }
-              }
-            ]
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "reef4 to processer"

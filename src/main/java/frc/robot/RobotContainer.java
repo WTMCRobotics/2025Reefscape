@@ -64,7 +64,7 @@ public class RobotContainer {
     public final Controller driverController = new Controller(0)
         .invertLeftY()
         .setLeftDeadzone(0d)
-        .setLeftProfile(StickProfile.FLOOR_SQUARE);
+        .setLeftProfile(StickProfile.SQUARE);
     public final GuitarController codriverController = new GuitarController(1);
 
     // The robot's subsystems and commands are defined here...
@@ -260,9 +260,9 @@ public class RobotContainer {
             driverController.buttonX().onFalse(intake.spinPivot(-0.0));
             driverController.buttonY().onFalse(intake.spinPivot(0.0));
 
-            Pose2d processorSpot = new Pose2d(new Translation2d(6.4, 0.9), Rotation2d.fromDegrees(-90.000));
+            Pose2d processorSpot = new Pose2d(new Translation2d(6.4, 1.4), Rotation2d.fromDegrees(-90.000));
             if (DriverStation.getAlliance().get() == Alliance.Red) {
-                processorSpot = new Pose2d(new Translation2d(11.484, 11.484), Rotation2d.fromDegrees(90.000));
+                processorSpot = new Pose2d(new Translation2d(11.484, 8.49), Rotation2d.fromDegrees(90.000));
             }
 
             driverController.buttonB().whileTrue(drivebase.driveToPose(processorSpot));

@@ -1,0 +1,55 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "bottomStart-reef4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef4 to processer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processer-reef6"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef6 to processer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processere-reef5"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "reef5-processer"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "processer-bottemAlgea-processer hyper"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "to be sorted",
+  "choreoAuto": false
+}

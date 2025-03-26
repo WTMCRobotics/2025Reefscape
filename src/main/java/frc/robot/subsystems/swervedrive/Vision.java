@@ -513,7 +513,7 @@ public class Vision {
                     return a.getTimestampSeconds() >= b.getTimestampSeconds() ? 1 : -1;
                 });
                 if (!resultsList.isEmpty()) {
-                    System.out.println("Not emtpty, updating global pose");
+                    // System.out.println("Not emtpty, updating global pose");
                     updateEstimatedGlobalPose();
                 } else {
                     // System.out.println("List is empty");
@@ -537,14 +537,14 @@ public class Vision {
             Optional<EstimatedRobotPose> visionEst = Optional.empty();
             for (var change : resultsList) {
                 visionEst = poseEstimator.update(change);
-                System.out.println(
-                    "Is visionTest present??? " +
-                    (visionEst.isPresent()) +
-                    " targetSize: " +
-                    change.targets.size() +
-                    " time: " +
-                    change.getTimestampSeconds()
-                );
+                // System.out.println(
+                //     "Is visionTest present??? " +
+                //     (visionEst.isPresent()) +
+                //     " targetSize: " +
+                //     change.targets.size() +
+                //     " time: " +
+                //     change.getTimestampSeconds()
+                // );
                 updateEstimationStdDevs(visionEst, change.getTargets());
             }
             estimatedRobotPose = visionEst;

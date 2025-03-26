@@ -1,0 +1,70 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.86,
+        "y": 4.81
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 8.267815721376982,
+        "y": 4.717583908580669
+      },
+      "isLocked": false,
+      "linkedName": "BottomStart"
+    },
+    {
+      "anchor": {
+        "x": 3.5,
+        "y": 5.75
+      },
+      "prevControl": {
+        "x": 4.414126918382137,
+        "y": 6.32398002051583
+      },
+      "nextControl": {
+        "x": 2.7491112290114965,
+        "y": 5.27851716374365
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.3,
+        "y": 3.9
+      },
+      "prevControl": {
+        "x": 3.1028772549769643,
+        "y": 4.053761579708922
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "reef3coral"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": "bottom start to coral drop",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}

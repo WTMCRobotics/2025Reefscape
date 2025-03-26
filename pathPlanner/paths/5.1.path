@@ -1,0 +1,88 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 3.9,
+        "y": 3.1
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.330052430467473,
+        "y": 2.9578249251538153
+      },
+      "isLocked": false,
+      "linkedName": "reef5coral"
+    },
+    {
+      "anchor": {
+        "x": 1.7826377952755905,
+        "y": 2.2147244094488188
+      },
+      "prevControl": {
+        "x": 2.8612815601229205,
+        "y": 1.9584712175913568
+      },
+      "nextControl": {
+        "x": 1.0376756012242283,
+        "y": 2.3917049346788692
+      },
+      "isLocked": false,
+      "linkedName": "BottomAlgea"
+    },
+    {
+      "anchor": {
+        "x": 6.0,
+        "y": 0.8
+      },
+      "prevControl": {
+        "x": 6.370511811023622,
+        "y": 2.145629921259842
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Processer"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [
+    {
+      "fieldPosition": {
+        "x": 0.4,
+        "y": 2.0
+      },
+      "rotationOffset": 0.0,
+      "minWaypointRelativePos": 0.25,
+      "maxWaypointRelativePos": 1.8208955223880594,
+      "name": "Point Towards Zone"
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "Intake",
+      "waypointRelativePos": 0.75,
+      "endWaypointRelativePos": 1.2000000000000004,
+      "command": null
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -90.0
+  },
+  "reversed": false,
+  "folder": null,
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -119.99999999999999
+  },
+  "useDefaultConstraints": true
+}

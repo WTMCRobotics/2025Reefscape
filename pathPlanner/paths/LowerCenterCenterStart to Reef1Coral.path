@@ -1,0 +1,70 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.95,
+        "y": 5.85
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 8.404864305530683,
+        "y": 5.860220299746725
+      },
+      "isLocked": false,
+      "linkedName": "BargeMiddleStart"
+    },
+    {
+      "anchor": {
+        "x": 4.0,
+        "y": 6.121545565382746
+      },
+      "prevControl": {
+        "x": 4.394127535551679,
+        "y": 6.371233749057868
+      },
+      "nextControl": {
+        "x": 3.5916363940023586,
+        "y": 5.862838528032891
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.7,
+        "y": 4.85
+      },
+      "prevControl": {
+        "x": 3.860632917339422,
+        "y": 5.041564782428885
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "reef1coral"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 119.99999999999999
+  },
+  "reversed": false,
+  "folder": "LowerCenterCernter to coral drop",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}
