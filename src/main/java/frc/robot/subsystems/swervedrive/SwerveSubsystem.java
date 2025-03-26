@@ -23,6 +23,7 @@ import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -72,7 +73,7 @@ public class SwerveSubsystem extends SubsystemBase {
     /**
      * Enable vision odometry updates while driving.
      */
-    private final boolean visionDriveTest = false;
+    private final boolean visionDriveTest = true;
     /**
      * PhotonVision class to keep an accurate odometry.
      */

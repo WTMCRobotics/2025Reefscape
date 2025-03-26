@@ -13,6 +13,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -258,6 +259,14 @@ public class RobotContainer {
             driverController.buttonY().onTrue(intake.spinPivot(0.2));
             driverController.buttonX().onFalse(intake.spinPivot(-0.0));
             driverController.buttonY().onFalse(intake.spinPivot(0.0));
+
+            Pose2d processorSpot = new Pose2d(new Translation2d(6.4, 0.9), Rotation2d.fromDegrees(-90.000));
+            if (DriverStation.getAlliance().get() == Alliance.Red) {
+                processorSpot = new Pose2d(new Translation2d(11.484, 11.484), Rotation2d.fromDegrees(90.000));
+            }
+
+            driverController.buttonB().whileTrue(drivebase.driveToPose(processorSpot));
+
             driverController.buttonStart().whileTrue(Commands.none());
             driverController.buttonBack().whileTrue(Commands.none());
             // in
