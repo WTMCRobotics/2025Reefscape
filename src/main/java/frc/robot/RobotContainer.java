@@ -11,6 +11,8 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -43,6 +45,7 @@ import frc.robot.subsystems.DealgaenatorSubsystem;
 import frc.robot.subsystems.DealgaenatorSubsystem.DealgaenatorPosition;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
+import frc.robot.subsystems.swervedrive.Vision;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -78,7 +81,14 @@ public class RobotContainer {
     private DealgaenatorSubsystem dealgaenator;
     public ClimbSubsystem climb;
 
+    Vision vision;
+    boolean useVision = false;
+
     // private final SendableChooser<Command> autoChooser;
+
+    private final AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(
+        AprilTagFields.k2025ReefscapeWelded
+    );
 
     public RobotContainer() {
         intake = new IntakeSubsystem();
@@ -86,6 +96,8 @@ public class RobotContainer {
         dealgaenator = new DealgaenatorSubsystem();
         // Configure the trigger bindings
         configureBindings();
+
+        if (useVision) {}
 
         DriverStation.silenceJoystickConnectionWarning(true);
         NamedCommands.registerCommand("test", Commands.print("I EXIST"));

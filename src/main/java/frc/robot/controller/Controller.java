@@ -143,20 +143,21 @@ public class Controller {
     // Internal Methods
 
     public double applyDeadzone(double value, double deadzone, boolean isLeftStick) {
-        if (deadzoneType == Deadzone.SQUARE) {
-            if (Math.abs(value) < deadzone) {
-                return 0d;
-            }
-            return value;
-        } else if (deadzoneType == Deadzone.ROUND) {
-            double xAxis = isLeftStick ? (xboxController.getLeftX()) : (xboxController.getRightX());
-            double yAxis = isLeftStick ? (xboxController.getLeftY()) : (xboxController.getRightY());
-            if (Math.sqrt(Math.pow(xAxis, 2) + Math.pow(yAxis, 2)) < deadzone) {
-                return 0d;
-            }
-            return value;
-        }
         return value;
+        // if (deadzoneType == Deadzone.SQUARE) {
+        //     if (Math.abs(value) < deadzone) {
+        //         return 0d;
+        //     }
+        //     return value;
+        // } else if (deadzoneType == Deadzone.ROUND) {
+        //     double xAxis = isLeftStick ? (xboxController.getLeftX()) : (xboxController.getRightX());
+        //     double yAxis = isLeftStick ? (xboxController.getLeftY()) : (xboxController.getRightY());
+        //     if (Math.sqrt(Math.pow(xAxis, 2) + Math.pow(yAxis, 2)) < deadzone) {
+        //         return 0d;
+        //     }
+        //     return value;
+        // }
+        // return value;
     }
 
     private double sign(double value) {

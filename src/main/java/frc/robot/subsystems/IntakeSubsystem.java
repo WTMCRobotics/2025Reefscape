@@ -52,11 +52,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public enum IntakePosition {
         STARTING_POSITION(0),
-        DEALGAENATING(.366),
-        CLIMBING(.366),
-        SCORING(.591),
-        CORAL_SNAG(.567),
-        GROUND_INTAKE(.651);
+        DEALGAENATING(.322),
+        CLIMBING(.322),
+        SCORING(.547),
+        CORAL_SNAG(.512),
+        GROUND_INTAKE(.607);
 
         double pivotAngleRotations;
 
