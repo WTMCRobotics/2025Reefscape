@@ -5,21 +5,12 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.NamedCommands;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cameraserver.CameraServerSharedStore;
-import edu.wpi.first.cscore.HttpCamera;
-import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.commands.ClimbReset;
-import frc.robot.commands.swervedrive.auto.ResetGyro;
 import frc.robot.controller.Controller;
-import frc.robot.controller.Controller.StickProfile;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.TFMini;
 import org.ironmaple.simulation.SimulatedArena;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
@@ -146,11 +137,16 @@ public class Robot extends LoggedRobot {
      */
     @Override
     public void autonomousInit() {
+        System.out.println("Selecting string path: " + autonRouteChooser.getSelected());
         m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
-        Command autonCommand = Commands.sequence(
-            Commands.waitSeconds(SmartDashboard.getNumber("Auton delay (sec)", 7)),
-            m_autonomousCommand
+        System.out.println(
+            "Selected AUton: " + autonRouteChooser.getSelected() + "is null? " + m_autonomousCommand == null
         );
+        // Command autonCommand = Commands.sequence(
+        //     Commands.waitSeconds(SmartDashboard.getNumber("Auton delay (sec)", 7)),
+        //     m_autonomousCommand
+        // );
+        Command autonCommand = m_autonomousCommand;
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             autonCommand.schedule();

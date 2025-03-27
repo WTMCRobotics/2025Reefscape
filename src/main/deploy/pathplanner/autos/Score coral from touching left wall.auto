@@ -9,15 +9,15 @@
           "data": {
             "commands": [
               {
-                "type": "path",
-                "data": {
-                  "pathName": null
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "Reset"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "topStart to reef2coral"
                 }
               }
             ]

@@ -10,6 +10,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -86,13 +87,11 @@ public class RobotContainer {
         // Configure the trigger bindings
         configureBindings();
 
-        // autoChooser = AutoBuilder.buildAutoChooser("Tests");
-        // SmartDashboard.putData("Auto Mode", autoChooser);
-
         DriverStation.silenceJoystickConnectionWarning(true);
         NamedCommands.registerCommand("test", Commands.print("I EXIST"));
         NamedCommands.registerCommand("Reset", resetRobot());
         NamedCommands.registerCommand("SetIntake", resetClimbAndMoveIntakeUp());
+
         NamedCommands.registerCommand(
             "SetIntake: Coral Snag",
             new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG)
@@ -105,9 +104,12 @@ public class RobotContainer {
         SmartDashboard.putData("Reset Climb", new ClimbReset(climb));
         SmartDashboard.putData("Reset Dealgaenator", new ResetDealgaenator(dealgaenator));
         SmartDashboard.putData("Reset robot", resetRobot());
+
         // SmartDashboard.putData("Reset gyro", new ResetGyro(drivebase).ignoringDisable(true));
 
         SmartDashboard.putData("Test moving intake up slowy", intake.moveIntakeUptest());
+        // autoChooser = AutoBuilder.buildAutoChooser("test");
+        // SmartDashboard.putData("Auto Mode", autoChooser);
     }
 
     /**
@@ -265,7 +267,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand(String autoName) {
+        return new PathPlannerAuto(autoName);
         // return autoChooser.getSelected();
-        return Commands.none(); // TODO thhis
     }
 }
