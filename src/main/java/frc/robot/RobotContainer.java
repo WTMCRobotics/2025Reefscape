@@ -77,11 +77,11 @@ public class RobotContainer {
         if (Robot.isReal()) {
             drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve_non_simulation"));
 
-            drivebase.getSwerveDrive().setCosineCompensator(true);
-            drivebase.getSwerveDrive().setHeadingCorrection(true);
-            drivebase.getSwerveDrive().setAngularVelocityCompensation(true, true, -0.1);
-            drivebase.getSwerveDrive().setChassisDiscretization(true, true, 0.02);
-            drivebase.getSwerveDrive().setAutoCenteringModules(false);
+            // drivebase.getSwerveDrive().setCosineCompensator(true);
+            // drivebase.getSwerveDrive().setHeadingCorrection(true);
+            // drivebase.getSwerveDrive().setAngularVelocityCompensation(true, true, -0.1);
+            // drivebase.getSwerveDrive().setChassisDiscretization(true, true, 0.02);
+            // drivebase.getSwerveDrive().setAutoCenteringModules(false);
             intake = new IntakeSubsystem();
             climb = new ClimbSubsystem();
             dealgaenator = new DealgaenatorSubsystem();
