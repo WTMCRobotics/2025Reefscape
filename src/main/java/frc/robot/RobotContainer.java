@@ -54,7 +54,6 @@ import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 public class RobotContainer {
 
     public final Controller driverController = new Controller(0)
-        .invertLeftY()
         .setLeftDeadzone(0d)
         .setLeftProfile(StickProfile.SQUARE);
     public final GuitarController codriverController = new GuitarController(1);
@@ -81,14 +80,15 @@ public class RobotContainer {
     // private final SendableChooser<Command> autoChooser;
 
     public RobotContainer() {
-        // autoChooser = AutoBuilder.buildAutoChooser("Tests");
-        // SmartDashboard.putData("Auto Mode", autoChooser);
-
         intake = new IntakeSubsystem();
         climb = new ClimbSubsystem();
         dealgaenator = new DealgaenatorSubsystem();
         // Configure the trigger bindings
         configureBindings();
+
+        // autoChooser = AutoBuilder.buildAutoChooser("Tests");
+        // SmartDashboard.putData("Auto Mode", autoChooser);
+
         DriverStation.silenceJoystickConnectionWarning(true);
         NamedCommands.registerCommand("test", Commands.print("I EXIST"));
         NamedCommands.registerCommand("Reset", resetRobot());
@@ -136,7 +136,8 @@ public class RobotContainer {
                     drive
                         .withVelocityX(-driverController.getLeftStickY() * MaxSpeed) // Drive forward with negative Y (forward)
                         .withVelocityY(-driverController.getLeftStickX() * MaxSpeed) // Drive left with negative X (left)
-                        .withRotationalRate(-driverController.getRightStickX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+                        .withRotationalRate(-driverController.getRightStickX() * MaxAngularRate)
+                // Drive counterclockwise with negative X (left)
             )
         );
 
@@ -163,27 +164,24 @@ public class RobotContainer {
                 )
             );
 
-        // Run SysId routines when holding back/start and X/Y.
-        // Note that each routine should be run exactly once in a single log.
-        driverController
-            .buttonBack()
-            .and(driverController.buttonY())
-            .whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        driverController
-            .buttonBack()
-            .and(driverController.buttonX())
-            .whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
-        driverController
-            .buttonStart()
-            .and(driverController.buttonY())
-            .whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        driverController
-            .buttonStart()
-            .and(driverController.buttonX())
-            .whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
-
-        // reset the field-centric heading on left bumper press
-        driverController.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        if (DriverStation.isTest()) {
+            driverController
+                .buttonBack()
+                .and(driverController.buttonY())
+                .whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
+            driverController
+                .buttonBack()
+                .and(driverController.buttonX())
+                .whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
+            driverController
+                .buttonStart()
+                .and(driverController.buttonY())
+                .whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
+            driverController
+                .buttonStart()
+                .and(driverController.buttonX())
+                .whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+        }
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
@@ -219,8 +217,16 @@ public class RobotContainer {
 
         // driverController.buttonB().whileTrue(drivebase.driveToPose(processorSpot));
 
-        driverController.buttonStart().whileTrue(Commands.none());
-        driverController.buttonBack().whileTrue(Commands.none());
+        // driverController.buttonStart().whileTrue(Commands.none());
+
+        driverController
+            .buttonStart()
+            .onTrue(
+                drivetrain.runOnce(() -> {
+                    System.out.println("RESSETING GYRO");
+                    drivetrain.seedFieldCentric();
+                })
+            );
         // in
         driverController.leftBumper().whileTrue(new SpinIntake(intake, Constants.INTAKE_SPEED));
         // out
@@ -259,6 +265,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand(String autoName) {
+        // return autoChooser.getSelected();
         return Commands.none(); // TODO thhis
     }
 }
