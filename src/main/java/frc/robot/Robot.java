@@ -89,7 +89,7 @@ public class Robot extends LoggedRobot {
         robotContainer = new RobotContainer();
         // disabledTimer = new Timer();
 
-        new ResetGyro(robotContainer.drivebase).ignoringDisable(true).schedule();
+        // new ResetGyro(robotContainer.drivebase).ignoringDisable(true).schedule();
         if (Robot.isSimulation()) {
             Logger.addDataReceiver(new NT4Publisher());
         }
@@ -126,8 +126,6 @@ public class Robot extends LoggedRobot {
      */
     @Override
     public void disabledInit() {
-        robotContainer.resetSimulation();
-        robotContainer.setMotorBrake(true);
         // disabledTimer.reset();
         // disabledTimer.start();
     }
@@ -148,7 +146,6 @@ public class Robot extends LoggedRobot {
      */
     @Override
     public void autonomousInit() {
-        robotContainer.setMotorBrake(true);
         m_autonomousCommand = robotContainer.getAutonomousCommand(autonRouteChooser.getSelected());
         Command autonCommand = Commands.sequence(
             Commands.waitSeconds(SmartDashboard.getNumber("Auton delay (sec)", 7)),
@@ -184,9 +181,7 @@ public class Robot extends LoggedRobot {
      * This function is called periodically during operator control.
      */
     @Override
-    public void teleopPeriodic() {
-        robotContainer.sendTelementary();
-    }
+    public void teleopPeriodic() {}
 
     @Override
     public void testInit() {
@@ -215,6 +210,5 @@ public class Robot extends LoggedRobot {
     @Override
     public void simulationPeriodic() {
         SimulatedArena.getInstance().simulationPeriodic();
-        robotContainer.displaySimFieldToAdvantageScope();
     }
 }
