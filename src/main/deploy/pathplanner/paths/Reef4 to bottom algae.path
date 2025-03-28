@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.226639344262295,
-        "y": 3.269774590163935
+        "x": 4.255635245901639,
+        "y": 2.8861680327868853
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.890983606557376,
-        "y": 2.2867827868852455
+        "x": 3.919979508196721,
+        "y": 1.9031762295081958
       },
       "isLocked": false,
       "linkedName": "Reef4"
@@ -56,7 +56,7 @@
     {
       "name": "Intake",
       "waypointRelativePos": 0.7886563133018175,
-      "endWaypointRelativePos": 1.296421336934505,
+      "endWaypointRelativePos": 1.328831870357864,
       "command": {
         "type": "named",
         "data": {
@@ -81,7 +81,7 @@
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -59.03624346792642
+    "rotation": -119.57783868126127
   },
   "useDefaultConstraints": true
 }
