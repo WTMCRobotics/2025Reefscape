@@ -19,7 +19,7 @@ public class ResetPivot extends Command {
 
     @Override
     public void initialize() {
-        intakeSubsystem.movePivot(-0.2);
+        intakeSubsystem.movePivot(-0.25);
     }
 
     @Override

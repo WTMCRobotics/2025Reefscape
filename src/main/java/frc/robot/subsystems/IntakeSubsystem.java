@@ -57,7 +57,7 @@ public class IntakeSubsystem extends SubsystemBase {
         CLIMBING(.367),
         SCORING(.584),
         CORAL_SNAG(.575),
-        GROUND_INTAKE(.649);
+        GROUND_INTAKE(.656);
 
         double pivotAngleRotations;
 

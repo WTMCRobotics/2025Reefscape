@@ -17,6 +17,7 @@ public class SpinIntake extends Command {
     @Override
     public void initialize() {
         intakeSubsystem.spinIntake(speed);
+        System.out.println("Intake command stated");
     }
 
     @Override

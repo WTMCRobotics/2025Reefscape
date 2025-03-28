@@ -32,7 +32,13 @@
         {
           "type": "named",
           "data": {
-            "name": "SetIntake"
+            "name": "MoveClimbBackToStartPosition"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SetIntake: Coral Snag"
           }
         },
         {

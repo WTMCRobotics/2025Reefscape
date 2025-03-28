@@ -151,11 +151,10 @@ public class Robot extends LoggedRobot {
         System.out.println(
             "Selected AUton: " + autonRouteChooser.getSelected() + "is null? " + m_autonomousCommand == null
         );
-        // Command autonCommand = Commands.sequence(
-        //     Commands.waitSeconds(SmartDashboard.getNumber("Auton delay (sec)", 7)),
-        //     m_autonomousCommand
-        // );
-        Command autonCommand = m_autonomousCommand;
+        Command autonCommand = Commands.sequence(
+            Commands.waitSeconds(SmartDashboard.getNumber("Auton delay (sec)", 7)),
+            m_autonomousCommand
+        );
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             autonCommand.schedule();

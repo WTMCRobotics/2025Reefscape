@@ -30,7 +30,6 @@ import frc.robot.commands.ClimbMove;
 import frc.robot.commands.ClimbReset;
 import frc.robot.commands.ResetEncoders;
 import frc.robot.commands.swervedrive.auto.PivotDealgaenatorToAngle;
-import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
 import frc.robot.commands.swervedrive.auto.PivotIntakeToAngleWithPIDF;
 import frc.robot.commands.swervedrive.auto.ResetDealgaenator;
 import frc.robot.commands.swervedrive.auto.ResetPivot;
@@ -94,12 +93,16 @@ public class RobotContainer {
         NamedCommands.registerCommand("test", Commands.print("I EXIST"));
         NamedCommands.registerCommand("Reset", resetRobot());
         NamedCommands.registerCommand("SetIntake", resetClimbAndMoveIntakeUp());
+        NamedCommands.registerCommand(
+            "MoveClimbBackToStartPosition",
+            new ClimbAngle(climb, ClimbPosition.ZERO_POSITION)
+        );
 
         NamedCommands.registerCommand(
             "SetIntake: Coral Snag",
-            new PivotIntakeToAngle(intake, IntakePosition.CORAL_SNAG)
+            new PivotIntakeToAngleWithPIDF(intake, IntakePosition.CORAL_SNAG)
         );
-        NamedCommands.registerCommand("Intake", new SpinIntake(intake, Constants.INTAKE_SPEED));
+        NamedCommands.registerCommand("Intake", new SpinIntake(intake, -Constants.INTAKE_SPEED));
         // NamedCommands.registerCommand("Drop Coral", Commands.none());
         NamedCommands.registerCommand("Drop Coral", new ClimbAngle(climb, ClimbPosition.DEPOSIT_CORAL_ZEROED));
         SmartDashboard.putData("Reset Encoders", new ResetEncoders(intake, climb, dealgaenator));
@@ -250,7 +253,7 @@ public class RobotContainer {
     public Command resetRobot() {
         return Commands.sequence(
             new ResetPivot(intake),
-            new PivotIntakeToAngle(intake, IntakePosition.SCORING).withTimeout(2),
+            new PivotIntakeToAngleWithPIDF(intake, IntakePosition.SCORING).withTimeout(2),
             Commands.parallel(new ResetDealgaenator(dealgaenator).withTimeout(3))
             // new ResetDealgaenator(dealgaenator),
             // new PivotDealgaenatorToAngle(dealgaenator, DealgaenatorPosition.DEPLOYED),
@@ -260,7 +263,7 @@ public class RobotContainer {
     public Command resetClimbAndMoveIntakeUp() {
         return Commands.sequence(
             new ClimbAngle(climb, ClimbPosition.ZERO_POSITION),
-            new PivotIntakeToAngle(intake, IntakePosition.DEALGAENATING)
+            new PivotIntakeToAngleWithPIDF(intake, IntakePosition.DEALGAENATING)
         );
     }
 

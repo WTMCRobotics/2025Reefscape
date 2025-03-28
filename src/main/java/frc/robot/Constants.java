@@ -32,7 +32,7 @@ public final class Constants {
     public static final double OUTTAKE_SPEED = 1;
 
     // public static final double INTAKE_GOING_UP_TO_DEALGEANATE = 2.25;
-    public static final double INTAKE_PIVOT_DOWN_P = 5;
+    public static final double INTAKE_PIVOT_DOWN_P = 8;
     // public static final double INTAKE_PIVOT_UP_P = 10;
     public static final double INTAKE_PIVOT_I = 1;
     public static final double INTAKE_PIVOT_D = 0.5;
