@@ -46,6 +46,12 @@
           "data": {
             "pathName": "Reef4 to bottom algae"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "OutTakeFor5Secs"
+          }
         }
       ]
     }
