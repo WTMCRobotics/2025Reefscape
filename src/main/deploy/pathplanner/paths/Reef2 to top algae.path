@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.718999999999999,
-        "y": 5.204749999999999
+        "x": 4.699180327868852,
+        "y": 5.163831967213115
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.5553278688524586,
-        "y": 5.4395491803278695
+        "x": 4.535508196721311,
+        "y": 5.398631147540986
       },
       "isLocked": false,
       "linkedName": "Reef2Coral"
     },
     {
       "anchor": {
-        "x": 1.5344262295081967,
-        "y": 5.83514344262295
+        "x": 1.1028688524590162,
+        "y": 5.847131147540983
       },
       "prevControl": {
-        "x": 2.481454918032788,
-        "y": 5.847131147540982
+        "x": 2.049897540983607,
+        "y": 5.859118852459015
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,8 +45,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 1.5,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 1.75,
+    "maxAcceleration": 1.75,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

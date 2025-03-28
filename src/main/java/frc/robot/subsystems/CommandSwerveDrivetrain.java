@@ -11,6 +11,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import com.pathplanner.lib.path.PathConstraints;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.Matrix;
@@ -52,7 +53,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
 
-    boolean useVision = false;
+    final boolean useVision = false;
     AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
     PhotonCamera frontCam = new PhotonCamera("FrontCam");
     PhotonPoseEstimator poseEstimator;
@@ -156,7 +157,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         configureAutoBuilder();
         SmartDashboard.putData("Field", getField());
         if (useVision) {
-            setupPhoton();
+            // setupPhoton();
         }
     }
 
@@ -196,6 +197,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             startSimThread();
         }
         configureAutoBuilder();
+    }
+
+    public Command pathFindToPose(Pose2d endPose) {
+        // return AutoBuilder.pathfindToPose;
+        return null;
     }
 
     /**

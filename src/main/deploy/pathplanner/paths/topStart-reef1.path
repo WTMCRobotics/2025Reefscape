@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.868250000000001,
-        "y": 7.554499999999999
+        "x": 8.0077868852459,
+        "y": 7.561372950819671
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.86825,
-        "y": 7.554499999999999
+        "x": 9.007786885245899,
+        "y": 7.561372950819671
       },
       "isLocked": false,
       "linkedName": "TopWallStart"
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.5,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 1.75,
+    "maxAcceleration": 1.75,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

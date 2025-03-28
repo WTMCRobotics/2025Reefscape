@@ -65,14 +65,6 @@ public class PivotIntakeToAngleWithPIDF extends Command {
         controller.setGoal(targetAngle);
         double calcValue = controller.calculate(intakeSubsystem.getPivotAngle());
         calcValue -= 0.05;
-        System.out.println(
-            "going to " +
-            controller.getGoal().position +
-            " at speed of " +
-            calcValue +
-            " with vel " +
-            controller.getSetpoint().velocity
-        );
         intakeSubsystem.movePivot(calcValue);
     }
 

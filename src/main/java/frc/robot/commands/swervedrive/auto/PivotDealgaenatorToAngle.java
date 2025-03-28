@@ -35,10 +35,6 @@ public class PivotDealgaenatorToAngle extends Command {
 
     @Override
     public void execute() {
-        System.out.println(
-            "executing pivot dealgeanator to angle: " +
-            controller.calculate(-dealgaenatorSubsystem.getDealgaenatorAngle())
-        );
         dealgaenatorSubsystem.movePivot(-controller.calculate(dealgaenatorSubsystem.getDealgaenatorAngle()));
     }
 
