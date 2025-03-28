@@ -72,6 +72,7 @@ public class DealgaenatorSubsystem extends SubsystemBase {
     }
 
     public enum DealgaenatorPosition {
+        //Good position is 44 and 5/8 inches
         DEPLOYED(-1.3923046875);
 
         double dealgaenatorAngleDegrees;
