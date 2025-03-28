@@ -34,6 +34,12 @@
           "data": {
             "name": "SetIntake"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Reef4 to bottom algae"
+          }
         }
       ]
     }

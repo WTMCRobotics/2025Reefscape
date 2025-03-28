@@ -129,8 +129,8 @@ public class RobotContainer {
      * Flight joysticks}.
      */
     private void configureBindings() {
-        SlewRateLimiter XaxisLimiter = new SlewRateLimiter(5);
-        SlewRateLimiter YAxisLimiter = new SlewRateLimiter(5);
+        SlewRateLimiter XaxisLimiter = new SlewRateLimiter(1.5);
+        SlewRateLimiter YAxisLimiter = new SlewRateLimiter(1.5);
 
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.

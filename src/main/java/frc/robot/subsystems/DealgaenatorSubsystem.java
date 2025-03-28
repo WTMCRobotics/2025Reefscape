@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.swervedrive.auto.PivotDealgaenatorToAngle;
-import frc.robot.commands.swervedrive.auto.PivotIntakeToAngle;
+import frc.robot.commands.swervedrive.auto.PivotIntakeToAngleWithPIDF;
 import frc.robot.commands.swervedrive.auto.ResetDealgaenator;
 import frc.robot.subsystems.IntakeSubsystem.IntakePosition;
 
@@ -54,7 +54,7 @@ public class DealgaenatorSubsystem extends SubsystemBase {
     public Command deployDealgenatorSafely(IntakeSubsystem intake) {
         if (intake.getPivotAngle() < IntakePosition.DEALGAENATING.getPivotAngleRotations() + 6) {
             return Commands.sequence(
-                new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE),
+                new PivotIntakeToAngleWithPIDF(intake, IntakePosition.GROUND_INTAKE),
                 new PivotDealgaenatorToAngle(this, DealgaenatorPosition.DEPLOYED)
             );
         }
@@ -64,7 +64,7 @@ public class DealgaenatorSubsystem extends SubsystemBase {
     public Command retractDealgenatorSafely(IntakeSubsystem intake) {
         if (intake.getPivotAngle() < IntakePosition.DEALGAENATING.getPivotAngleRotations() + 6) {
             return Commands.sequence(
-                new PivotIntakeToAngle(intake, IntakePosition.GROUND_INTAKE),
+                new PivotIntakeToAngleWithPIDF(intake, IntakePosition.GROUND_INTAKE),
                 new ResetDealgaenator(this)
             );
         }

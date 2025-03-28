@@ -69,6 +69,14 @@ public class Robot extends LoggedRobot {
         autonRouteChooser.addOption("Just exit from touching left wall", "Just exit from touching left wall");
         autonRouteChooser.addOption("decent test", "Copy of Copy of usefull test");
         autonRouteChooser.addOption("copy of usefull test", "Copy of usefull test");
+        autonRouteChooser.addOption(
+            "Score coral from touching right wall Then Algae",
+            "Score coral from touching right wall Then Algae"
+        );
+        autonRouteChooser.addOption(
+            " Score then Algae from touching left wall",
+            " Score then Algae from touching left wall"
+        );
 
         SmartDashboard.putNumber("Auton delay (sec)", 7);
         // autonRouteChooser.addOption("new auto", "New New Auto");

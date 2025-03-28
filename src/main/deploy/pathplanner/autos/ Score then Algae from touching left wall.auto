@@ -9,15 +9,15 @@
           "data": {
             "commands": [
               {
-                "type": "path",
-                "data": {
-                  "pathName": null
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "Reset"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "topStart to reef2coral"
                 }
               }
             ]
@@ -38,26 +38,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "reef2 to reef2coral"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Copy of reef2-middleAlgae"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "SetIntake: Coral Snag"
-                }
-              }
-            ]
+            "pathName": "Reef2 to top algae"
           }
         }
       ]

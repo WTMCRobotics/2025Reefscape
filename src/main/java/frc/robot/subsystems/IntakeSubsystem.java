@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -52,11 +53,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public enum IntakePosition {
         STARTING_POSITION(0),
-        DEALGAENATING(.322),
-        CLIMBING(.322),
-        SCORING(.547),
-        CORAL_SNAG(.512),
-        GROUND_INTAKE(.607);
+        DEALGAENATING(.367),
+        CLIMBING(.367),
+        SCORING(.584),
+        CORAL_SNAG(.575),
+        GROUND_INTAKE(.649);
 
         double pivotAngleRotations;
 
