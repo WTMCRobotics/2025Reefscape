@@ -155,6 +155,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
         configureAutoBuilder();
         SmartDashboard.putData("Field", getField());
+        if (useVision) {
+            setupPhoton();
+        }
     }
 
     public void setupPhoton() {
