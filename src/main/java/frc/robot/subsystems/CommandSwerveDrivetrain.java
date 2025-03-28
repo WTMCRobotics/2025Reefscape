@@ -157,7 +157,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         configureAutoBuilder();
         SmartDashboard.putData("Field", getField());
         if (useVision) {
-            // setupPhoton();
+            setupPhoton();
         }
     }
 
@@ -199,9 +199,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         configureAutoBuilder();
     }
 
+    //Might or might not work - untested
     public Command pathFindToPose(Pose2d endPose) {
-        // return AutoBuilder.pathfindToPose;
-        return null;
+        PathConstraints constraints = new PathConstraints(3, 5.5, Math.PI * 2.5, Math.PI * 5);
+        return AutoBuilder.pathfindToPose(endPose, constraints, 0);
     }
 
     /**

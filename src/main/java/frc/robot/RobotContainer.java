@@ -223,7 +223,7 @@ public class RobotContainer {
         //     processorSpot = new Pose2d(new Translation2d(11.484, 8.49), Rotation2d.fromDegrees(90.000));
         // }
 
-        // driverController.buttonB().whileTrue(drivebase.driveToPose(processorSpot));
+        // driverController.buttonB().whileTrue(drivetrain.pathFindToPose(processorSpot));
 
         // driverController.buttonStart().whileTrue(Commands.none());
 
