@@ -16,6 +16,7 @@ import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -81,23 +82,13 @@ public class RobotContainer {
     private DealgaenatorSubsystem dealgaenator;
     public ClimbSubsystem climb;
 
-    Vision vision;
-    boolean useVision = false;
-
-    // private final SendableChooser<Command> autoChooser;
-
-    private final AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(
-        AprilTagFields.k2025ReefscapeWelded
-    );
-
     public RobotContainer() {
         intake = new IntakeSubsystem();
         climb = new ClimbSubsystem();
         dealgaenator = new DealgaenatorSubsystem();
+
         // Configure the trigger bindings
         configureBindings();
-
-        if (useVision) {}
 
         DriverStation.silenceJoystickConnectionWarning(true);
         NamedCommands.registerCommand("test", Commands.print("I EXIST"));

@@ -11,20 +11,36 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
+import frc.robot.subsystems.swervedrive.Vision;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
+import org.photonvision.EstimatedRobotPose;
+import org.photonvision.PhotonCamera;
+import org.photonvision.PhotonPoseEstimator;
+import org.photonvision.PhotonPoseEstimator.PoseStrategy;
+import org.photonvision.targeting.PhotonPipelineResult;
 
 /**
  * Class that extends the Phoenix 6 SwerveDrivetrain class and implements
@@ -35,6 +51,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private static final double kSimLoopPeriod = 0.005; // 5 ms
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
+
+    boolean useVision = false;
+    AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
+    PhotonCamera frontCam = new PhotonCamera("FrontCam");
+    PhotonPoseEstimator poseEstimator;
 
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -53,6 +74,12 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         new SwerveRequest.SysIdSwerveSteerGains();
     private final SwerveRequest.SysIdSwerveRotation m_rotationCharacterization =
         new SwerveRequest.SysIdSwerveRotation();
+
+    Field2d field = new Field2d();
+
+    public Field2d getField() {
+        return field;
+    }
 
     /* SysId routine for characterizing translation. This is used to find PID gains for the drive motors. */
     private final SysIdRoutine m_sysIdRoutineTranslation = new SysIdRoutine(
@@ -127,6 +154,20 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             startSimThread();
         }
         configureAutoBuilder();
+        SmartDashboard.putData("Field", getField());
+    }
+
+    public void setupPhoton() {
+        Transform3d robotToCam = new Transform3d(
+            new Translation3d(Units.inchesToMeters(-4), Units.inchesToMeters(6), Units.inchesToMeters(36)),
+            new Rotation3d(0, Units.degreesToRadians(0), 0)
+        ); //Cam mounted facing forward, half a meter forward of center, half a meter up from center.
+        poseEstimator = new PhotonPoseEstimator(
+            aprilTagFieldLayout,
+            PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR,
+            robotToCam
+        );
+        poseEstimator.setMultiTagFallbackStrategy(PoseStrategy.LOWEST_AMBIGUITY);
     }
 
     /**
@@ -259,6 +300,16 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return m_sysIdRoutineToApply.dynamic(direction);
     }
 
+    public Optional<EstimatedRobotPose> getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
+        poseEstimator.setReferencePose(prevEstimatedRobotPose);
+
+        List<PhotonPipelineResult> unread = frontCam.getAllUnreadResults();
+        if (unread.isEmpty()) {
+            return Optional.empty();
+        }
+        return poseEstimator.update(unread.get(0));
+    }
+
     @Override
     public void periodic() {
         /*
@@ -279,6 +330,14 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                     m_hasAppliedOperatorPerspective = true;
                 });
         }
+        if (useVision) {
+            Optional<EstimatedRobotPose> poseOptional = getEstimatedGlobalPose(getState().Pose);
+            if (poseOptional.isPresent()) {
+                EstimatedRobotPose pose = poseOptional.get();
+                addVisionMeasurement(pose.estimatedPose.toPose2d(), pose.timestampSeconds);
+            }
+        }
+        field.setRobotPose(getState().Pose);
     }
 
     private void startSimThread() {
