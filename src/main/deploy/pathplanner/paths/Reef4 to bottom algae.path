@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.027871576293089,
-        "y": 1.8672121846686274
+        "x": 4.027868852459016,
+        "y": 1.8672131147540973
       },
       "isLocked": false,
       "linkedName": "Reef4"
@@ -32,11 +32,11 @@
     },
     {
       "anchor": {
-        "x": 6.161680327868852,
+        "x": 6.06577868852459,
         "y": 0.8722336065573757
       },
       "prevControl": {
-        "x": 6.125711120443998,
+        "x": 6.029809481099736,
         "y": 2.730327750919804
       },
       "nextControl": null,
@@ -56,7 +56,7 @@
     {
       "name": "Intake",
       "waypointRelativePos": 0.7886563133018175,
-      "endWaypointRelativePos": 1.2370020256583294,
+      "endWaypointRelativePos": 1.14,
       "command": {
         "type": "named",
         "data": {
