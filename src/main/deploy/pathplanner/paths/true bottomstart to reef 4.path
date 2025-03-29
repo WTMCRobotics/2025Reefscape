@@ -1,0 +1,95 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 8.0,
+        "y": 1.0
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.212328767123288,
+        "y": 1.4921832191780826
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.151639344262295,
+        "y": 1.5555327868852453
+      },
+      "prevControl": {
+        "x": 8.784575647136414,
+        "y": 2.673989934998278
+      },
+      "nextControl": {
+        "x": 7.450488659330788,
+        "y": 0.31653449921401267
+      },
+      "isLocked": false,
+      "linkedName": "TopAlgea"
+    },
+    {
+      "anchor": {
+        "x": 6.0,
+        "y": 6.0
+      },
+      "prevControl": {
+        "x": 4.925136966417316,
+        "y": 7.184035832168418
+      },
+      "nextControl": {
+        "x": 6.485802963128695,
+        "y": 5.464854499832681
+      },
+      "isLocked": false,
+      "linkedName": "6,6"
+    },
+    {
+      "anchor": {
+        "x": 6.05,
+        "y": 4.0
+      },
+      "prevControl": {
+        "x": 5.9592577939033475,
+        "y": 4.67701266799804
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Reefpoint4"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 2.007246376811594,
+      "rotationDegrees": 0.0
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 2.125,
+    "maxAcceleration": 2.125,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 1.0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "start",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "useDefaultConstraints": true
+}

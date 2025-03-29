@@ -1,0 +1,75 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Faster Bottom to reef4"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Reset"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Drop Coral"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "MoveClimbBackToStartPosition"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "SetIntake: Coral Snag"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Reef4 to bottom algae"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "OutTakeFor2andHalfSecs"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Grab And Score Second Algae From Bottom"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}

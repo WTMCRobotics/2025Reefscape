@@ -74,6 +74,10 @@ public class Robot extends LoggedRobot {
             "Score coral from touching right wall Then Algae"
         );
         autonRouteChooser.addOption(
+            "Score coral from touching right wall Then TWO ALGAE",
+            "Score coral from touching right wall Then TWO ALGAE"
+        );
+        autonRouteChooser.addOption(
             " Score then Algae from touching left wall",
             " Score then Algae from touching left wall"
         );

@@ -104,6 +104,10 @@ public class RobotContainer {
         );
         NamedCommands.registerCommand("Intake", new SpinIntake(intake, -Constants.INTAKE_SPEED));
         NamedCommands.registerCommand("OutTakeFor5Secs", new SpinIntake(intake, Constants.INTAKE_SPEED).withTimeout(5));
+        NamedCommands.registerCommand(
+            "OutTakeFor2andHalfSecs",
+            new SpinIntake(intake, Constants.INTAKE_SPEED).withTimeout(2.5)
+        );
         // NamedCommands.registerCommand("Drop Coral", Commands.none());
         NamedCommands.registerCommand("Drop Coral", new ClimbAngle(climb, ClimbPosition.DEPOSIT_CORAL_ZEROED));
         SmartDashboard.putData("Reset Encoders", new ResetEncoders(intake, climb, dealgaenator));
