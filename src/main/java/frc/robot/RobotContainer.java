@@ -14,8 +14,11 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.filter.SlewRateLimiter;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -222,13 +225,53 @@ public class RobotContainer {
         driverController.buttonY().onTrue(intake.spinPivot(0.2));
         driverController.buttonX().onFalse(intake.spinPivot(-0.0));
         driverController.buttonY().onFalse(intake.spinPivot(0.0));
+        driverController
+            .buttonBack()
+            .onTrue(
+                Commands.runOnce(() -> {
+                    drivetrain.disableVision();
+                    System.out.println("Vision Disabled!");
+                })
+            );
 
-        // Pose2d processorSpot = new Pose2d(new Translation2d(6.4, 1.4), Rotation2d.fromDegrees(-90.000));
-        // if (DriverStation.getAlliance().get() == Alliance.Red) {
-        //     processorSpot = new Pose2d(new Translation2d(11.484, 8.49), Rotation2d.fromDegrees(90.000));
-        // }
+        Pose2d redProcessorSpot = new Pose2d(new Translation2d(11.37, 7.05), Rotation2d.fromDegrees(90.000));
+        Pose2d blueProcessorSpot = new Pose2d(new Translation2d(6.106, 0.836), Rotation2d.fromDegrees(-90.000));
+        if (DriverStation.getAlliance().get() == Alliance.Blue) {
+            System.out.println("were blue");
+            driverController
+                .buttonB()
+                .whileTrue(
+                    Commands.print(
+                        "GOING TO " + blueProcessorSpot + " we're at " + drivetrain.getField().getRobotPose()
+                    ).andThen(drivetrain.pathFindToPose(blueProcessorSpot))
+                );
 
-        // driverController.buttonB().whileTrue(drivetrain.pathFindToPose(processorSpot));
+            driverController
+                .buttonA()
+                .whileTrue(
+                    Commands.print(
+                        "GOING TO " + redProcessorSpot + " we're at " + drivetrain.getField().getRobotPose()
+                    ).andThen(drivetrain.pathFindToPose(redProcessorSpot))
+                );
+        }
+        if (DriverStation.getAlliance().get() == Alliance.Red) {
+            System.out.println("were red");
+            driverController
+                .buttonB()
+                .whileTrue(
+                    Commands.print(
+                        "GOING TO " + redProcessorSpot + " we're at " + drivetrain.getField().getRobotPose()
+                    ).andThen(drivetrain.pathFindToPose(redProcessorSpot))
+                );
+
+            driverController
+                .buttonA()
+                .whileTrue(
+                    Commands.print(
+                        "GOING TO " + blueProcessorSpot + " we're at " + drivetrain.getField().getRobotPose()
+                    ).andThen(drivetrain.pathFindToPose(blueProcessorSpot))
+                );
+        }
 
         // driverController.buttonStart().whileTrue(Commands.none());
 

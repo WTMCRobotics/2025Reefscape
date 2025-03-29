@@ -7,6 +7,7 @@ import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
+import com.ctre.phoenix6.swerve.jni.SwerveJNI.DriveState;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
@@ -53,7 +54,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
 
-    final boolean useVision = false;
+    final boolean useVision = true;
     AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
     PhotonCamera frontCam = new PhotonCamera("FrontCam");
     PhotonPoseEstimator poseEstimator;
@@ -163,8 +164,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     public void setupPhoton() {
         Transform3d robotToCam = new Transform3d(
-            new Translation3d(Units.inchesToMeters(-4), Units.inchesToMeters(6), Units.inchesToMeters(36)),
-            new Rotation3d(0, Units.degreesToRadians(0), 0)
+            new Translation3d(Units.inchesToMeters(-4), Units.inchesToMeters(-6), Units.inchesToMeters(36)),
+            new Rotation3d(0, Units.degreesToRadians(-2.5), 0)
         ); //Cam mounted facing forward, half a meter forward of center, half a meter up from center.
         poseEstimator = new PhotonPoseEstimator(
             aprilTagFieldLayout,
@@ -201,7 +202,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     //Might or might not work - untested
     public Command pathFindToPose(Pose2d endPose) {
-        PathConstraints constraints = new PathConstraints(3, 5.5, Math.PI * 2.5, Math.PI * 5);
+        PathConstraints constraints = new PathConstraints(1.75, 2, Math.PI * 1.5, Math.PI * 2.5);
         return AutoBuilder.pathfindToPose(endPose, constraints, 0);
     }
 
@@ -340,7 +341,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                     m_hasAppliedOperatorPerspective = true;
                 });
         }
-        if (useVision) {
+        if (useVision && DriverStation.isTeleop() && !disableVision) {
             Optional<EstimatedRobotPose> poseOptional = getEstimatedGlobalPose(getState().Pose);
             if (poseOptional.isPresent()) {
                 EstimatedRobotPose pose = poseOptional.get();
@@ -348,6 +349,12 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             }
         }
         field.setRobotPose(getState().Pose);
+    }
+
+    private boolean disableVision = false;
+
+    public void disableVision() {
+        disableVision = true;
     }
 
     private void startSimThread() {
