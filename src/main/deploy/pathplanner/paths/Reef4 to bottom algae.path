@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.255635245901639,
-        "y": 2.874180327868852
+        "x": 4.111782786885246,
+        "y": 2.9580942622950825
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.919979508196721,
-        "y": 1.8911885245901625
+        "x": 3.776127049180327,
+        "y": 1.975102459016393
       },
       "isLocked": false,
       "linkedName": "Reef4"
     },
     {
       "anchor": {
-        "x": 1.174795081967213,
-        "y": 2.1669057377049183
+        "x": 1.0309426229508196,
+        "y": 2.2148565573770487
       },
       "prevControl": {
-        "x": 3.440496753235224,
-        "y": 1.961428398775928
+        "x": 3.2966442942188303,
+        "y": 2.0093792184480583
       },
       "nextControl": {
-        "x": 0.5634223567567711,
-        "y": 2.222351360693624
+        "x": 0.4195698977403777,
+        "y": 2.2703021803657544
       },
       "isLocked": false,
       "linkedName": null
@@ -46,7 +46,7 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.8742004264392463,
+      "waypointRelativePos": 0.7633262260127995,
       "rotationDegrees": -179.48780765316408
     }
   ],
@@ -55,8 +55,8 @@
   "eventMarkers": [
     {
       "name": "Intake",
-      "waypointRelativePos": 0.707629979743417,
-      "endWaypointRelativePos": 1.175,
+      "waypointRelativePos": 0.7778528021607019,
+      "endWaypointRelativePos": 1.17,
       "command": {
         "type": "named",
         "data": {
