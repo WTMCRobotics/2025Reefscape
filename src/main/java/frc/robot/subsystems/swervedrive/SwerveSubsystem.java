@@ -6,6 +6,7 @@ package frc.robot.subsystems.swervedrive;
 
 import static edu.wpi.first.units.Units.Meter;
 
+import com.ctre.phoenix6.Orchestra;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -78,6 +79,8 @@ public class SwerveSubsystem extends SubsystemBase {
      */
     private Vision vision;
 
+    Orchestra sqorchestra;
+
     /**
      * Initialize {@link SwerveDrive} with the directory provided.
      *
@@ -101,12 +104,23 @@ public class SwerveSubsystem extends SubsystemBase {
         swerveDrive.setAngularVelocityCompensation(true, true, 0.1); //Correct for skew that gets worse as angular velocity increases. Start with a coefficient of 0.1.
         swerveDrive.setModuleEncoderAutoSynchronize(false, 1); // Enable if you want to resynchronize your absolute encoders and motor encoders periodically when they are not moving.
         //    swerveDrive.pushOffsetsToEncoders(); // Set the absolute encoder to be used over the internal encoder and push the offsets onto it. Throws warning if not possible
+     
+        sqorchestra = new Orchestra();
+
+        sqorchestra.addInstrument((TalonFX)this.getSwerveDrive().getModules()[0].getDriveMotor().getMotor());
+
+        var status = sqorchestra.loadMusic("mario_underwater.chrp");
+
         if (visionDriveTest) {
             setupPhotonVision();
             // Stop the odometry thread if we are using vision that way we can synchronize updates better.
             swerveDrive.stopOdometryThread();
         }
         setupPathPlanner();
+    }
+
+    public Orchestra getOrcestra() {
+        return sqorchestra;
     }
 
     /**

@@ -238,6 +238,11 @@ public class RobotContainer {
 
         codriverController.dpadLeft().onTrue(new ClimbAngle(climb, ClimbPosition.DEPLOY_CLIMB));
 
+        codriverController.dpadRight().onTrue(Commands.runOnce(() -> {
+                drivebase.getOrcestra().play();
+        },
+        drivebase));
+
         if (RobotBase.isSimulation()) {
             drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity);
         } else {
