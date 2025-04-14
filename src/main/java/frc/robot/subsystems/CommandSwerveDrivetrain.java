@@ -54,7 +54,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
 
-    final boolean useVision = true;
+    final boolean useVision = false;
     AprilTagFieldLayout aprilTagFieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
     PhotonCamera frontCam = new PhotonCamera("FrontCam");
     PhotonPoseEstimator poseEstimator;
