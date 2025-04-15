@@ -2,8 +2,10 @@ package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.*;
 
+import com.ctre.phoenix6.Orchestra;
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
@@ -136,6 +138,14 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     /* The SysId routine to test */
     private SysIdRoutine m_sysIdRoutineToApply = m_sysIdRoutineTranslation;
 
+    Orchestra sqOrchestra;
+
+    public Orchestra getSqOrchestra() {
+        return this.sqOrchestra;
+    }
+
+
+
     /**
      * Constructs a CTRE SwerveDrivetrain using the specified constants.
      * <p>
@@ -159,7 +169,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if (useVision) {
             setupPhoton();
         }
+
+        this.sqOrchestra = new Orchestra();
+
+        sqOrchestra.addInstrument((TalonFX)this.getModules()[0].getDriveMotor());
     }
+
+    
 
     public void setupPhoton() {
         Transform3d robotToCam = new Transform3d(

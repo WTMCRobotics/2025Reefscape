@@ -7,6 +7,7 @@ package frc.robot;
 import static edu.wpi.first.units.Units.*;
 
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -207,6 +208,10 @@ public class RobotContainer {
         codriverController.buttonBack().whileTrue(new ClimbMove(climb, -1.0));
 
         codriverController.dpadLeft().onTrue(new ClimbAngle(climb, ClimbPosition.DEPLOY_CLIMB));
+        codriverController.dpadLeft().onTrue(Commands.runOnce(() -> {
+                drivetrain.getSqOrchestra().play();
+        },
+        drivetrain));
 
         // driverController.buttonX().whileTrue(Commands.runOnce(drivebase::lock, drivebase).repeatedly());
         // driverController.buttonA().onTrue((Commands.runOnce(drivebase::zeroGyro)));
