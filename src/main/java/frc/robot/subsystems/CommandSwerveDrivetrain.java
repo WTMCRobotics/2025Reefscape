@@ -173,9 +173,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         this.sqOrchestra = new Orchestra();
 
         sqOrchestra.addInstrument((TalonFX)this.getModules()[0].getDriveMotor());
-    }
 
-    
+        var status = sqOrchestra.loadMusic("mario_underwater.chrp");
+    }
 
     public void setupPhoton() {
         Transform3d robotToCam = new Transform3d(
